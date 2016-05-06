@@ -1,9 +1,8 @@
 #include "DB_helper.h"
 
+
 bool DBHelper::connectDB()
 {
-	bool isConnected = false;
-
 	SQLWCHAR connectingString[MDF_COUNT][BUFSIZ];
 	SQLWCHAR mdf[MDF_COUNT][BUFSIZ];
 	wcscpy_s(mdf[0], L"theater");		// ±ÿ¿Â ¡§∫∏
@@ -31,10 +30,9 @@ bool DBHelper::connectDB()
 		SQLDriverConnect(dbc[i], GetDesktopWindow(), connectingString[i],
 			SQL_NTS, NULL, 0, NULL, SQL_DRIVER_NOPROMPT);
 		SQLAllocHandle(SQL_HANDLE_STMT, dbc[i], &stmt[i]);
-		SQLRETURN ret = SQLSetStmtAttr(stmt[i], SQL_ATTR_CURSOR_SCROLLABLE, (SQLPOINTER)SQL_SCROLLABLE, 0);
-		if (ret != SQL_SUCCESS)
+		if (SQLSetStmtAttr(stmt[i], SQL_ATTR_CURSOR_SCROLLABLE, (SQLPOINTER)SQL_SCROLLABLE, 0) != SQL_SUCCESS)
 		{
-			return isConnected;
+			return false;
 		}
 	}
 
@@ -43,6 +41,5 @@ bool DBHelper::connectDB()
 	seatStmt = stmt[2];
 	salesRecordStmt = stmt[3];
 
-	isConnected = true;
-	return isConnected;
+	return true;
 }

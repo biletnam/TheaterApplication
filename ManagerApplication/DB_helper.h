@@ -22,6 +22,8 @@ using namespace std;
 class DBHelper
 {
 public:
+	DBHelper() {};
+
 	SQLHSTMT theaterStmt;
 	SQLHSTMT saleInfoStmt;
 	SQLHSTMT seatStmt;

@@ -158,7 +158,7 @@
   <ItemGroup>
     <ClCompile Include="date.cpp" />
     <ClCompile Include="date_choose.cpp" />
-    <ClCompile Include="DB_helper.cpp" />
+    <ClCompile Include="DB_helper_move_cursor.cpp" />
     <ClCompile Include="DB_helper_close.cpp" />
     <ClCompile Include="DB_helper_connect.cpp" />
     <ClCompile Include="managePrice.cpp" />

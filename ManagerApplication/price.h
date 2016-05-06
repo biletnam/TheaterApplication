@@ -6,8 +6,6 @@
 class Price
 {
 public:
-
-
 	SQLSMALLINT code = 0;
 	SQLCHAR name[BUFSIZ];
 	SQLINTEGER won;
