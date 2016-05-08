@@ -6,7 +6,7 @@ void ScheduleManager::addDate()
 	for (vector<Date> dateVector;;)
 	{
 		system("cls");
-		cout << "추가한 날짜\n";
+		cout << "추가한 날짜";
 		for (int i = 0; i < dateVector.size(); i++)
 		{
 			dateVector.at(i).show();

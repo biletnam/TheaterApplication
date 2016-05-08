@@ -13,16 +13,11 @@ void ScheduleManager::checkSchedule()
 	SQLHSTMT &stmt = dbHelper.saleInfoStmt;
 	SQLWCHAR sql[BUFSIZ];
 	swprintf_s(sql,	L""
-		"SELECT screen, movie_code, movie_title, start_time, end_time FROM d%d "
-		"ORDER BY screen ASC, start_time ASC;", schedule.date.value);
+		"SELECT movie_code, movie_title, age, start_time, end_time FROM d%d "
+		"WHERE screen = %d "
+		"ORDER BY start_time ASC;", schedule.date.value, schedule.screen.number);
 	
-	SQLBindCol(stmt, 1, SQL_INTEGER, &schedule.screen.number, 
-		sizeof schedule.screen.number, NULL);
-	SQLBindCol(stmt, 2, SQL_INTEGER, &schedule.movie.code, 
-		sizeof schedule.movie.code, NULL);
-	SQLBindCol(stmt, 3, SQL_CHAR, &schedule.movie.title, BUFSIZ, NULL);
-	SQLBindCol(stmt, 4, SQL_INTEGER, &schedule.startTime, sizeof schedule.startTime, NULL);
-	SQLBindCol(stmt, 5, SQL_INTEGER, &schedule.endTime, sizeof schedule.endTime, NULL);
+	schedule.bindCol();
 
 	SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
 

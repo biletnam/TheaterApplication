@@ -13,21 +13,15 @@ MovieManager::MovieManager(DBHelper& dbHelper)
 
 	for (;;)
 	{
-		SQLHSTMT& stmt = dbHelper.theaterStmt;
-		SQLPrepare(stmt, L""
-			"SELECT movie_code, title, director, age, year, running_time "
-			"FROM Movie_internal;", 
-			SQL_NTS);
-
 		system("cls");
-		cout << "영화 관리\n"
-			"최근 등록된 영화 목록(10개)\n";
-		
-		Movie movie;
-		movie.showInfo(stmt);
-		SQLCancel(stmt);
+		cout << "극장 관리 시스템\n"
+			" > 영화 정보 관리\n\n"
+			"1. 등록한 영화 확인\n"
+			"2. 새로운 영화 등록\n"
+			"3. 등록한 영화 삭제\n"
+			"0. 종료\n\n"
+			"선택: ";
 
-		cout << "\n목록 확인(1), 등록(2), 삭제(3), 종료(0): ";
 		int16_t choice;
 		cin >> choice;
 

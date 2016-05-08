@@ -4,6 +4,7 @@ void MovieManager::deleteMovie()
 {
 	for (;;)
 	{
+		system("cls");
 		SQLWCHAR keyword[BUFSIZ];
 		Movie movie;
 		movie.setKeyword(keyword, "삭제할 영화의 제목을 검색하세요");

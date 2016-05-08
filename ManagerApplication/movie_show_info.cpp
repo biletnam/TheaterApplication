@@ -16,12 +16,18 @@ bool Movie::showInfo(SQLHSTMT& stmt)
 		{
 		case SQL_SUCCESS:
 			cout << i << ". "
-				<< "영화코드:" << code
-				<< ", 제목:" << title
-				<< ", 감독:" << director
-				<< ", 관람가:" << age
-				<< ", 개봉연도:" << year
-				<< ", 러닝타임:" << runningTime << endl;
+				<< title
+				<< "(" << director << "), "
+				<< runningTime << "분, ";
+			if (age == 0)
+			{
+				cout << "전체";
+			}
+			else
+			{
+				cout << age << "세";
+			}
+			cout << ", " << year << "년\n";
 			break;
 		case SQL_NO_DATA:
 			if (i == 1) 

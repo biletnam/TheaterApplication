@@ -22,7 +22,22 @@ int16_t getIndex(const int16_t lastIndex, const char* output)
 
 bool Date::choose()
 {
-	return (chooseYear() && chooseMonth() && chooseDay() == true) ? true : false;
+	while (chooseYear() == true)
+	{
+		system("cls");
+		cout << "선택한 연도: 20" << getYear() << "년\n";
+		while (chooseMonth() == true)
+		{
+			if (chooseDay() == true)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+
+	//return (chooseYear() && chooseMonth() && chooseDay() == true) ? true : false;
 }
 
 bool Date::chooseYear()
@@ -36,7 +51,7 @@ bool Date::chooseYear()
 	const int16_t yearCnt = 2;
 	const int16_t firstYear = today.getYear();
 
-	cout << "0. 종료" << endl;
+	cout << "\n0. 종료" << endl;
 	for (index = 1; index <= yearCnt; index++)
 	{
 		cout << index << ". 20" << firstYear + index - 1 << "년" << endl;
@@ -67,7 +82,7 @@ bool Date::chooseMonth()
 
 	int16_t index;
 
-	cout << "0. 종료" << endl;
+	cout << "\n0. 종료" << endl;
 	for (index = 1; index <= monthCnt; index++)
 	{
 		cout << index << ". " << firstMonth + index - 1 << "월" << endl;
@@ -110,7 +125,7 @@ bool Date::chooseDay()
 
 	const int16_t dayCnt = tmpDayCnt;
 	int16_t index;
-	cout << "0. 종료" << endl;
+	cout << "\n0. 종료" << endl;
 	for (index = 1; index <= dayCnt - firstDay + 1; index++)
 	{
 		cout << index << ". " << firstDay + index - 1 << "일" << endl;

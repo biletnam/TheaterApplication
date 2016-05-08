@@ -27,7 +27,7 @@ int16_t DBHelper::moveCursor(SQLHSTMT& stmt, const char* output)
 		}
 
 		cout << "잘못된 입력입니다.(moveCursor)\n"
-			"계속하려면 아무 키나 누르십시오...\n";
+			"계속하려면 아무 키나 누르십시오...";
 		_getch();
 		return moveCursor(stmt, output);
 	}

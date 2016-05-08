@@ -2,12 +2,16 @@
 
 void MovieManager::registerMovie()
 {
+	system("cls");
+	cout << "극장 관리 시스템\n"
+		" > 영화 정보 관리\n"
+		"  > 새로운 영화 등록\n\n";
+
 	for (;;)
 	{
-		system("cls");
 		SQLWCHAR keyword[BUFSIZ];
 		Movie movie;
-		movie.setKeyword(keyword, "\n추가할 영화의 제목을 검색하세요");
+		movie.setKeyword(keyword, "추가할 영화의 제목을 검색하세요");
 
 		if (wcscmp(keyword, L"%0%") == 0)
 		{
@@ -23,15 +27,15 @@ void MovieManager::registerMovie()
 			SQL_NTS);
 				
 		if (movie.showInfo(stmt) == FUNCTION_SUCCESS
-			&& dbHelper.moveCursor(stmt, "영화를 선택하세요") == FUNCTION_SUCCESS
+			&& dbHelper.moveCursor(stmt, "\n영화를 선택하세요") == FUNCTION_SUCCESS
 			&& SQLFreeStmt(stmt, SQL_UNBIND) == SQL_SUCCESS)
 		{
 			SQLINTEGER movieCode;
-			SQLGetData(stmt, 1, SQL_INTEGER, &movieCode, sizeof(movieCode), NULL);
+			SQLGetData(stmt, 1, SQL_INTEGER, &movieCode, sizeof movieCode, NULL);
 			SQLCancel(stmt);
 
 			SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_LONG, SQL_INTEGER,
-				sizeof(movieCode), 0, &movieCode, 0, NULL);
+				sizeof movieCode, 0, &movieCode, 0, NULL);
 			SQLExecDirect(stmt, L""
 				"INSERT INTO "
 				"movie_internal (movie_code, title, director, age, year, running_time) "
