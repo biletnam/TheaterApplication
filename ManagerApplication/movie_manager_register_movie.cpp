@@ -2,13 +2,13 @@
 
 void MovieManager::registerMovie()
 {
-	system("cls");
-	cout << "극장 관리 시스템\n"
-		" > 영화 정보 관리\n"
-		"  > 새로운 영화 등록\n\n";
-
 	for (;;)
 	{
+		system("cls");
+		cout << "극장 관리 시스템\n"
+			" > 영화 정보 관리\n"
+			"  > 새로운 영화 등록\n\n";
+
 		SQLWCHAR keyword[BUFSIZ];
 		Movie movie;
 		movie.setKeyword(keyword, "추가할 영화의 제목을 검색하세요");

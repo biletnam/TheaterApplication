@@ -37,3 +37,4 @@ void MovieManager::deleteMovie()
 		SQLCancel(stmt);
 	}
 }
+

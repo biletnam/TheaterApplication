@@ -140,5 +140,8 @@
     <ClCompile Include="DB_helper_move_cursor.cpp">
       <Filter>소스 파일\DB</Filter>
     </ClCompile>
+    <ClCompile Include="movie_manager_recent_register.cpp">
+      <Filter>소스 파일\movie_manager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
