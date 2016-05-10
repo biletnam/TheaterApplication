@@ -10,7 +10,7 @@ private:
 	void checkRegistration();
 	void registerMovie();
 	void deleteMovie();
-	void recentRegister();
+	void showRecent();
 	
 	DBHelper dbHelper;
 };

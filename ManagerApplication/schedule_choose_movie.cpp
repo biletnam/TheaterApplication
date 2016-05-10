@@ -1,5 +1,8 @@
 #include "schedule.h"
 
+// return 수정
+// do while 수정
+
 int16_t Schedule::chooseMovie()
 {
 	int16_t returnValue;
@@ -23,9 +26,11 @@ int16_t Schedule::chooseMovie()
 			"FROM Movie_internal "
 			"WHERE title LIKE ?;", SQL_NTS);
 
-		if ((movie.showInfo(stmt) == true)
-			&& (dbHelper.moveCursor(stmt, "영화를 선택하세요") == true))
+		if ((movie.showInfo(stmt) == FUNCTION_SUCCESS)
+			&& (dbHelper.moveCursor(stmt, "영화를 선택하세요") == FUNCTION_SUCCESS))
 		{
+			SQLFreeStmt(stmt, SQL_UNBIND);
+
 			SQLGetData(stmt, 1, SQL_INTEGER, &movie.code, sizeof(movie.code), NULL);
 			SQLGetData(stmt, 2, SQL_CHAR, movie.title, BUFSIZ, NULL);
 			SQLGetData(stmt, 3, SQL_INTEGER, &movie.age, sizeof(movie.age), NULL);

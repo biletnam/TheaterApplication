@@ -15,10 +15,12 @@ MovieManager::MovieManager(DBHelper& dbHelper)
 	{
 		system("cls");
 		cout << "극장 관리 시스템\n"
-			" > 영화 정보 관리\n\n"
-			"1. 등록한 영화 확인\n"
+			" > 영화 정보 관리\n\n";
+
+		showRecent();
+
+		cout << "\n1. 등록한 영화 확인 / 삭제\n"
 			"2. 새로운 영화 등록\n"
-			"3. 등록한 영화 삭제\n"
 			"0. 종료\n\n"
 			"선택: ";
 
@@ -28,14 +30,14 @@ MovieManager::MovieManager(DBHelper& dbHelper)
 		switch (choice)
 		{
 		case CHOICE_CHECK:
-			checkRegistration();
+			deleteMovie();
 			break;
 		case CHOICE_REGISTER:
 			registerMovie();
 			break;
-		case CHOICE_DELETE:
-			deleteMovie();
-			break;
+//		case CHOICE_DELETE:
+//			deleteMovie();
+//			break;
 		case FUNCTION_CANCEL:
 			return;
 		default:

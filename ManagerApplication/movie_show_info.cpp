@@ -1,6 +1,6 @@
 #include "movie.h"
 
-bool Movie::showInfo(SQLHSTMT& stmt)
+int16_t Movie::showInfo(SQLHSTMT& stmt)
 {
 	SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof(code), NULL);
 	SQLBindCol(stmt, 2, SQL_CHAR, title, BUFSIZ, NULL);
@@ -30,19 +30,23 @@ bool Movie::showInfo(SQLHSTMT& stmt)
 			cout << ", " << year << "년\n";
 			break;
 		case SQL_NO_DATA:
-			if (i == 1) 
+			if (i == 1)
 			{
-				cout << "등록된 영화가 없습니다\n";
+				cout << "\n등록된 영화가 없습니다\n"
+					"계속하려면 아무 키나 누르십시오...\n";
+				_getch();
+				return FUNCTION_NULL;
 			}
 			else
 			{
+				return FUNCTION_SUCCESS;
 			}
-			break;
 		default:
-			cout << "오류가 발생했습니다.\n";
+			cout << "\n오류가 발생했습니다.\n"
+				"계속하려면 아무 키나 누르십시오...\n";
+			_getch();
 		}
 	}
-	
 
 	return FUNCTION_ERROR;
 }
