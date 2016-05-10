@@ -5,21 +5,31 @@ void ScheduleManager::deleteSchedule()
 {
 	for (;;)
 	{
+		system("cls");
+		cout <<
+			"극장 관리 시스템\n"
+			" > 상영 일정 관리\n\n"
+			"  > 일정 확인 / 삭제\n";
+
 		Schedule schedule(dbHelper);
-		schedule.chooseScreen();
-		schedule.chooseDate();
-		SQLHSTMT &stmt = dbHelper.saleInfoStmt;
+		
+		if (schedule.chooseScreen() == FUNCTION_SUCCESS
+			&& schedule.chooseDate() == FUNCTION_SUCCESS)
+		{
+			schedule.bindCol();
+		}
+		else
+		{
+			return;
+		}
 
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
-			"SELECT movie_code, movie_title, start_time, end_time, age, price_code, price_name, price_won, id"
+			"SELECT movie_code, movie_title, age, start_time, end_time, age"
 			"FROM d%d "
 			"WHERE screen=%d", schedule.date.value, schedule.screen.number);
-		SQLBindCol(stmt, 1, SQL_INTEGER, &schedule.movie.code, sizeof(schedule.movie.code), NULL);
-		SQLBindCol(stmt, 2, SQL_WVARCHAR, schedule.movie.title, BUFSIZ, NULL);
-		SQLBindCol(stmt, 3, SQL_INTEGER, &schedule.startTime, sizeof(schedule.startTime), NULL);
-		SQLBindCol(stmt, 4, SQL_INTEGER, &schedule.endTime, sizeof(schedule.endTime), NULL);
-		SQLBindCol(stmt, 5, SQL_INTEGER, &schedule.movie.age, sizeof(schedule.movie.age), NULL);
+
+		SQLHSTMT &stmt = dbHelper.saleInfoStmt;
 		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
 
 		for (int i = 0; ret == SQL_SUCCESS; i++)

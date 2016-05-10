@@ -16,8 +16,15 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 	{
 		system("cls");
 		cout <<
-			"상영 일정 관리\n"
-			"확인(1), 상영일 추가(2), 일정 등록(3), 가격 등록(4), 일정 삭제(5), 종료(0): ";
+			"극장 관리 시스템\n"
+			" > 상영 일정 관리\n\n"
+
+			"1. 일정 확인 / 삭제\n"
+			"2. 상영일 추가\n"
+			"3. 일정 등록\n"
+			"4. 가격 등록\n"
+			"0. 종료\n";
+
 		uint16_t choice;
 		cin >> choice;
 
@@ -26,7 +33,8 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 		case FUNCTION_CANCEL:
 			return;
 		case CHECK_SCHEDULE:
-			checkSchedule();
+			deleteSchedule();
+		//	checkSchedule();
 			break;
 		case ADD_DATE:
 			addDate();
@@ -36,10 +44,9 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 			break;
 		case REGISTER_PRICE:
 			break;
-		case DELETE_SCHEDULE:
-			deleteSchedule();
-			break;
-		
+		//case DELETE_SCHEDULE:
+		//	deleteSchedule();
+		//	break;
 		default:
 			cout << "\n잘못된 입력입니다."
 				"\n계속하려면 아무 키나 누르십시오...";
