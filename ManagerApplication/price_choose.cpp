@@ -35,3 +35,5 @@ int16_t Price::choose(DBHelper &dbHelper)
 
 	return int16_t();
 }
+
+

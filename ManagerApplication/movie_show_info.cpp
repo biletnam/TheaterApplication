@@ -40,13 +40,13 @@ int16_t Movie::showInfo(SQLHSTMT& stmt)
 			else
 			{
 				return FUNCTION_SUCCESS;
-			}
-		default:
-			cout << "\n오류가 발생했습니다.\n"
-				"계속하려면 아무 키나 누르십시오...\n";
-			_getch();
+			}		
 		}
 	}
+
+	cout << "\n오류가 발생했습니다.\n"
+		"계속하려면 아무 키나 누르십시오...\n";
+	_getch();
 
 	return FUNCTION_ERROR;
 }

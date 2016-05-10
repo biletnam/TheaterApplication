@@ -1,5 +1,4 @@
 #include "schedule_manager.h"
-#include <conio.h>
 
 void ScheduleManager::deleteSchedule()
 {
@@ -25,7 +24,7 @@ void ScheduleManager::deleteSchedule()
 
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
-			"SELECT movie_code, movie_title, age, start_time, end_time, age"
+			"SELECT movie_code, movie_title, age, start_time, end_time"
 			"FROM d%d "
 			"WHERE screen=%d", schedule.date.value, schedule.screen.number);
 
@@ -40,14 +39,26 @@ void ScheduleManager::deleteSchedule()
 				schedule.showInfo();
 				break;
 			case SQL_NO_DATA:
-				dbHelper.moveCursor(stmt, "삭제할 일정을 삭제하세요");
-				break;
-			default:
-				cout << "오류가 발생했습니다.\n";
-				_getch();
+				switch (dbHelper.moveCursor(stmt, "\n일정을 선택하세요"))
+				{
+				case FUNCTION_SUCCESS:
+				{
+					Price price;
+				}
+					return;
+				case FUNCTION_CANCEL:
+					return;
+				}
 			}
 		}
 
+		cout << "오류가 발생했습니다..\n"
+			"계속하려면 아무 키나 누르십시오...";
+		_getch();
+		
+		return;
+
+		/*
 		SQLINTEGER id;
 		SQLGetData(stmt, 1, SQL_INTEGER, &id, sizeof(id), NULL);
 		swprintf_s(sql,	L"DELETE FROM d%d WHERE id=%d;", schedule.date, id);
@@ -60,6 +71,6 @@ void ScheduleManager::deleteSchedule()
 		{
 			cout << "실패\n";
 		}
-		SQLCancel(stmt);
+		SQLCancel(stmt);*/
 	}
 }

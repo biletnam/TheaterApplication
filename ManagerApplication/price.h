@@ -11,6 +11,7 @@ public:
 	SQLINTEGER won;
 
 	int16_t choose(DBHelper &);
+	int16_t del();
 };
 
 #endif // !PRICE_H

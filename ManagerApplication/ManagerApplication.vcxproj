@@ -164,6 +164,7 @@
     <ClCompile Include="managePrice.cpp" />
     <ClCompile Include="manager_application.cpp" />
     <ClCompile Include="movie_manager.cpp" />
+    <ClCompile Include="price_del.cpp" />
     <ClCompile Include="_movie_manager_check_registration.cpp" />
     <ClCompile Include="movie_manager_delete_movie.cpp" />
     <ClCompile Include="movie_manager_register_movie.cpp" />

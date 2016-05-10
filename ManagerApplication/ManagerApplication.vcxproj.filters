@@ -143,5 +143,8 @@
     <ClCompile Include="_movie_manager_check_registration.cpp">
       <Filter>소스 파일\movie_manager</Filter>
     </ClCompile>
+    <ClCompile Include="price_del.cpp">
+      <Filter>소스 파일\price</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

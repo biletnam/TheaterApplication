@@ -2,6 +2,7 @@
 #define SCHEDULE_MANAGE_H
 
 #include "schedule.h"
+#include "price.h"
 
 class ScheduleManager {
 public:

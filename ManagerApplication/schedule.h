@@ -3,7 +3,6 @@
 
 #include "movie.h"
 #include "screen.h"
-#include "price.h"
 #include "Date.h"
 
 class Schedule {
