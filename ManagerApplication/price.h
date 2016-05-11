@@ -6,12 +6,16 @@
 class Price
 {
 public:
+	Price(DBHelper &dbHelper) { this->dbHelper = dbHelper; }
+
 	SQLSMALLINT code = 0;
 	SQLCHAR name[BUFSIZ];
 	SQLINTEGER won;
 
-	int16_t choose(DBHelper &);
-	int16_t del();
+	DBHelper dbHelper;
+
+	int16_t choose();
+	int16_t del(Schedule &);
 };
 
 #endif // !PRICE_H

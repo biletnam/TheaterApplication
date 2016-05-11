@@ -12,6 +12,15 @@ void ScheduleManager::deleteSchedule()
 
 		Schedule schedule(dbHelper);
 		
+		if (schedule.chooseScreen() == FUNCTION_SUCCESS)
+		{
+			schedule.bindCol();
+		}
+		else
+		{
+			return;
+		}
+
 		if (schedule.chooseScreen() == FUNCTION_SUCCESS
 			&& schedule.chooseDate() == FUNCTION_SUCCESS)
 		{
@@ -39,11 +48,12 @@ void ScheduleManager::deleteSchedule()
 				schedule.showInfo();
 				break;
 			case SQL_NO_DATA:
-				switch (dbHelper.moveCursor(stmt, "\n일정을 선택하세요"))
+				switch (dbHelper.moveCursor(stmt, "\n상영 일정을 선택하세요"))
 				{
 				case FUNCTION_SUCCESS:
 				{
-					Price price;
+					Price price(dbHelper);
+					price.del(schedule);
 				}
 					return;
 				case FUNCTION_CANCEL:
@@ -57,20 +67,5 @@ void ScheduleManager::deleteSchedule()
 		_getch();
 		
 		return;
-
-		/*
-		SQLINTEGER id;
-		SQLGetData(stmt, 1, SQL_INTEGER, &id, sizeof(id), NULL);
-		swprintf_s(sql,	L"DELETE FROM d%d WHERE id=%d;", schedule.date, id);
-
-		if (SQLExecDirect(stmt, sql, SQL_NTS) == SQL_SUCCESS)
-		{
-			cout << "성공\n";
-		}
-		else
-		{
-			cout << "실패\n";
-		}
-		SQLCancel(stmt);*/
 	}
 }

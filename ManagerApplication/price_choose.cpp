@@ -1,6 +1,6 @@
 #include "price.h"
 
-int16_t Price::choose(DBHelper &dbHelper)
+int16_t Price::choose()
 {
 	SQLHSTMT &stmt = dbHelper.theaterStmt;
 
