@@ -1,6 +1,6 @@
 #include "price.h"
 
-int16_t Price::choose()
+int16_t Price::choose(DBHelper &dbHelper)
 {
 	SQLHSTMT &stmt = dbHelper.theaterStmt;
 
@@ -22,7 +22,7 @@ int16_t Price::choose()
 			{
 				cout << "등록 가능한 가격이 없습니다\n";
 			}
-			else if (dbHelper.moveCursor(stmt, "가격을 선택하세요") == true)
+			else if (dbHelper.moveCursor(stmt, "가격을 선택하세요"))
 			{
 
 			}

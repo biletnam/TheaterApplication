@@ -23,6 +23,8 @@ int16_t Schedule::inputTime()
 		}
 	case FUNCTION_ERROR:
 		return inputTime();
+	default:
+		return FUNCTION_ERROR;
 	}
 }
 

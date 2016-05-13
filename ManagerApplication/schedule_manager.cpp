@@ -23,10 +23,12 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 			"2. 상영일 추가\n"
 			"3. 일정 등록\n"
 			"4. 가격 등록\n"
-			"0. 종료\n";
+			"0. 종료\n\n"
 
-		uint16_t choice;
-		cin >> choice;
+			"선택: ";
+
+		uint16_t choice=1;
+		//cin >> choice;
 
 		switch (choice)
 		{

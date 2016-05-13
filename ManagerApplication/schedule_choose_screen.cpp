@@ -3,11 +3,14 @@
 
 int16_t Schedule::chooseScreen()
 {
+	cout << "상영관 선택\n";
+	
 	SQLHSTMT &stmt = dbHelper.theaterStmt;
+	SQLCancel(stmt);
 	SQLBindCol(stmt, 1, SQL_INTEGER, &screen.number, sizeof(screen.number), NULL);
 	SQLRETURN ret = SQLExecDirect(stmt, L"SELECT number FROM screen;", SQL_NTS);
-
-	for (int i = 1; ret == SQL_SUCCESS; i++)
+	
+	for (int i = 1; SQL_SUCCESS == ret; i++)
 	{
 		switch (ret = SQLFetch(stmt))
 		{

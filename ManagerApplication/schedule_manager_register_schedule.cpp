@@ -20,7 +20,7 @@ void ScheduleManager::registerSchedule()
 			system("cls");
 			cout << "스케쥴 등록\n\n";
 			cout << "등록한 스케쥴\n\n";
-			for (int i = 0; i < scheduleVector.size(); i++)
+			for (uint16_t i = 0; i < scheduleVector.size(); i++)
 			{
 				scheduleVector.at(i).showInfo();
 			}
@@ -65,7 +65,7 @@ void ScheduleManager::registerSchedule()
 		
 		SQLWCHAR seatSql[BUFSIZ];
 		swprintf_s(seatSql, L"SELECT * INTO d%ds%dt%d FROM screen%d;",
-			schedule.date, schedule.screen.number, schedule.startTime, schedule.screen.number);
+			schedule.date.value, schedule.screen.number, schedule.startTime, schedule.screen.number);
 
 		if (SQLExecDirect(dbHelper.saleInfoStmt, saleInfoSql, SQL_NTS) == SQL_SUCCESS
 			&& SQLExecDirect(dbHelper.seatStmt, seatSql, SQL_NTS) == SQL_SUCCESS)

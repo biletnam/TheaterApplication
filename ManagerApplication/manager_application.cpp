@@ -16,7 +16,7 @@ int main()
 	
 	if (dbHelper.connectDB() == true)
 	{
-		int16_t choice;
+		int16_t choice=2;
 		do
 		{
 			system("cls");
@@ -26,7 +26,7 @@ int main()
 				"3. 가격 관리\n"
 				"0. 종료\n\n"
 				"선택: ";
-			cin >> choice;
+			//cin >> choice;
 
 			switch (choice)
 			{

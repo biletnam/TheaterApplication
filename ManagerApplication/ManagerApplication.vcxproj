@@ -164,7 +164,6 @@
     <ClCompile Include="managePrice.cpp" />
     <ClCompile Include="manager_application.cpp" />
     <ClCompile Include="movie_manager.cpp" />
-    <ClCompile Include="price_del.cpp" />
     <ClCompile Include="_movie_manager_check_registration.cpp" />
     <ClCompile Include="movie_manager_delete_movie.cpp" />
     <ClCompile Include="movie_manager_register_movie.cpp" />
@@ -184,6 +183,7 @@
     <ClCompile Include="schedule_manager_register_schedule.cpp" />
     <ClCompile Include="schedule_show_info.cpp" />
     <ClCompile Include="movie_manager_show_recent.cpp" />
+    <ClCompile Include="schedule_manager_delete_price.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

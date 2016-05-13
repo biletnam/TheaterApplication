@@ -4,7 +4,8 @@ void Schedule::showInfo()
 {
 	if (date.value != 0)
 	{
-		cout << "날짜 " << date.value << endl;
+		cout << "날짜 ";
+		date.show();
 	}
 
 	if (screen.number != 0)

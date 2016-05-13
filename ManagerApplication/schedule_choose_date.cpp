@@ -3,10 +3,13 @@
 
 int16_t Schedule::chooseDate()
 {
-	SQLHSTMT &stmt = dbHelper.theaterStmt;
+	cout << "날짜 선택\n";
+
 	SQLINTEGER today = date.getToday();
 	today = 1;
 	
+	SQLHSTMT &stmt = dbHelper.theaterStmt;
+	SQLCancel(stmt);
 	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_INTEGER, SQL_C_LONG,
 		sizeof(today), 0, &today, 0, NULL);
 	SQLBindCol(stmt, 1, SQL_INTEGER, &date.value, sizeof(date.value), NULL);
