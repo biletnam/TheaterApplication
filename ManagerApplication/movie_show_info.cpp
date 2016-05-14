@@ -1,6 +1,6 @@
 #include "movie.h"
 
-int16_t Movie::showInfo(SQLHSTMT& stmt)
+FNRETURN Movie::showInfo(SQLHSTMT& stmt)
 {
 	SQLCancel(stmt);
 	SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof(code), NULL);

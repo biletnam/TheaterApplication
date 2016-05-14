@@ -14,7 +14,7 @@ private:
 	void registerPrice();
 	void checkSchedule();
 	void deleteSchedule();
-	int16_t deletePrice(Schedule &);
+	FNRETURN deletePrice(Schedule &);
 		
 	DBHelper dbHelper;
 };

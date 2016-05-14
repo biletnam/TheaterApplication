@@ -1,7 +1,6 @@
 #include "DB_helper.h"
 
-
-bool DBHelper::connectDB()
+FNRETURN DBHelper::connectDB()
 {
 	SQLWCHAR connectingString[MDF_COUNT][BUFSIZ];
 	SQLWCHAR mdf[MDF_COUNT][BUFSIZ];
@@ -32,7 +31,7 @@ bool DBHelper::connectDB()
 		SQLAllocHandle(SQL_HANDLE_STMT, dbc[i], &stmt[i]);
 		if (SQLSetStmtAttr(stmt[i], SQL_ATTR_CURSOR_SCROLLABLE, (SQLPOINTER)SQL_SCROLLABLE, 0) != SQL_SUCCESS)
 		{
-			return false;
+			return FUNCTION_ERROR;
 		}
 	}
 
@@ -41,5 +40,5 @@ bool DBHelper::connectDB()
 	seatStmt = stmt[2];
 	salesRecordStmt = stmt[3];
 
-	return true;
+	return FUNCTION_SUCCESS;
 }

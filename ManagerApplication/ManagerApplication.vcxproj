@@ -154,6 +154,7 @@
     <ClInclude Include="schedule.h" />
     <ClInclude Include="schedule_manager.h" />
     <ClInclude Include="screen.h" />
+    <ClInclude Include="common_header.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="date.cpp" />

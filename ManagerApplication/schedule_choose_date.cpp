@@ -32,15 +32,7 @@ int16_t Schedule::chooseDate()
 			}
 			else 
 			{
-				switch (dbHelper.moveCursor(stmt, "\n날짜를 선택하세요"))
-				{
-				case FUNCTION_SUCCESS:
-					return FUNCTION_SUCCESS;
-				case FUNCTION_CANCEL:
-					return FUNCTION_CANCEL;
-				case FUNCTION_ERROR:
-					return FUNCTION_ERROR;
-				}
+				return dbHelper.moveCursor(stmt, "\n날짜를 선택하세요");
 			}
 			break;
 		default:
@@ -49,5 +41,8 @@ int16_t Schedule::chooseDate()
 		}
 	}
 
+	cout << "오류가 발생했습니다..\n"
+		"계속하려면 아무 키나 누르십시오...";
+	_getch();
 	return FUNCTION_ERROR;
 }

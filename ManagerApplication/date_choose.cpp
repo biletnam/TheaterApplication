@@ -36,8 +36,6 @@ bool Date::choose()
 	}
 
 	return false;
-
-	//return (chooseYear() && chooseMonth() && chooseDay() == true) ? true : false;
 }
 
 bool Date::chooseYear()

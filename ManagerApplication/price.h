@@ -12,7 +12,7 @@ public:
 	SQLCHAR name[BUFSIZ];
 	SQLINTEGER won;
 
-	int16_t choose(DBHelper &dbHelper);
+	FNRETURN choose(DBHelper &dbHelper);
 };
 
 #endif // !PRICE_H

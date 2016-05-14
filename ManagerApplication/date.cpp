@@ -48,7 +48,7 @@ void Date::setDay(const int16_t day)
 
 void Date::show() const
 {
-	cout << "20" << getYear() << "년 "
+	cout << getYear() << "년 "
 		<< getMonth() << "월 "
 		<< getDay() << "일";
 }

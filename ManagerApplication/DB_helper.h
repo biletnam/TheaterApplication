@@ -5,19 +5,9 @@
 #include <sql.h>
 #include <sqlext.h>
 #include <sqltypes.h>
-#include <iostream>
-#include <conio.h>
+#include "common_header.h"
 
-const uint16_t MDF_COUNT = 4;
-
-enum {
-	FUNCTION_CANCEL = 0,
-	FUNCTION_SUCCESS,
-	FUNCTION_NULL,
-	FUNCTION_ERROR,
-};
-
-using namespace std;
+const int16_t MDF_COUNT = 4;
 
 class DBHelper
 {
@@ -28,10 +18,10 @@ public:
 	SQLHSTMT saleInfoStmt;
 	SQLHSTMT seatStmt;
 	SQLHSTMT salesRecordStmt;
-
-	bool connectDB();
-	bool closeDB();
-	int16_t moveCursor(SQLHSTMT&, const char*);
+	
+	FNRETURN connectDB();
+	FNRETURN closeDB();
+	FNRETURN moveCursor(SQLHSTMT&, const char*);
 private:
 	SQLHENV env;
 	SQLHDBC dbc[MDF_COUNT];

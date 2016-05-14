@@ -17,17 +17,17 @@ public:
 	
 	Schedule(DBHelper& dbHelper) { this->dbHelper = dbHelper; };
 
-	int16_t chooseDate();
-	int16_t chooseScreen();
-	int16_t chooseMovie();
-	int16_t inputTime();
+	FNRETURN chooseDate();
+	FNRETURN chooseScreen();
+	FNRETURN chooseMovie();
+	FNRETURN inputTime();
 	
-	int16_t bindCol();
+	FNRETURN bindCol();
 
 	void showInfo();
 private:
-	int16_t inputTime(SQLSMALLINT& time, const char *output);
-	int16_t checkTime(const SQLSMALLINT);
+	FNRETURN inputTime(SQLSMALLINT& time, const char *output);
+	FNRETURN checkTime(const SQLSMALLINT);
 };
 
 #endif // !SCHEDULE_H

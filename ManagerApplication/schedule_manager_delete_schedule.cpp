@@ -2,57 +2,39 @@
 
 void ScheduleManager::deleteSchedule()
 {
-	Schedule schedule(dbHelper);
-
-	for (;; schedule.date.value = NULL, schedule.screen.number = NULL)
+	for (;;)
 	{
-		system("cls");
-		cout <<
-			"극장 관리 시스템\n"
-			" > 상영 일정 관리\n"
-			"  > 일정 확인 / 삭제\n\n"
+		Schedule schedule(dbHelper);
 
-			"상영 일정 정보\n";
-		
-		// 해결 x
-		if (NULL == schedule.date.value)
+		do
 		{
-			switch (schedule.chooseDate())
+			system("cls");
+			cout <<
+				"극장 관리 시스템\n"
+				" > 상영 일정 관리\n"
+				"  > 일정 확인 / 삭제\n\n"
+
+				"상영 일정 정보\n";
+			schedule.showInfo();
+
+			if (schedule.screen.number != NULL)
 			{
-			case FUNCTION_SUCCESS:
 				break;
-			case FUNCTION_CANCEL:
+			}
+			else if (schedule.date.value == NULL)
+			{
+				if (schedule.chooseDate() != FUNCTION_SUCCESS)
+				{
+					return;
+				}
+			}
+			else if (schedule.chooseScreen() != FUNCTION_SUCCESS)
+			{
+				deleteSchedule();
 				return;
-			case FUNCTION_ERROR:
-				continue;
-			default:
-				break;
 			}
-		}
-		else
-		{
-			schedule.date.show();
-		}
+		} while (true);
 
-		if (NULL == schedule.screen.number)
-		{
-			switch (schedule.chooseDate())
-			{
-			case FUNCTION_SUCCESS:
-				break;
-			case FUNCTION_CANCEL:
-				
-			case FUNCTION_ERROR:
-				continue;
-			default:
-				break;
-			}
-		}
-		else
-		{
-			cout << schedule.screen.number << "관\n";
-		}
-		
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
 			"SELECT movie_code, movie_title, age, start_time, end_time "
@@ -83,14 +65,10 @@ void ScheduleManager::deleteSchedule()
 				}
 				else
 				{
-					switch (dbHelper.moveCursor(stmt, "\n상영 일정을 선택하세요"))
+					if (FUNCTION_SUCCESS 
+						== dbHelper.moveCursor(stmt, "\n상영 일정을 선택하세요"))
 					{
-					case FUNCTION_SUCCESS:
-					{
-					}
-					return;
-					case FUNCTION_CANCEL:
-						return;
+						deletePrice(schedule);
 					}
 				}
 			}

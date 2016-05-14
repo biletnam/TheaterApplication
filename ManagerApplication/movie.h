@@ -15,7 +15,7 @@ public:
 	SQLSMALLINT year;
 	SQLSMALLINT runningTime;
 
-	int16_t showInfo(SQLHSTMT& stmt);
+	FNRETURN showInfo(SQLHSTMT& stmt);
 	void setKeyword(SQLWCHAR*, const char*) const;
 };
 

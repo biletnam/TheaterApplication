@@ -15,7 +15,7 @@ int16_t Schedule::chooseScreen()
 		switch (ret = SQLFetch(stmt))
 		{
 		case SQL_SUCCESS:
-			cout << i << ". 스크린" << screen.number << endl;
+			cout << i << ". " << screen.number << "관\n";
 			break;
 		case SQL_NO_DATA:
 			if (i == 1)
@@ -25,22 +25,12 @@ int16_t Schedule::chooseScreen()
 			}
 			else
 			{
-				switch (dbHelper.moveCursor(stmt, "\n상영관을 선택하세요"))
-				{
-				case FUNCTION_SUCCESS:
-					return FUNCTION_SUCCESS;
-				case FUNCTION_CANCEL:
-					return FUNCTION_CANCEL;
-				case FUNCTION_ERROR:
-					return FUNCTION_ERROR;
-				}
+				return dbHelper.moveCursor(stmt, "\n상영관을 선택하세요");
 			}
-		default:
-			cout << "오류가 발생했습니다.\n";
-			_getch();
-			return FUNCTION_ERROR;
 		}
 	}
-
+	
+	cout << "오류가 발생했습니다.\n";
+	_getch();
 	return FUNCTION_ERROR;
 }

@@ -6,11 +6,12 @@ void Schedule::showInfo()
 	{
 		cout << "날짜 ";
 		date.show();
+		cout << endl;
 	}
 
 	if (screen.number != 0)
 	{
-		cout << "상영관 " << screen.number << endl;
+		cout << "상영관 " << screen.number << "관\n";
 	}
 
 	if (movie.code != 0) 

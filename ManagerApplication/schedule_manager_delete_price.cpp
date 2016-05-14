@@ -1,6 +1,6 @@
 #include "schedule_manager.h"
 
-int16_t ScheduleManager::deletePrice(Schedule &schedule)
+FNRETURN ScheduleManager::deletePrice(Schedule &schedule)
 {
 	for (;;)
 	{

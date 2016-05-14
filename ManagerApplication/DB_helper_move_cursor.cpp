@@ -1,6 +1,6 @@
 #include "DB_helper.h"
 
-int16_t DBHelper::moveCursor(SQLHSTMT& stmt, const char* output)
+FNRETURN DBHelper::moveCursor(SQLHSTMT& stmt, const char* output)
 {
 	SQLINTEGER rowCount = 0;
 	
