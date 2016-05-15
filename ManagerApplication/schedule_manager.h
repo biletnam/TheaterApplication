@@ -13,8 +13,8 @@ private:
 	void registerSchedule();
 	void registerPrice();
 	void checkSchedule();
-	void deleteSchedule();
-	FNRETURN deletePrice(Schedule &);
+	FNRETURN modifyPrice(Schedule &);
+	FNRETURN modifySchedule(Schedule & schedule);
 		
 	DBHelper dbHelper;
 };

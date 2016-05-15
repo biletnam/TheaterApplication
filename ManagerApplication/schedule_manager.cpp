@@ -5,7 +5,6 @@ enum {
 	ADD_DATE = 2,
 	REGISTER_SCHEDULE = 3,
 	REGISTER_PRICE = 4,
-	DELETE_SCHEDULE = 5,
 };
 
 ScheduleManager::ScheduleManager(DBHelper& dbHelper)
@@ -19,7 +18,7 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 			"극장 관리 시스템\n"
 			" > 상영 일정 관리\n\n"
 
-			"1. 일정 확인 / 삭제\n"
+			"1. 상영 일정 확인 / 수정\n"
 			"2. 상영일 추가\n"
 			"3. 일정 등록\n"
 			"4. 가격 등록\n"
@@ -27,7 +26,7 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 
 			"선택: ";
 
-		uint16_t choice=1;
+		int16_t choice = CHECK_SCHEDULE;
 		//cin >> choice;
 
 		switch (choice)
@@ -35,8 +34,7 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 		case FUNCTION_CANCEL:
 			return;
 		case CHECK_SCHEDULE:
-			deleteSchedule();
-		//	checkSchedule();
+			checkSchedule();
 			break;
 		case ADD_DATE:
 			addDate();
@@ -46,10 +44,9 @@ ScheduleManager::ScheduleManager(DBHelper& dbHelper)
 			break;
 		case REGISTER_PRICE:
 			break;
-		//case DELETE_SCHEDULE:
-		//	deleteSchedule();
-		//	break;
 		default:
+			cin.clear();
+			cin.ignore(100, '\n');
 			cout << "\n잘못된 입력입니다."
 				"\n계속하려면 아무 키나 누르십시오...";
 			_getch();

@@ -125,9 +125,6 @@
     <ClCompile Include="schedule_manager_check_schedule.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_manager_delete_schedule.cpp">
-      <Filter>소스 파일\schedule_manager</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_manager_register_price.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
@@ -143,11 +140,14 @@
     <ClCompile Include="movie_manager_show_recent.cpp">
       <Filter>소스 파일\movie_manager</Filter>
     </ClCompile>
-    <ClCompile Include="_movie_manager_check_registration.cpp">
-      <Filter>소스 파일\movie_manager</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_manager_delete_price.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_manager_modify_schedule.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_del.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

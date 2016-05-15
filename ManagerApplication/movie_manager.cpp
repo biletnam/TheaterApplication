@@ -40,9 +40,6 @@ MovieManager::MovieManager(DBHelper& dbHelper)
 		case CHOICE_REGISTER:
 			registerMovie();
 			break;
-//		case CHOICE_DELETE:
-//			deleteMovie();
-//			break;
 		case FUNCTION_CANCEL:
 			return;
 		default:

@@ -7,7 +7,6 @@ class MovieManager {
 public:
 	MovieManager(DBHelper&);
 private:
-	void checkRegistration();
 	void registerMovie();
 	void deleteMovie();
 	void showRecent();

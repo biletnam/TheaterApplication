@@ -1,9 +1,20 @@
 #include "schedule_manager.h"
 
-FNRETURN ScheduleManager::deletePrice(Schedule &schedule)
+FNRETURN ScheduleManager::modifyPrice(Schedule &schedule)
 {
 	for (;;)
 	{
+		system("cls");
+		cout <<
+			"극장 관리 시스템\n"
+			" > 상영 일정 관리\n"
+			"  > 상영 일정 확인 / 수정\n"
+			"   > 가격 정보 수정\n\n"
+
+			"선택한 상영 일정\n";
+		schedule.showInfo();
+		cout << endl;
+
 		SQLHSTMT &stmt = dbHelper.theaterStmt;
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""

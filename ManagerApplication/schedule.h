@@ -7,7 +7,7 @@
 
 class Schedule {
 public:
-	DBHelper dbHelper;
+	
 
 	Movie movie;
 	Screen screen;
@@ -26,8 +26,12 @@ public:
 
 	void showInfo();
 private:
+	DBHelper dbHelper;
+
 	FNRETURN inputTime(SQLSMALLINT& time, const char *output);
 	FNRETURN checkTime(const SQLSMALLINT);
+public:
+	FNRETURN del();
 };
 
 #endif // !SCHEDULE_H
