@@ -16,7 +16,7 @@ int main()
 	
 	if (dbHelper.connectDB() == true)
 	{
-		int16_t choice=2;
+		int16_t choice = 2;
 		do
 		{
 			system("cls");
@@ -25,8 +25,9 @@ int main()
 				"2. 상영 일정 관리\n"
 				"3. 가격 관리\n"
 				"0. 종료\n\n"
+
 				"선택: ";
-			//cin >> choice;
+			cin >> choice;
 
 			switch (choice)
 			{
@@ -56,7 +57,7 @@ int main()
 	}
 	else 
 	{
-		cout << "데이터베이스 접근에 실패했습니다.\n";
+		cout << "데이터베이스 접근에 실패했습니다.\n";		
 	}
 	
 	dbHelper.closeDB();

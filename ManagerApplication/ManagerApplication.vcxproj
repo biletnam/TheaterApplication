@@ -151,6 +151,7 @@
     <ClInclude Include="movie.h" />
     <ClInclude Include="movie_manager.h" />
     <ClInclude Include="price.h" />
+    <ClInclude Include="price_manager.h" />
     <ClInclude Include="schedule.h" />
     <ClInclude Include="schedule_manager.h" />
     <ClInclude Include="screen.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="managePrice.cpp" />
     <ClCompile Include="manager_application.cpp" />
     <ClCompile Include="movie_manager.cpp" />
+    <ClCompile Include="price_manager.cpp" />
     <ClCompile Include="schedule_del.cpp" />
     <ClCompile Include="schedule_manager_modify_schedule.cpp" />
     <ClCompile Include="movie_manager_delete_movie.cpp" />

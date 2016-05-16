@@ -1,6 +1,6 @@
 #include "schedule_manager.h"
 
-FNRETURN ScheduleManager::modifyPrice(Schedule &schedule)
+FNRETURN ScheduleManager::deletePrice(Schedule &schedule)
 {
 	for (;;)
 	{
@@ -9,7 +9,7 @@ FNRETURN ScheduleManager::modifyPrice(Schedule &schedule)
 			"극장 관리 시스템\n"
 			" > 상영 일정 관리\n"
 			"  > 상영 일정 확인 / 수정\n"
-			"   > 가격 정보 수정\n\n"
+			"   > 가격 정보 삭제\n\n"
 
 			"선택한 상영 일정\n";
 		schedule.showInfo();

@@ -34,6 +34,9 @@
     <Filter Include="소스 파일\schedule_manager">
       <UniqueIdentifier>{c2f44193-7090-4d0f-979c-3b64cf01ff79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\price_manager">
+      <UniqueIdentifier>{eb066583-99d5-4a2c-9966-dbf935915754}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="date.h">
@@ -61,6 +64,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="common_header.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="price_manager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -140,14 +146,17 @@
     <ClCompile Include="movie_manager_show_recent.cpp">
       <Filter>소스 파일\movie_manager</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_manager_delete_price.cpp">
-      <Filter>소스 파일\schedule_manager</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_manager_modify_schedule.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
     <ClCompile Include="schedule_del.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_manager_delete_price.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="price_manager.cpp">
+      <Filter>소스 파일\price_manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

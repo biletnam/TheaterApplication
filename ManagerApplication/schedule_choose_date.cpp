@@ -13,7 +13,7 @@ int16_t Schedule::chooseDate()
 		sizeof(today), 0, &today, 0, NULL);
 	SQLBindCol(stmt, 1, SQL_INTEGER, &date.value, sizeof(date.value), NULL);
 	SQLRETURN ret = SQLExecDirect(stmt, L"SELECT date FROM schedule WHERE date > ?;", SQL_NTS);
-
+	
 	for (int i = 1; ret == SQL_SUCCESS; i++)
 	{
 		switch (ret = SQLFetch(stmt))
@@ -31,7 +31,8 @@ int16_t Schedule::chooseDate()
 			}
 			else 
 			{
-				return dbHelper.moveCursor(stmt, "\n날짜를 선택하세요");
+				cout << "0. 종료\n";
+				return dbHelper.moveCursor(stmt, "\n선택: ");
 			}
 			break;
 		default:

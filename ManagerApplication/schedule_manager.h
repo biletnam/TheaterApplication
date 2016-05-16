@@ -11,9 +11,10 @@ public:
 private:
 	void addDate();	
 	void registerSchedule();
-	void registerPrice();
 	void checkSchedule();
-	FNRETURN modifyPrice(Schedule &);
+
+	FNRETURN registerPrice(Schedule &);
+	FNRETURN deletePrice(Schedule &);
 	FNRETURN modifySchedule(Schedule & schedule);
 		
 	DBHelper dbHelper;

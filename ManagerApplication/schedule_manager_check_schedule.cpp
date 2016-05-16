@@ -16,6 +16,7 @@ void ScheduleManager::checkSchedule()
 
 				"상영 일정 정보\n";
 			schedule.showInfo();
+			cout << endl;
 
 			if (schedule.screen.number != NULL)
 			{
@@ -48,6 +49,8 @@ void ScheduleManager::checkSchedule()
 		schedule.bindCol();
 		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
 
+		modifySchedule(schedule);
+
 		for (int i = 1; ret == SQL_SUCCESS; i++)
 		{
 			switch (ret = SQLFetch(stmt))
@@ -59,7 +62,7 @@ void ScheduleManager::checkSchedule()
 			case SQL_NO_DATA:
 				if (i == 1)
 				{
-					cout << "\n등록된 상영 일정이 없습니다\n"
+					cout << "등록된 상영 일정이 없습니다\n"
 						"계속하려면 아무 키나 누르십시오...\n";
 					_getch();
 
@@ -67,9 +70,9 @@ void ScheduleManager::checkSchedule()
 				}
 				else
 				{
-					if (FUNCTION_SUCCESS == dbHelper.moveCursor(stmt, "\n수정할 상영 일정을 선택하세요"))
-					{
-						
+					cout << "0. 종료\n";
+					if (FUNCTION_SUCCESS == dbHelper.moveCursor(stmt, "\n수정할 상영 일정을 선택하세요: "))
+					{						
 						modifySchedule(schedule);
 					}
 				}
@@ -81,5 +84,3 @@ void ScheduleManager::checkSchedule()
 		_getch();
 	}
 }
-
-

@@ -26,6 +26,4 @@ void Schedule::showInfo()
 		cout << "시작시간 " << startTime << endl;
 		cout << "종료시간 " << endTime << endl;
 	}
-	
-	cout << endl;
 }

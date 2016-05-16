@@ -6,7 +6,7 @@ FNRETURN DBHelper::moveCursor(SQLHSTMT& stmt, const char* output)
 	
 	if (SQLRowCount(stmt, &rowCount) == SQL_SUCCESS && rowCount > 0)
 	{
-		cout << output << "(0을 입력하면 취소): ";
+		cout << output;// << "(0을 입력하면 취소): ";
 		int16_t choice;
 		cin >> choice;
 

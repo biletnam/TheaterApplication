@@ -25,8 +25,8 @@ void MovieManager::deleteMovie()
 			"FROM movie_internal WHERE title LIKE ?;",
 			SQL_NTS);
 
-		if (movie.showInfo(stmt) == FUNCTION_SUCCESS
-			&& dbHelper.moveCursor(stmt, "\n삭제할 영화를 선택하세요") == FUNCTION_SUCCESS)
+		if (FUNCTION_SUCCESS == movie.showInfo(stmt)
+			&& FUNCTION_SUCCESS == dbHelper.moveCursor(stmt, "\n삭제할 영화를 선택하세요: ") )
 		{
 			SQLFreeStmt(stmt, SQL_UNBIND);
 
