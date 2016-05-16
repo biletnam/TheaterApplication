@@ -57,9 +57,9 @@ FNRETURN ScheduleManager::registerPrice(Schedule &schedule)
 							price.code, price.won);
 
 						SQLCancel(dbHelper.saleInfoStmt);
-						SQLBindParameter(dbHelper.saleInfoStmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
+						SQLBindParameter(dbHelper.saleInfoStmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 							BUFSIZ, 0, schedule.movie.title, 0, NULL);
-						SQLBindParameter(dbHelper.saleInfoStmt, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
+						SQLBindParameter(dbHelper.saleInfoStmt, 2, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 							BUFSIZ, 0, price.name, 0, NULL);
 						SQLExecDirect(dbHelper.saleInfoStmt, sql, SQL_NTS);
 					}

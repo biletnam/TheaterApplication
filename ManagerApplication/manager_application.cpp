@@ -1,7 +1,6 @@
 #include "movie_manager.h"
 #include "schedule_manager.h"
-
-void managePrice(DBHelper&);
+#include "price_manager.h"
 
 enum
 {
@@ -14,20 +13,22 @@ int main()
 {
 	DBHelper dbHelper;
 	
-	if (dbHelper.connectDB() == true)
+	if (dbHelper.connectDB() == FUNCTION_SUCCESS)
 	{
-		int16_t choice = 2;
+		int16_t choice = 3;
 		do
 		{
 			system("cls");
-			cout << "극장 관리 시스템\n\n"
+			cout << 
+				"극장 관리 시스템\n\n"
+
 				"1. 영화 정보 관리\n"
 				"2. 상영 일정 관리\n"
-				"3. 가격 관리\n"
+				"3. 가격 정보 관리\n"
 				"0. 종료\n\n"
 
 				"선택: ";
-			cin >> choice;
+			//cin >> choice;
 
 			switch (choice)
 			{
@@ -42,8 +43,10 @@ int main()
 				break;
 			}
 			case PRICE_MANAGER:
-				managePrice(dbHelper);
+			{
+				PriceManager priceManager(dbHelper);
 				break;
+			}
 			case FUNCTION_CANCEL:
 				break;
 			default:

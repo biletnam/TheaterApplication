@@ -1,6 +1,6 @@
 #include "price.h"
 
-FNRETURN Price::choose(DBHelper &dbHelper)
+FNRETURN Price::choose()
 {
 	SQLHSTMT &stmt = dbHelper.theaterStmt;
 
@@ -29,11 +29,12 @@ FNRETURN Price::choose(DBHelper &dbHelper)
 			break;
 		default:
 			cout << "오류가 발생했습니다.\n";
-			//_getch();
+			_getch();
 		}
 	}
 
 	return int16_t();
 }
+
 
 

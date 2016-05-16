@@ -25,12 +25,19 @@ bool Date::choose()
 	while (chooseYear() == true)
 	{
 		system("cls");
-		cout << "선택한 연도: 20" << getYear() << "년\n";
+		cout << "선택한 연도: " << getYear() << "년\n";
 		while (chooseMonth() == true)
 		{
+			system("cls");
+			cout << "선택한 연도: " << getYear() << "년\n";
+			cout << "선택한 월: " << getMonth() << "월\n";
 			if (chooseDay() == true)
 			{
 				return true;
+			}
+			else
+			{
+				break;
 			}
 		}
 	}

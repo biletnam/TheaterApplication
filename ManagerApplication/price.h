@@ -6,13 +6,20 @@
 class Price
 {
 public:
-	Price() {}
+	Price(DBHelper &dbHelper) { this->dbHelper = dbHelper; }
 
 	SQLSMALLINT code;
 	SQLCHAR name[BUFSIZ];
 	SQLINTEGER won;
 
-	FNRETURN choose(DBHelper &dbHelper);
+	FNRETURN choose();
+
+	FNRETURN inputCode();
+	FNRETURN inputName();
+	FNRETURN inputWon();
+
+private:
+	DBHelper dbHelper;
 };
 
 #endif // !PRICE_H

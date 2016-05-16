@@ -104,9 +104,6 @@
     <ClCompile Include="price_choose.cpp">
       <Filter>소스 파일\price</Filter>
     </ClCompile>
-    <ClCompile Include="managePrice.cpp">
-      <Filter>소스 파일\price</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_bind_col.cpp">
       <Filter>소스 파일\schedule</Filter>
     </ClCompile>
@@ -149,14 +146,23 @@
     <ClCompile Include="schedule_manager_modify_schedule.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_del.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_manager_delete_price.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
     <ClCompile Include="price_manager.cpp">
       <Filter>소스 파일\price_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="price_input.cpp">
+      <Filter>소스 파일\price</Filter>
+    </ClCompile>
+    <ClCompile Include="price_manager_add_price.cpp">
+      <Filter>소스 파일\price_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="price_manager_check_price.cpp">
+      <Filter>소스 파일\price_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_del.cpp">
+      <Filter>소스 파일\schedule</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
