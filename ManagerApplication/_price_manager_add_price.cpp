@@ -8,7 +8,7 @@ FNRETURN PriceManager::addPrice()
 		" > 가격 정보 관리\n\n"
 		"  > 가격 정보 추가\n\n";
 
-	Price price;
+	Price price(dbHelper);
 	SQLHSTMT &stmt = dbHelper.theaterStmt;
 	cout << "가격 코드를 입력하세요: ";
 	cin >> price.code;

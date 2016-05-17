@@ -6,6 +6,7 @@
 class Price
 {
 public:
+	Price() {}
 	Price(DBHelper &dbHelper) { this->dbHelper = dbHelper; }
 
 	SQLSMALLINT code;

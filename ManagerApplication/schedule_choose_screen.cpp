@@ -1,5 +1,4 @@
 #include "schedule.h"
-#include <conio.h>
 
 int16_t Schedule::chooseScreen()
 {
@@ -21,9 +20,9 @@ int16_t Schedule::chooseScreen()
 		case SQL_NO_DATA:
 			if (i == 1)
 			{
-				cout << "등록 가능한 상영관이 없습니다\n"
-					"계속하려면 아무 키나 누르십시오...";
-				_getch();
+				cout << "등록 가능한 상영관이 없습니다\n";
+				system("pause");
+
 				return FUNCTION_NULL;
 			}
 			else
@@ -34,8 +33,8 @@ int16_t Schedule::chooseScreen()
 		}
 	}
 	
-	cout << "오류가 발생했습니다.\n"
-		"계속하려면 아무 키나 누르십시오...";
-	_getch();
+	cout << "오류가 발생했습니다.\n";
+	system("pause");
+
 	return FUNCTION_ERROR;
 }

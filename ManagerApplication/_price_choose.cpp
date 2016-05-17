@@ -21,6 +21,7 @@ FNRETURN Price::choose()
 			if (i == 1)
 			{
 				cout << "등록 가능한 가격이 없습니다\n";
+				system("pause");
 			}
 			else if (dbHelper.moveCursor(stmt, "가격을 선택하세요"))
 			{
@@ -29,7 +30,7 @@ FNRETURN Price::choose()
 			break;
 		default:
 			cout << "오류가 발생했습니다.\n";
-			_getch();
+			system("pause");
 		}
 	}
 

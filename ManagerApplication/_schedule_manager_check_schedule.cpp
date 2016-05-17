@@ -62,9 +62,8 @@ void ScheduleManager::checkSchedule()
 			case SQL_NO_DATA:
 				if (i == 1)
 				{
-					cout << "등록된 상영 일정이 없습니다\n"
-						"계속하려면 아무 키나 누르십시오...\n";
-					_getch();
+					cout << "등록된 상영 일정이 없습니다\n";
+					system("pause");
 
 					return;
 				}
@@ -79,8 +78,7 @@ void ScheduleManager::checkSchedule()
 			}
 		}
 				
-		cout << "오류가 발생했습니다.\n"
-			"계속하려면 아무 키나 누르십시오...";
-		_getch();
+		cout << "오류가 발생했습니다.\n";
+		system("pause");
 	}
 }

@@ -2,33 +2,90 @@
 
 FNRETURN Price::inputCode()
 {
-	SQLHSTMT &stmt = dbHelper.theaterStmt;
-	cout << "가격 코드를 입력하세요: ";
+	cout << "가격 코드를 입력하세요(0을 입력하면 종료): ";
 	cin >> code;
 
-	SQLCancel(stmt);
-	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_LONG, SQL_WVARCHAR,
-		sizeof code, 0, &code, 0, NULL);
-	SQLExecDirect(stmt, L"SELECT * FROM price WHERE code=?;", SQL_NTS);
-	
-	if (SQLFetch(stmt) == SQL_SUCCESS)
+	if (cin.fail() == true || code < 0)
 	{
-		cout << "이미 존재\n";
-		_getch();
-
-		return FUNCTION_ERROR;
+		cout << "잘못된 입력입니다.\n";
 	}
-	SQLCancel(stmt);
+	else if (code == FUNCTION_CANCEL)
+	{
+		return FUNCTION_CANCEL;
+	}
+	else
+	{
+		SQLHSTMT &stmt = dbHelper.theaterStmt;
+		SQLCancel(stmt);
+		SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_LONG, SQL_INTEGER,
+			sizeof code, 0, &code, 0, NULL);
+		SQLExecDirect(stmt, L"SELECT * FROM price WHERE code=?;", SQL_NTS);
 
-	return FNRETURN();
+		switch (SQLFetch(stmt))
+		{
+		case SQL_SUCCESS:
+			cout << "이미 존재하는 가격 코드입니다.\n";
+			break;
+		case SQL_NO_DATA:
+			return FUNCTION_SUCCESS;
+		default:
+			cout << "오류가 발생했습니다.\n";
+		}
+	}
+
+	system("pause");
+	return FUNCTION_ERROR;
 }
 
 FNRETURN Price::inputName()
 {
-	return FNRETURN();
+	cout << "가격 이름을 입력하세요(0을 입력하면 종료): ";
+	cin >> name;
+
+	if (strcmp((char*)name, "0") == 0)
+	{
+		return FUNCTION_CANCEL;
+	}
+
+	SQLHSTMT &stmt = dbHelper.theaterStmt;
+	SQLCancel(stmt);
+	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
+		BUFSIZ, 0, name, 0, NULL);
+	SQLExecDirect(stmt, L"SELECT * FROM price WHERE name=?;", SQL_NTS);
+
+	switch (SQLFetch(stmt))
+	{
+	case SQL_SUCCESS:
+		cout << "이미 존재하는 가격 이름입니다.\n";
+		break;
+	case SQL_NO_DATA:
+		return FUNCTION_SUCCESS;
+	default:
+		cout << "오류가 발생했습니다.\n";
+	}
+
+	system("pause");
+	return FUNCTION_ERROR;
 }
 
 FNRETURN Price::inputWon()
 {
-	return FNRETURN();
+	cout << "가격(원)을 입력하세요(0을 입력하면 종료): ";
+	cin >> won;
+
+	if (cin.fail() == true || won < 0)
+	{
+		cout << "잘못된 입력입니다.\n";
+		system("pause");
+		return FUNCTION_ERROR;
+	}
+	else if (code == FUNCTION_CANCEL)
+	{
+		return FUNCTION_CANCEL;
+	}
+	else
+	{
+		return FUNCTION_SUCCESS;
+	}
+	
 }

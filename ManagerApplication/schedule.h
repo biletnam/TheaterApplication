@@ -7,8 +7,6 @@
 
 class Schedule {
 public:
-	
-
 	Movie movie;
 	Screen screen;
 	Date date = 0;
@@ -24,7 +22,7 @@ public:
 	
 	FNRETURN bindCol();
 
-	void showInfo();
+	void showInfo() const;
 private:
 	DBHelper dbHelper;
 

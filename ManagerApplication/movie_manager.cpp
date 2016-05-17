@@ -45,9 +45,8 @@ MovieManager::MovieManager(DBHelper& dbHelper)
 		default:
 			cin.clear();
 			cin.ignore(100, '\n');
-			cout << "잘못된 입력입니다.\n"
-				"계속하려면 아무 키나 누르십시오...";
-			_getch();
+			cout << "잘못된 입력입니다.\n";
+			system("pause");
 		}
 	}
 }

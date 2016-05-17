@@ -15,17 +15,15 @@ FNRETURN Schedule::del()
 		&& SQLExecDirect(dbHelper.seatStmt, seatSql, SQL_NTS) == SQL_SUCCESS
 		&& SQLCancel(dbHelper.seatStmt) == SQL_SUCCESS)
 	{
-		cout << "삭제되었습니다.\n"
-			"계속하려면 아무 키나 누르십시오...";
-		_getch();
+		cout << "삭제되었습니다.\n";
+		system("pause");
 
 		return FUNCTION_SUCCESS;
 	}
 	else
 	{
-		cout << "오류가 발생했습니다.\n"
-			"계속하려면 아무 키나 누르십시오...";
-		_getch();
+		cout << "오류가 발생했습니다.\n";
+		system("pause");
 
 		return FUNCTION_ERROR;
 	}

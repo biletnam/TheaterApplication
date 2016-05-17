@@ -18,7 +18,7 @@ int16_t Schedule::chooseDate()
 	{
 		switch (ret = SQLFetch(stmt))
 		{
-		case SQL_SUCCESS:			
+		case SQL_SUCCESS:
 			cout << i << ". ";
 			date.show();
 			cout << endl;
@@ -27,22 +27,18 @@ int16_t Schedule::chooseDate()
 			if (i == 1)
 			{
 				cout << "등록 가능한 날이 없습니다\n";
+				system("pause");
 				return FUNCTION_NULL;
 			}
-			else 
+			else
 			{
 				cout << "0. 종료\n";
 				return dbHelper.moveCursor(stmt, "\n선택: ");
 			}
-			break;
-		default:
-			cout << "오류가 발생했습니다.\n";
-			return FUNCTION_ERROR;
 		}
 	}
 
-	cout << "오류가 발생했습니다..\n"
-		"계속하려면 아무 키나 누르십시오...";
-	_getch();
+	cout << "오류가 발생했습니다..\n";
+	system("pause");
 	return FUNCTION_ERROR;
 }

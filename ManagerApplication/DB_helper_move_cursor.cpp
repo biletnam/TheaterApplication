@@ -26,9 +26,9 @@ FNRETURN DBHelper::moveCursor(SQLHSTMT& stmt, const char* output)
 			cin.ignore(100, '\n');
 		}
 
-		cout << "잘못된 입력입니다.(moveCursor)\n"
-			"계속하려면 아무 키나 누르십시오...\n";
-		_getch();
+		cout << "잘못된 입력입니다.(moveCursor)\n";
+		system("pause");
+			
 		return moveCursor(stmt, output);
 	}
 	else 

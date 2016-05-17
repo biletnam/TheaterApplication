@@ -28,8 +28,13 @@ void ScheduleManager::registerSchedule()
 			cout << "새 스케쥴\n";
 			schedule.showInfo();
 
-			cout << "등록(1), "
-				"상영관 설정(2), 날짜 설정(3), 영화 설정(4), 시간 설정(5), 종료(0): ";
+			cout <<
+				"1. 등록\n"
+				"2. 상영관 설정\n"
+				"3. 날짜 설정\n"
+				"4. 영화 설정\n"
+				"5. 시간 설정\n"
+				"0. 종료\n";
 			cin >> choice;
 
 			switch (choice)

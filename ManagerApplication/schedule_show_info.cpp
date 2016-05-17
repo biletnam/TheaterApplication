@@ -1,6 +1,6 @@
 #include "schedule.h"
 
-void Schedule::showInfo()
+void Schedule::showInfo() const
 {
 	if (date.value != 0)
 	{
