@@ -9,11 +9,11 @@ class Schedule {
 public:
 	Movie movie;
 	Screen screen;
-	Date date = 0;
-	SQLSMALLINT startTime = 0;
-	SQLSMALLINT endTime = 0;
+	Date date;
+	SQLSMALLINT startTime;
+	SQLSMALLINT endTime;
 	
-	Schedule(DBHelper& dbHelper) { this->dbHelper = dbHelper; };
+	Schedule(DBHelper *pDBHelper = NULL) : pDBHelper(pDBHelper) {};
 
 	FNRETURN chooseDate();
 	FNRETURN chooseScreen();
@@ -24,7 +24,7 @@ public:
 
 	void showInfo() const;
 private:
-	DBHelper dbHelper;
+	DBHelper *pDBHelper;
 
 	FNRETURN inputTime(SQLSMALLINT& time, const char *output);
 	FNRETURN checkTime(const SQLSMALLINT);

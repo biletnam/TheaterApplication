@@ -189,6 +189,7 @@
     <ClCompile Include="price_manager_check_price.cpp" />
     <ClCompile Include="_price_manager_add_price.cpp" />
     <ClCompile Include="price_input.cpp" />
+    <ClCompile Include="DB_helper_input_choice.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,7 +6,7 @@
 
 class ScheduleManager {
 public:
-	ScheduleManager(DBHelper&);
+	ScheduleManager(DBHelper *);
 
 private:
 	void addDate();	
@@ -17,7 +17,7 @@ private:
 	FNRETURN deletePrice(Schedule &);
 	FNRETURN modifySchedule(Schedule & schedule);
 		
-	DBHelper dbHelper;
+	DBHelper *pDBHelper;
 };
 
 #endif // !SCHEDULE_MANAGE_H

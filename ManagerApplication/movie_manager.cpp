@@ -7,10 +7,8 @@ enum
 	CHOICE_DELETE = 3,
 };
 
-MovieManager::MovieManager(DBHelper& dbHelper)
+MovieManager::MovieManager(DBHelper *pDBHelper) : pDBHelper(pDBHelper)
 {
-	this->dbHelper = dbHelper;
-
 	for (;;)
 	{
 		system("cls");
@@ -31,6 +29,9 @@ MovieManager::MovieManager(DBHelper& dbHelper)
 
 		int16_t choice;
 		cin >> choice;
+				
+		cin.clear();
+		cin.ignore(100, '\n');
 
 		switch (choice)
 		{
@@ -43,8 +44,6 @@ MovieManager::MovieManager(DBHelper& dbHelper)
 		case FUNCTION_CANCEL:
 			return;
 		default:
-			cin.clear();
-			cin.ignore(100, '\n');
 			cout << "잘못된 입력입니다.\n";
 			system("pause");
 		}

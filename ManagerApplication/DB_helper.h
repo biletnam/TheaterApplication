@@ -22,6 +22,7 @@ public:
 	FNRETURN connectDB();
 	FNRETURN closeDB();
 	FNRETURN moveCursor(SQLHSTMT&, const char*);
+	FNRETURN inputChoice();
 private:
 	SQLHENV env;
 	SQLHDBC dbc[MDF_COUNT];

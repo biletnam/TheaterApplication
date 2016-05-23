@@ -6,10 +6,8 @@ enum
 	ADD_PRICE_INFO = 2,
 };
 
-PriceManager::PriceManager(DBHelper &dbHelper)
+PriceManager::PriceManager(DBHelper *pDBHelper) : pDBHelper(pDBHelper)
 {
-	this->dbHelper = dbHelper;
-
 	for (;;)
 	{
 		system("cls");
@@ -31,6 +29,7 @@ PriceManager::PriceManager(DBHelper &dbHelper)
 			checkPrice();
 			break;
 		case ADD_PRICE_INFO:
+			addPrice();
 			break;
 		case FUNCTION_CANCEL:
 			return;

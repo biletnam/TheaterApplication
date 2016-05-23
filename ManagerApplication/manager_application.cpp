@@ -50,17 +50,18 @@ int main()
 			case FUNCTION_CANCEL:
 				break;
 			default:
-				cin.clear();
-				cin.ignore(100, '\n');
-				cout << "\n잘못된 입력입니다.";
-				system("pause");
+				cout << "\n잘못된 입력입니다.\n";
 			}
+
+			cin.clear();
+			cin.ignore(100, '\n');
 		} while (choice != FUNCTION_CANCEL);
 	}
 	else 
 	{
 		cout << "데이터베이스 접근에 실패했습니다.\n";		
 	}
+	system("pause");
 	
 	dbHelper.closeDB();
 	return 0;

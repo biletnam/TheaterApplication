@@ -6,8 +6,7 @@
 class Price
 {
 public:
-	Price() {}
-	Price(DBHelper &dbHelper) { this->dbHelper = dbHelper; }
+	Price(DBHelper *pDBHelper = NULL) : pDBHelper(pDBHelper) {}
 
 	SQLSMALLINT code;
 	SQLCHAR name[BUFSIZ];
@@ -20,7 +19,7 @@ public:
 	FNRETURN inputWon();
 
 private:
-	DBHelper dbHelper;
+	DBHelper *pDBHelper;
 };
 
 #endif // !PRICE_H

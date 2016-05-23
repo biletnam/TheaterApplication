@@ -1,13 +1,27 @@
 #include "DB_helper.h"
 #include <Windows.h>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class UPUP
+{
+public:
+	int ccc;
+	UPUP() { cout << "bbb"; }
+};
+
+class Test : public UPUP
+{
+public:
+	Test() { cout << "¿¬°á"; }
+};
 
 int main()
 {
-	cout << 111 << endl;
-	int x = 10;
-	int y = -2;
-	COORD pos = { x, y };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	Test test1;
+	Test &test2 = test1;
 
 	DBHelper db;
 	db.connectDB();

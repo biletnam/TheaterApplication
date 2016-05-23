@@ -4,9 +4,9 @@
 class PriceManager
 {
 public:
-	PriceManager(DBHelper &);
+	PriceManager(DBHelper *);
 private:
-	DBHelper dbHelper;
+	DBHelper *pDBHelper;
 
 	FNRETURN checkPrice();
 	FNRETURN addPrice();
