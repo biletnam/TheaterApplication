@@ -8,8 +8,6 @@
 #include <iostream>
 #include <conio.h>
 
-const uint16_t MDF_COUNT = 4;
-
 enum {
 	FUNCTION_CANCEL = 0,
 	FUNCTION_SUCCESS,
@@ -22,6 +20,8 @@ using namespace std;
 class DBHelper
 {
 public:
+	static const uint16_t MDF_COUNT = 4;
+
 	DBHelper() {};
 
 	SQLHSTMT theaterStmt;

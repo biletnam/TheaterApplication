@@ -1,14 +1,13 @@
 #pragma once
 
 #include <time.h>
-#include <iostream>
-using namespace std;
+#include "common_header.h"
 
 class Date {
 public:
 	int32_t value;
 	
-	Date(int32_t value = 0) { this->value = value; }
+	Date(int32_t value = 0) : value(value) {}
 
 	int32_t getToday() const;
 	void show() const;

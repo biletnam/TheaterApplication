@@ -47,4 +47,6 @@ FNRETURN ScheduleManager::modifySchedule(Schedule &schedule)
 		cout << "\n잘못된 입력입니다.\n";
 		system("pause");
 	}
+
+	return FUNCTION_ERROR;
 }

@@ -21,16 +21,17 @@ bool DBHelper::connectDB()
 			driver, server, trust, currentDir, mdf[i]);
 	}
 	
-	SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
-	SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, (void *)SQL_OV_ODBC3, 0);
+//	SQLRETURN ret = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
+//	ret = SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, (void *)SQL_OV_ODBC3, 0);
 
 	for (int i = 0; i < MDF_COUNT; i++)
 	{
-		SQLAllocHandle(SQL_HANDLE_DBC, env, &dbc[i]);
-		SQLDriverConnect(dbc[i], GetDesktopWindow(), connectingString[i],
-			SQL_NTS, NULL, 0, NULL, SQL_DRIVER_NOPROMPT);
-		SQLAllocHandle(SQL_HANDLE_STMT, dbc[i], &stmt[i]);
-		if (SQLSetStmtAttr(stmt[i], SQL_ATTR_CURSOR_SCROLLABLE, (SQLPOINTER)SQL_SCROLLABLE, 0) != SQL_SUCCESS)
+//		ret = SQLAllocHandle(SQL_HANDLE_DBC, env, &dbc[i]);
+	//	ret = SQLDriverConnect(dbc[i], GetDesktopWindow(), connectingString[i],
+		//	SQL_NTS, NULL, 0, NULL, SQL_DRIVER_NOPROMPT);
+		//ret = SQLAllocHandle(SQL_HANDLE_STMT, dbc[i], &stmt[i]);
+		SQLRETURN ret = SQLSetStmtAttr(stmt[i], SQL_ATTR_CURSOR_SCROLLABLE, (SQLPOINTER)SQL_SCROLLABLE, 0);
+		if (ret != SQL_SUCCESS)
 		{
 			return false;
 		}

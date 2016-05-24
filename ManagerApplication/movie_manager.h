@@ -5,13 +5,13 @@
 
 class MovieManager {
 public:
-	MovieManager(DBHelper *);
+	MovieManager(DBHelper &);
 private:
 	void registerMovie();
 	void deleteMovie();
 	void showRecent();
 	
-	DBHelper *pDBHelper;
+	DBHelper &dbHelper;
 };
 
 #endif // !MOVIE_MANAGER_H

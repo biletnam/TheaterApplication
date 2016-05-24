@@ -137,9 +137,6 @@
     <ClCompile Include="price_manager.cpp">
       <Filter>소스 파일\price_manager</Filter>
     </ClCompile>
-    <ClCompile Include="price_input.cpp">
-      <Filter>소스 파일\price</Filter>
-    </ClCompile>
     <ClCompile Include="price_manager_check_price.cpp">
       <Filter>소스 파일\price_manager</Filter>
     </ClCompile>
@@ -164,8 +161,17 @@
     <ClCompile Include="_schedule_manager_register_schedule.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
-    <ClCompile Include="DB_helper_input_choice.cpp">
+    <ClCompile Include="DB_helper.cpp">
       <Filter>소스 파일\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="price.cpp">
+      <Filter>소스 파일\price</Filter>
+    </ClCompile>
+    <ClCompile Include="_price_input.cpp">
+      <Filter>소스 파일\price</Filter>
+    </ClCompile>
+    <ClCompile Include="input_integer.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,27 +5,16 @@
 
 using namespace std;
 
-class UPUP
-{
-public:
-	int ccc;
-	UPUP() { cout << "bbb"; }
-};
-
-class Test : public UPUP
-{
-public:
-	Test() { cout << "¿¬°á"; }
-};
-
 int main()
 {
-	Test test1;
-	Test &test2 = test1;
+	float fff;
+	cin >> fff;
+
+	bool bbb = cin.fail();
 
 	DBHelper db;
 	db.connectDB();
-
+	
 	db.closeDB();
 	return 0;
 }

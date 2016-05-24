@@ -3,10 +3,9 @@
 // return 수정
 // do while 수정
 
-int16_t Schedule::chooseMovie()
+FNRETURN Schedule::chooseMovie()
 {
-	int16_t returnValue;
-	SQLHSTMT &stmt = dbHelper.theaterStmt;
+	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
 
 	do
 	{
@@ -15,8 +14,7 @@ int16_t Schedule::chooseMovie()
 
 		if (wcscmp(keyword, L"%0%") == FUNCTION_CANCEL)
 		{
-			returnValue = FUNCTION_CANCEL;
-			break;
+			return FUNCTION_CANCEL;
 		}
 
 		SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
@@ -34,9 +32,9 @@ int16_t Schedule::chooseMovie()
 			SQLGetData(stmt, 1, SQL_INTEGER, &movie.code, sizeof(movie.code), NULL);
 			SQLGetData(stmt, 2, SQL_CHAR, movie.title, BUFSIZ, NULL);
 			SQLGetData(stmt, 3, SQL_INTEGER, &movie.age, sizeof(movie.age), NULL);
-			returnValue = true;
+			return FUNCTION_SUCCESS;
 		}
 	} while (true);
 		
-	return returnValue;
+	return FUNCTION_ERROR;
 }

@@ -7,26 +7,34 @@
 #include <sqltypes.h>
 #include "common_header.h"
 
-const int16_t MDF_COUNT = 4;
+typedef enum
+{
+	THEATER,
+	SALE_INFO,
+	SEAT,
+	SALE_RECORD,
+	MDF_COUNT
+} MDF_ENUM;
 
 class DBHelper
 {
 public:
-	DBHelper() {};
+	DBHelper();
+	~DBHelper();
 
-	SQLHSTMT theaterStmt;
-	SQLHSTMT saleInfoStmt;
-	SQLHSTMT seatStmt;
-	SQLHSTMT salesRecordStmt;
+	bool isConnected() const;
 	
-	FNRETURN connectDB();
-	FNRETURN closeDB();
 	FNRETURN moveCursor(SQLHSTMT&, const char*);
-	FNRETURN inputChoice();
+	SQLHSTMT &getStmt(MDF_ENUM);
 private:
+	static bool _isConnected;
+
 	SQLHENV env;
 	SQLHDBC dbc[MDF_COUNT];
 	SQLHSTMT stmt[MDF_COUNT];
+
+	void connectDB();
+	void closeDB();
 };
 
 #endif // !DB_HELPER_H

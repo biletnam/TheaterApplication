@@ -18,7 +18,8 @@ void MovieManager::registerMovie()
 			return;
 		}
 
-		SQLHSTMT& stmt = dbHelper.theaterStmt;
+		SQLHSTMT& stmt = dbHelper.getStmt(THEATER);
+		SQLCancel(stmt);
 		SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 			BUFSIZ, 0, keyword, 0, NULL);
 		SQLPrepare(stmt, L""

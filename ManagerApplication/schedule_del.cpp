@@ -10,10 +10,10 @@ FNRETURN Schedule::del()
 	SQLWCHAR seatSql[BUFSIZ];
 	swprintf_s(seatSql, L"DROP TABLE d%ds%dt%d;", date.value, screen.number, startTime);
 
-	if (SQLExecDirect(dbHelper.saleInfoStmt, saleInfoSql, SQL_NTS) == SQL_SUCCESS
-		&& SQLCancel(dbHelper.saleInfoStmt) == SQL_SUCCESS
-		&& SQLExecDirect(dbHelper.seatStmt, seatSql, SQL_NTS) == SQL_SUCCESS
-		&& SQLCancel(dbHelper.seatStmt) == SQL_SUCCESS)
+	if (SQLExecDirect(dbHelper.getStmt(SALE_INFO), saleInfoSql, SQL_NTS) == SQL_SUCCESS
+		&& SQLCancel(dbHelper.getStmt(SALE_INFO)) == SQL_SUCCESS
+		&& SQLExecDirect(dbHelper.getStmt(SEAT), seatSql, SQL_NTS) == SQL_SUCCESS
+		&& SQLCancel(dbHelper.getStmt(SEAT)) == SQL_SUCCESS)
 	{
 		cout << "삭제되었습니다.\n";
 		system("pause");

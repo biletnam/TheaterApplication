@@ -15,21 +15,21 @@ FNRETURN ScheduleManager::deletePrice(Schedule &schedule)
 		schedule.showInfo();
 		cout << endl;
 
-		SQLHSTMT &stmt = dbHelper.theaterStmt;
+		
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
-			"SELECT id, price_code, price_name, price_won "
+			"SELECT price_code, price_name, price_won, id "
 			"FROM d%d "
 			"WHERE movie_code=%d AND start_time=%d AND screen=%d;",
 			schedule.date.value, schedule.movie.code, schedule.startTime, schedule.screen.number);
 
 		SQLINTEGER id;	// sale_info id
 
-		Price price;
-		SQLBindCol(stmt, 1, SQL_INTEGER, &id, sizeof id, NULL);
-		SQLBindCol(stmt, 2, SQL_INTEGER, &price.code, sizeof price.code, NULL);
-		SQLBindCol(stmt, 3, SQL_WVARCHAR, price.name, BUFSIZ, NULL);
-		SQLBindCol(stmt, 4, SQL_INTEGER, &price.won, sizeof price.won, NULL);
+		Price price(dbHelper);
+		SQLHSTMT &stmt = dbHelper.getStmt(SALE_INFO);
+		SQLCancel(stmt);
+		price.bindCol(stmt);
+		SQLBindCol(stmt, 4, SQL_INTEGER, &id, sizeof id, NULL);
 
 		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
 

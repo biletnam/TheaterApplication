@@ -3,10 +3,10 @@
 enum
 {
 	CHECK_PRICE_INFO = 1,
-	ADD_PRICE_INFO = 2,
+	ADD_PRICE_INFO,
 };
 
-PriceManager::PriceManager(DBHelper *pDBHelper) : pDBHelper(pDBHelper)
+PriceManager::PriceManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
 	for (;;)
 	{

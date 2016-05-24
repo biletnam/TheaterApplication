@@ -5,18 +5,17 @@
 enum
 {
 	MOVIE_MANAGER = 1,
-	SCHEDULE_MANAGER = 2,
-	PRICE_MANAGER = 3,
+	SCHEDULE_MANAGER,
+	PRICE_MANAGER,
 };
 
 int main()
 {
 	DBHelper dbHelper;
 	
-	if (dbHelper.connectDB() == FUNCTION_SUCCESS)
+	if (dbHelper.isConnected() == false)
 	{
-		int16_t choice = 3;
-		do
+		for(;;)
 		{
 			system("cls");
 			cout << 
@@ -28,9 +27,8 @@ int main()
 				"0. 종료\n\n"
 
 				"선택: ";
-			cin >> choice;
 
-			switch (choice)
+			switch (inputInteger())
 			{
 			case MOVIE_MANAGER:
 			{
@@ -48,14 +46,11 @@ int main()
 				break;
 			}
 			case FUNCTION_CANCEL:
-				break;
+				return 0;
 			default:
 				cout << "\n잘못된 입력입니다.\n";
 			}
-
-			cin.clear();
-			cin.ignore(100, '\n');
-		} while (choice != FUNCTION_CANCEL);
+		}
 	}
 	else 
 	{
@@ -63,6 +58,5 @@ int main()
 	}
 	system("pause");
 	
-	dbHelper.closeDB();
 	return 0;
 }

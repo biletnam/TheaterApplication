@@ -13,7 +13,7 @@ public:
 	SQLSMALLINT startTime;
 	SQLSMALLINT endTime;
 	
-	Schedule(DBHelper *pDBHelper = NULL) : pDBHelper(pDBHelper) {};
+	Schedule(DBHelper &dbHelper) : dbHelper(dbHelper) {};
 
 	FNRETURN chooseDate();
 	FNRETURN chooseScreen();
@@ -24,7 +24,7 @@ public:
 
 	void showInfo() const;
 private:
-	DBHelper *pDBHelper;
+	DBHelper &dbHelper;
 
 	FNRETURN inputTime(SQLSMALLINT& time, const char *output);
 	FNRETURN checkTime(const SQLSMALLINT);

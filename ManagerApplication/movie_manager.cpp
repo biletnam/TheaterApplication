@@ -7,7 +7,7 @@ enum
 	CHOICE_DELETE = 3,
 };
 
-MovieManager::MovieManager(DBHelper *pDBHelper) : pDBHelper(pDBHelper)
+MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
 	for (;;)
 	{
@@ -27,13 +27,7 @@ MovieManager::MovieManager(DBHelper *pDBHelper) : pDBHelper(pDBHelper)
 
 			"¼±ÅÃ: ";
 
-		int16_t choice;
-		cin >> choice;
-				
-		cin.clear();
-		cin.ignore(100, '\n');
-
-		switch (choice)
+		switch (inputInteger())
 		{
 		case CHOICE_CHECK:
 			deleteMovie();

@@ -1,23 +1,19 @@
 #include "Date.h"
 
+
 int16_t getIndex(const int16_t lastIndex, const char* output)
 {
-	int16_t index;
-
 	cout << output;
-	cin >> index;
+	int16_t index = inputInteger();
 
 	if (index >= 0 && index <= lastIndex)
 	{
 		return index;
 	}
-	else if (cin.fail() == true)
+	else
 	{
-		cin.clear();
-		cin.ignore(100, '\n');
+		return getIndex(lastIndex, output);
 	}
-
-	return getIndex(lastIndex, output);
 }
 
 bool Date::choose()

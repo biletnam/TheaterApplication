@@ -6,11 +6,12 @@
 class Price
 {
 public:
-	Price(DBHelper *pDBHelper = NULL) : pDBHelper(pDBHelper) {}
-
 	SQLSMALLINT code;
 	SQLCHAR name[BUFSIZ];
 	SQLINTEGER won;
+
+
+	Price(DBHelper &);
 
 	FNRETURN choose();
 
@@ -18,8 +19,10 @@ public:
 	FNRETURN inputName();
 	FNRETURN inputWon();
 
+	FNRETURN bindCol(SQLHSTMT &);
+
 private:
-	DBHelper *pDBHelper;
+	DBHelper &dbHelper;
 };
 
 #endif // !PRICE_H

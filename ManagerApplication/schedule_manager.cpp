@@ -7,7 +7,7 @@ enum {
 	REGISTER_PRICE = 4,
 };
 
-ScheduleManager::ScheduleManager(DBHelper& dbHelper)
+ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
 	this->dbHelper = dbHelper;
 	

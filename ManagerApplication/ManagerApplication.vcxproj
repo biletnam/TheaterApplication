@@ -163,6 +163,7 @@
     <ClCompile Include="DB_helper_move_cursor.cpp" />
     <ClCompile Include="DB_helper_close.cpp" />
     <ClCompile Include="DB_helper_connect.cpp" />
+    <ClCompile Include="input_integer.cpp" />
     <ClCompile Include="manager_application.cpp" />
     <ClCompile Include="movie_manager.cpp" />
     <ClCompile Include="price_manager.cpp" />
@@ -188,8 +189,9 @@
     <ClCompile Include="schedule_manager_delete_price.cpp" />
     <ClCompile Include="price_manager_check_price.cpp" />
     <ClCompile Include="_price_manager_add_price.cpp" />
-    <ClCompile Include="price_input.cpp" />
-    <ClCompile Include="DB_helper_input_choice.cpp" />
+    <ClCompile Include="_price_input.cpp" />
+    <ClCompile Include="DB_helper.cpp" />
+    <ClCompile Include="price.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

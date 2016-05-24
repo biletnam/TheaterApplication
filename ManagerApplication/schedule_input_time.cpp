@@ -1,13 +1,13 @@
 #include "schedule.h"
 
-int16_t Schedule::inputTime(SQLSMALLINT& time, const char *output)
+FNRETURN Schedule::inputTime(SQLSMALLINT& time, const char *output)
 {
 	cout << output;
 	cin >> time;
 	return checkTime(time);
 }
 
-int16_t Schedule::inputTime()
+FNRETURN Schedule::inputTime()
 {
 	switch (inputTime(startTime, "시작 시간을 입력하세요(0을 입력하면 종료): "))
 	{
@@ -28,7 +28,7 @@ int16_t Schedule::inputTime()
 	}
 }
 
-int16_t Schedule::checkTime(const SQLSMALLINT time)
+FNRETURN Schedule::checkTime(const SQLSMALLINT time)
 {
 	if (time == FUNCTION_CANCEL)
 	{
@@ -36,7 +36,7 @@ int16_t Schedule::checkTime(const SQLSMALLINT time)
 	}
 	else if (cin.fail() == false)
 	{
-		SQLHSTMT &stmt = dbHelper.saleInfoStmt;
+		SQLHSTMT &stmt = dbHelper.getStmt(SALE_INFO);
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
 			"SELECT * FROM d%d "

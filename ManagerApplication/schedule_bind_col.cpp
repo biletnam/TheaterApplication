@@ -1,8 +1,8 @@
 #include "schedule.h"
 
-int16_t Schedule::bindCol()
+FNRETURN Schedule::bindCol()
 {
-	SQLHSTMT &stmt = dbHelper.saleInfoStmt;
+	SQLHSTMT &stmt = dbHelper.getStmt(SALE_INFO);
 
 	if (SQLBindCol(stmt, 1, SQL_INTEGER, &movie.code, sizeof movie.code, NULL) == SQL_SUCCESS
 		&& SQLBindCol(stmt, 2, SQL_WVARCHAR, movie.title, BUFSIZ, NULL) == SQL_SUCCESS

@@ -10,12 +10,10 @@ FNRETURN PriceManager::checkPrice()
 			" > 가격 정보 관리\n"
 			"  > 가격 정보 확인/삭제\n\n";
 
-		Price price;
-		SQLHSTMT &stmt = dbHelper.theaterStmt;
+		Price price(dbHelper);
+		SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
 		SQLCancel(stmt);
-		SQLBindCol(stmt, 1, SQL_INTEGER, &price.code, sizeof price.code, NULL);
-		SQLBindCol(stmt, 2, SQL_WVARCHAR, price.name, BUFSIZ, NULL);
-		SQLBindCol(stmt, 3, SQL_INTEGER, &price.won, sizeof price.won, NULL);
+		price.bindCol(stmt);
 		SQLRETURN ret = SQLExecDirect(stmt, L"SELECT code, name, won FROM price;", SQL_NTS);
 
 		for (int i = 1; SQL_SUCCESS == ret; i++)

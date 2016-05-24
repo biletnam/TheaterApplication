@@ -13,16 +13,17 @@ FNRETURN ScheduleManager::registerPrice(Schedule &schedule)
 	schedule.showInfo();
 	cout << endl;
 
-	Price price;
-	SQLCancel(dbHelper.theaterStmt);
-	SQLBindCol(dbHelper.theaterStmt, 1, SQL_INTEGER, &price.code, sizeof price.code, NULL);
-	SQLBindCol(dbHelper.theaterStmt, 2, SQL_WVARCHAR, price.name, BUFSIZ, NULL);
-	SQLBindCol(dbHelper.theaterStmt, 3, SQL_INTEGER, &price.won, sizeof price.won, NULL);
-	SQLRETURN ret = SQLExecDirect(dbHelper.theaterStmt, L"SELECT code, name, won FROM price;", SQL_NTS);
+	Price price(dbHelper);
+	SQLHSTMT &theaterStmt = dbHelper.getStmt(THEATER);
+	SQLCancel(theaterStmt);
+	SQLBindCol(theaterStmt, 1, SQL_INTEGER, &price.code, sizeof price.code, NULL);
+	SQLBindCol(theaterStmt, 2, SQL_WVARCHAR, price.name, BUFSIZ, NULL);
+	SQLBindCol(theaterStmt, 3, SQL_INTEGER, &price.won, sizeof price.won, NULL);
+	SQLRETURN ret = SQLExecDirect(theaterStmt, L"SELECT code, name, won FROM price;", SQL_NTS);
 
 	for (int i = 1; SQL_SUCCESS == ret; i++)
 	{
-		switch (ret = SQLFetch(dbHelper.theaterStmt))
+		switch (ret = SQLFetch(theaterStmt))
 		{
 		case SQL_SUCCESS:
 			cout << i << ". " << price.name << " " << price.won << "원\n";
@@ -38,7 +39,7 @@ FNRETURN ScheduleManager::registerPrice(Schedule &schedule)
 			{
 				cout << "0. 종료\n";
 
-				switch (dbHelper.moveCursor(dbHelper.theaterStmt, "\n선택: "))
+				switch (dbHelper.moveCursor(theaterStmt, "\n선택: "))
 				{
 				case FUNCTION_CANCEL:
 					return FUNCTION_CANCEL;
@@ -55,12 +56,13 @@ FNRETURN ScheduleManager::registerPrice(Schedule &schedule)
 							schedule.screen.number,
 							price.code, price.won);
 
-						SQLCancel(dbHelper.saleInfoStmt);
-						SQLBindParameter(dbHelper.saleInfoStmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
+						SQLHSTMT saleInfoStmt = dbHelper.getStmt(SALE_INFO);
+						SQLCancel(saleInfoStmt);
+						SQLBindParameter(saleInfoStmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 							BUFSIZ, 0, schedule.movie.title, 0, NULL);
-						SQLBindParameter(dbHelper.saleInfoStmt, 2, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
+						SQLBindParameter(saleInfoStmt, 2, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 							BUFSIZ, 0, price.name, 0, NULL);
-						SQLExecDirect(dbHelper.saleInfoStmt, sql, SQL_NTS);
+						SQLExecDirect(saleInfoStmt, sql, SQL_NTS);
 					}
 				}
 			}
