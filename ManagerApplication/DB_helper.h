@@ -7,14 +7,14 @@
 #include <sqltypes.h>
 #include "common_header.h"
 
-typedef enum
+typedef enum MDF_ENUM
 {
 	THEATER,
 	SALE_INFO,
 	SEAT,
 	SALE_RECORD,
 	MDF_COUNT
-} MDF_ENUM;
+};
 
 class DBHelper
 {

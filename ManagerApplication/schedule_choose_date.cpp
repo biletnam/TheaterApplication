@@ -4,13 +4,13 @@ FNRETURN Schedule::chooseDate()
 {
 	cout << "날짜 선택\n";
 
-	SQLINTEGER today = date.getToday();
-	today = 1;
+	//Date today = Date::getToday();
+	Date today(1);
 	
 	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
 	SQLCancel(stmt);
 	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_INTEGER, SQL_C_LONG,
-		sizeof(today), 0, &today, 0, NULL);
+		sizeof today.value, 0, &today.value, 0, NULL);
 	SQLBindCol(stmt, 1, SQL_INTEGER, &date.value, sizeof(date.value), NULL);
 	SQLRETURN ret = SQLExecDirect(stmt, L"SELECT date FROM schedule WHERE date > ?;", SQL_NTS);
 	

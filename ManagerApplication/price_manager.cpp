@@ -1,13 +1,13 @@
 #include "price_manager.h"
 
-enum
-{
-	CHECK_PRICE_INFO = 1,
-	ADD_PRICE_INFO,
-};
-
 PriceManager::PriceManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
+	enum PriceManagerFunction
+	{
+		CHECK_PRICE_INFO = 1,
+		ADD_PRICE_INFO,
+	};
+
 	for (;;)
 	{
 		system("cls");
@@ -34,9 +34,7 @@ PriceManager::PriceManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 		case FUNCTION_CANCEL:
 			return;
 		default:
-			cin.clear();
-			cin.ignore(100, '\n');
-			cout << "\n잘못된 입력입니다.";
+			cout << "\n잘못된 입력입니다.\n";
 			system("pause");
 		}
 	}

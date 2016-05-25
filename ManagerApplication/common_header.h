@@ -3,7 +3,8 @@
 
 using namespace std;
 
-enum {
+enum FUNCTION_RETURN
+{
 	FUNCTION_CANCEL = 0,
 	FUNCTION_SUCCESS = -1,
 	FUNCTION_ERROR = -2,

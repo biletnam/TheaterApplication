@@ -1,6 +1,5 @@
 #include "Date.h"
 
-
 int16_t getIndex(const int16_t lastIndex, const char* output)
 {
 	cout << output;
@@ -46,7 +45,7 @@ bool Date::chooseYear()
 	int16_t index;
 
 	// 오늘 날짜
-	Date today(getToday());
+	Date today = getToday();
 
 	// 연도 선택
 	const int16_t yearCnt = 2;
@@ -74,7 +73,7 @@ bool Date::chooseYear()
 bool Date::chooseMonth()
 {
 	// 오늘 날짜
-	Date today(getToday());
+	Date today = getToday();
 
 	// 월 선택
 	const int16_t firstMonth = 
@@ -105,7 +104,7 @@ bool Date::chooseMonth()
 bool Date::chooseDay()
 {
 	// 오늘 날짜
-	Date today(getToday());
+	Date today = getToday();
 	
 	// 일 선택
 	const int16_t firstDay =

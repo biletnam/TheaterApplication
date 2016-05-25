@@ -5,8 +5,8 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 	enum ScheduleManagerFunction
 	{
 		CHECK_SCHEDULE = 1,
-		ADD_DATE,
 		DELETE_DATE,
+		ADD_DATE,
 		REGISTER_SCHEDULE,
 		REGISTER_PRICE,
 	};
@@ -18,9 +18,9 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 			"극장 관리 시스템\n"
 			" > 상영 일정 관리\n"
 			"\n"
-			"1. 상영 일정 확인 / 수정\n"
-			"2. 상영일 추가\n"
-			"3. 상영일 삭제\n"
+			"1. 상영 일정 확인/수정\n"
+			"2. 상영일 확인/삭제\n"
+			"3. 상영일 추가\n"
 			"4. 일정 등록\n"
 			"5. 가격 등록\n"
 			"0. 종료\n"
@@ -35,10 +35,11 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 		case CHECK_SCHEDULE:
 			checkSchedule();
 			break;
+		case DELETE_DATE:
+			deleteDate();
+			break;
 		case ADD_DATE:
 			addDate();
-			break;
-		case DELETE_DATE:
 			break;
 		case REGISTER_SCHEDULE:
 			registerSchedule();

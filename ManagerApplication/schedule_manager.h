@@ -18,6 +18,8 @@ private:
 	void modifySchedule(Schedule &);
 		
 	DBHelper &dbHelper;
+public:
+	void deleteDate();
 };
 
 #endif // !SCHEDULE_MANAGE_H

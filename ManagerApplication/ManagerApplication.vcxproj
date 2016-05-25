@@ -168,6 +168,7 @@
     <ClCompile Include="movie_manager.cpp" />
     <ClCompile Include="price_manager.cpp" />
     <ClCompile Include="schedule_del.cpp" />
+    <ClCompile Include="schedule_manager_delete_date.cpp" />
     <ClCompile Include="schedule_manager_modify_schedule.cpp" />
     <ClCompile Include="movie_manager_manage_movie.cpp" />
     <ClCompile Include="movie_set_keyword.cpp" />

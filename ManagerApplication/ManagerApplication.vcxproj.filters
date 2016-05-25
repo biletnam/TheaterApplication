@@ -170,5 +170,8 @@
     <ClCompile Include="movie_manager_manage_movie.cpp">
       <Filter>소스 파일\movie_manager</Filter>
     </ClCompile>
+    <ClCompile Include="schedule_manager_delete_date.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

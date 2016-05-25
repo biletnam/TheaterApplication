@@ -9,7 +9,7 @@ public:
 	
 	Date(int32_t value = 0) : value(value) {}
 
-	int32_t getToday() const;
+	static Date getToday();
 	void show() const;
 	bool choose();
 

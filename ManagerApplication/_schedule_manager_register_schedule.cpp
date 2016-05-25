@@ -1,29 +1,26 @@
 #include "schedule_manager.h"
 #include <vector>
 
-enum {
-	SCHEDULE_REGISTER = 1,
-	SCREEN_SETTING = 2,
-	DATE_SETTING = 3,
-	MOVIE_SETTING = 4,
-	TIME_SETTING = 5,
-};
-
 void ScheduleManager::registerSchedule()
 {
-	for (vector<Schedule> scheduleVector;;)
+	enum ScheduleManagerFunction
+	{
+		SCHEDULE_REGISTER = 1,
+		SCREEN_SETTING = 2,
+		DATE_SETTING = 3,
+		MOVIE_SETTING = 4,
+		TIME_SETTING = 5,
+	};
+
+	for (;;)
 	{
 		Schedule schedule(dbHelper);
-		int16_t choice;
+		FNRETURN choice;
 		do
 		{
 			system("cls");
-			cout << "스케쥴 등록\n\n";
-			cout << "등록한 스케쥴\n\n";
-			for (size_t i = 0; i < scheduleVector.size(); i++)
-			{
-				scheduleVector.at(i).showInfo();
-			}
+			cout << "스케쥴 등록\n\n"
+				"등록한 스케쥴\n\n";
 
 			cout << "새 스케쥴\n";
 			schedule.showInfo();
@@ -35,8 +32,8 @@ void ScheduleManager::registerSchedule()
 				"4. 영화 설정\n"
 				"5. 시간 설정\n"
 				"0. 종료\n";
-			cin >> choice;
 
+			choice = inputInteger();
 			switch (choice)
 			{
 			case SCREEN_SETTING:
@@ -75,7 +72,6 @@ void ScheduleManager::registerSchedule()
 		if (SQLExecDirect(dbHelper.getStmt(SALE_INFO), saleInfoSql, SQL_NTS) == SQL_SUCCESS
 			&& SQLExecDirect(dbHelper.getStmt(SEAT), seatSql, SQL_NTS) == SQL_SUCCESS)
 		{
-			scheduleVector.push_back(schedule);
 		}
 		else
 		{

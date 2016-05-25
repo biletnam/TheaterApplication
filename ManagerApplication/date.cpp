@@ -1,15 +1,16 @@
 #include "Date.h"
 
-int32_t Date::getToday() const
+Date Date::getToday()
 {
 	struct tm t;
 	time_t timer = time(NULL);
 
 	localtime_s(&t, &timer);
 
-	return (t.tm_year - 100) * 10000	// year
-		+ (t.tm_mon + 1) * 100			// month
-		+ t.tm_mday;					// day
+	return Date(
+		(t.tm_year - 100) * 10000	// year
+		+ (t.tm_mon + 1) * 100		// month
+		+ t.tm_mday);				// day
 }
 
 int16_t Date::getYear() const

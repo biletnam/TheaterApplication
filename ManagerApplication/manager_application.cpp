@@ -2,17 +2,16 @@
 #include "schedule_manager.h"
 #include "price_manager.h"
 
-enum
-{
-	MOVIE_MANAGER = 1,
-	SCHEDULE_MANAGER,
-	PRICE_MANAGER,
-};
-
 int main()
 {
+	enum ManageApplicationFunction
+	{
+		MOVIE_MANAGER = 1,
+		SCHEDULE_MANAGER,
+		PRICE_MANAGER,
+	};
+
 	DBHelper dbHelper;
-	
 	if (dbHelper.isConnected() == true)
 	{
 		for(;;)
