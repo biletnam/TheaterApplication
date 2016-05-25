@@ -2,7 +2,6 @@
 
 FNRETURN Movie::showInfo(SQLHSTMT& stmt)
 {
-	SQLCancel(stmt);
 	SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof code, NULL);
 	SQLBindCol(stmt, 2, SQL_CHAR, title, BUFSIZ, NULL);
 	SQLBindCol(stmt, 3, SQL_CHAR, director, BUFSIZ, NULL);

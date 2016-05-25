@@ -6,9 +6,7 @@
 class Screen
 {
 public:
-	Screen() {}
-
-	SQLSMALLINT number;
+	SQLSMALLINT number = 0;
 	SQLSMALLINT row;
 	SQLSMALLINT col;
 };

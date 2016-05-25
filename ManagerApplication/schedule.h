@@ -10,8 +10,8 @@ public:
 	Movie movie;
 	Screen screen;
 	Date date;
-	SQLSMALLINT startTime;
-	SQLSMALLINT endTime;
+	SQLSMALLINT startTime = 0;
+	SQLSMALLINT endTime = 0;
 	
 	Schedule(DBHelper &dbHelper) : dbHelper(dbHelper) {};
 

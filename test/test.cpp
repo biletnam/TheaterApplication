@@ -7,10 +7,14 @@ using namespace std;
 
 int main()
 {
-	float fff;
-	cin >> fff;
+	char *ccc[3];
+	ccc[0] = "000000000";
+	ccc[1] = "111111111";
+	ccc[2] = "222222222";
 
-	bool bbb = cin.fail();
+	cout << ccc[0];
+	cout << ccc[1];
+	cout << ccc[2];
 
 	DBHelper db;
 	db.connectDB();

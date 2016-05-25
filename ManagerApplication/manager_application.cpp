@@ -13,7 +13,7 @@ int main()
 {
 	DBHelper dbHelper;
 	
-	if (dbHelper.isConnected() == false)
+	if (dbHelper.isConnected() == true)
 	{
 		for(;;)
 		{
@@ -49,14 +49,15 @@ int main()
 				return 0;
 			default:
 				cout << "\n잘못된 입력입니다.\n";
+				system("pause");
 			}
 		}
 	}
 	else 
 	{
 		cout << "데이터베이스 접근에 실패했습니다.\n";		
+		system("pause");
 	}
-	system("pause");
-	
+
 	return 0;
 }

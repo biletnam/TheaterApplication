@@ -1,12 +1,5 @@
 #include "movie_manager.h"
 
-enum 
-{
-	CHOICE_CHECK = 1,
-	CHOICE_REGISTER = 2,
-	CHOICE_DELETE = 3,
-};
-
 MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
 	for (;;)
@@ -29,11 +22,11 @@ MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 
 		switch (inputInteger())
 		{
-		case CHOICE_CHECK:
-			deleteMovie();
+		case DELETE_MOVIE:
+			manageMovie(DELETE_MOVIE);
 			break;
-		case CHOICE_REGISTER:
-			registerMovie();
+		case REGISTER_MOVIE:
+			manageMovie(REGISTER_MOVIE);
 			break;
 		case FUNCTION_CANCEL:
 			return;

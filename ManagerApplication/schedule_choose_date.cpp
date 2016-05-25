@@ -26,7 +26,7 @@ FNRETURN Schedule::chooseDate()
 		case SQL_NO_DATA:
 			if (i == 1)
 			{
-				cout << "등록 가능한 날이 없습니다\n";
+				cout << "선택 가능한 날이 없습니다\n";
 				system("pause");
 				return FUNCTION_NULL;
 			}

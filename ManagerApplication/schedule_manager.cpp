@@ -1,15 +1,14 @@
 #include "schedule_manager.h"
 
-enum {
-	CHECK_SCHEDULE = 1,
-	ADD_DATE = 2,
-	REGISTER_SCHEDULE = 3,
-	REGISTER_PRICE = 4,
-};
-
 ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
-	this->dbHelper = dbHelper;
+	enum ScheduleManagerFunction
+	{
+		CHECK_SCHEDULE = 1,
+		ADD_DATE,
+		REGISTER_SCHEDULE,
+		REGISTER_PRICE,
+	};
 	
 	for (;;) 
 	{
@@ -26,10 +25,8 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 
 			"선택: ";
 
-		int16_t choice = CHECK_SCHEDULE;
-		//cin >> choice;
 
-		switch (choice)
+		switch (inputInteger())
 		{
 		case FUNCTION_CANCEL:
 			return;
@@ -45,11 +42,8 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 		case REGISTER_PRICE:
 			break;
 		default:
-			cin.clear();
-			cin.ignore(100, '\n');
 			cout << "\n잘못된 입력입니다.";
 			system("pause");
-			break;
 		}
 	}
 }

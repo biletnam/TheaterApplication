@@ -8,9 +8,7 @@ using namespace std;
 class Movie
 {
 public:
-	Movie() {}
-
-	SQLINTEGER code;
+	SQLINTEGER code = 0;
 	SQLCHAR title[BUFSIZ];
 	SQLCHAR director[BUFSIZ];
 	SQLSMALLINT age;

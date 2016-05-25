@@ -6,11 +6,10 @@
 class Price
 {
 public:
-	SQLSMALLINT code;
+	SQLSMALLINT code = 0;
 	SQLCHAR name[BUFSIZ];
 	SQLINTEGER won;
-
-
+	
 	Price(DBHelper &);
 
 	FNRETURN choose();

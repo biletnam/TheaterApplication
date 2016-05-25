@@ -7,11 +7,16 @@ class MovieManager {
 public:
 	MovieManager(DBHelper &);
 private:
-	void registerMovie();
-	void deleteMovie();
-	void showRecent();
-	
 	DBHelper &dbHelper;
+
+	enum movieManagerFunction 
+	{
+		DELETE_MOVIE = 1,
+		REGISTER_MOVIE,
+	} typedef MOVIE_MANAGER_FUNCTION;
+
+	void manageMovie(MOVIE_MANAGER_FUNCTION);
+	void showRecent();
 };
 
 #endif // !MOVIE_MANAGER_H

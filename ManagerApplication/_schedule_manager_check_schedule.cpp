@@ -18,14 +18,16 @@ void ScheduleManager::checkSchedule()
 			schedule.showInfo();
 			cout << endl;
 
-			if (schedule.screen.number != NULL)
+			if (schedule.screen.number != 0)
 			{
 				break;
 			}
-			else if (schedule.date.value == NULL)
+			else if (schedule.date.value == 0)
 			{
-				if (schedule.chooseDate() != FUNCTION_SUCCESS)
+				switch (schedule.chooseDate())
 				{
+				case FUNCTION_CANCEL:
+				case FUNCTION_NULL:
 					return;
 				}
 			}

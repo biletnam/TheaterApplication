@@ -4,12 +4,12 @@
 using namespace std;
 
 enum {
-	FUNCTION_ERROR = -3,
-	FUNCTION_NULL,
-	FUNCTION_SUCCESS,
-	FUNCTION_CANCEL,
+	FUNCTION_CANCEL = 0,
+	FUNCTION_SUCCESS = -1,
+	FUNCTION_ERROR = -2,
+	FUNCTION_NULL = -3,
 };
 
-typedef uint8_t FNRETURN;
+typedef int8_t FNRETURN;
 
 FNRETURN inputInteger();
