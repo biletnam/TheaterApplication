@@ -27,6 +27,7 @@ FNRETURN Schedule::chooseScreen()
 			}
 			else
 			{
+				screen.number = 0;
 				cout << "0. 종료\n";
 				return dbHelper.moveCursor(stmt, "\n선택: ");
 			}

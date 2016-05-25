@@ -21,6 +21,7 @@ public:
 	FNRETURN inputTime();
 	
 	FNRETURN bindCol();
+	void del();
 
 	void showInfo() const;
 private:
@@ -28,8 +29,6 @@ private:
 
 	FNRETURN inputTime(SQLSMALLINT& time, const char *output);
 	FNRETURN checkTime(const SQLSMALLINT);
-public:
-	FNRETURN del();
 };
 
 #endif // !SCHEDULE_H

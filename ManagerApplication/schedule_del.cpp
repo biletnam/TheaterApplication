@@ -1,6 +1,6 @@
 #include "schedule.h"
 
-FNRETURN Schedule::del()
+void Schedule::del()
 {
 	SQLWCHAR saleInfoSql[BUFSIZ];
 	swprintf_s(saleInfoSql ,
@@ -10,21 +10,16 @@ FNRETURN Schedule::del()
 	SQLWCHAR seatSql[BUFSIZ];
 	swprintf_s(seatSql, L"DROP TABLE d%ds%dt%d;", date.value, screen.number, startTime);
 
+	SQLCancel(dbHelper.getStmt(SALE_INFO));
+	SQLCancel(dbHelper.getStmt(SEAT));
 	if (SQLExecDirect(dbHelper.getStmt(SALE_INFO), saleInfoSql, SQL_NTS) == SQL_SUCCESS
-		&& SQLCancel(dbHelper.getStmt(SALE_INFO)) == SQL_SUCCESS
-		&& SQLExecDirect(dbHelper.getStmt(SEAT), seatSql, SQL_NTS) == SQL_SUCCESS
-		&& SQLCancel(dbHelper.getStmt(SEAT)) == SQL_SUCCESS)
+		&& SQLExecDirect(dbHelper.getStmt(SEAT), seatSql, SQL_NTS) == SQL_SUCCESS)
 	{
 		cout << "삭제되었습니다.\n";
-		system("pause");
-
-		return FUNCTION_SUCCESS;
 	}
 	else
 	{
 		cout << "오류가 발생했습니다.\n";
-		system("pause");
-
-		return FUNCTION_ERROR;
 	}
+	system("pause");
 }

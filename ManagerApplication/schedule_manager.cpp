@@ -6,6 +6,7 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 	{
 		CHECK_SCHEDULE = 1,
 		ADD_DATE,
+		DELETE_DATE,
 		REGISTER_SCHEDULE,
 		REGISTER_PRICE,
 	};
@@ -15,14 +16,15 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 		system("cls");
 		cout <<
 			"극장 관리 시스템\n"
-			" > 상영 일정 관리\n\n"
-
+			" > 상영 일정 관리\n"
+			"\n"
 			"1. 상영 일정 확인 / 수정\n"
 			"2. 상영일 추가\n"
-			"3. 일정 등록\n"
-			"4. 가격 등록\n"
-			"0. 종료\n\n"
-
+			"3. 상영일 삭제\n"
+			"4. 일정 등록\n"
+			"5. 가격 등록\n"
+			"0. 종료\n"
+			"\n"
 			"선택: ";
 
 
@@ -35,6 +37,8 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 			break;
 		case ADD_DATE:
 			addDate();
+			break;
+		case DELETE_DATE:
 			break;
 		case REGISTER_SCHEDULE:
 			registerSchedule();

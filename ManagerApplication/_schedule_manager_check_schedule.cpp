@@ -31,10 +31,14 @@ void ScheduleManager::checkSchedule()
 					return;
 				}
 			}
-			else if (schedule.chooseScreen() != FUNCTION_SUCCESS)
+			else
 			{
-				checkSchedule();
-				return;
+				switch (schedule.chooseScreen())
+				{
+				case FUNCTION_CANCEL:
+				case FUNCTION_NULL:
+					schedule.date.value = 0;
+				}
 			}
 		}
 
@@ -50,8 +54,13 @@ void ScheduleManager::checkSchedule()
 		SQLCancel(stmt);
 		schedule.bindCol();
 		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
-
-		modifySchedule(schedule);
+		
+		if (SQL_SUCCESS != ret)
+		{
+			cout << "오류가 발생했습니다(checkSchedule).\n";
+			system("pause");
+			return;
+		}
 
 		for (int i = 1; ret == SQL_SUCCESS; i++)
 		{
@@ -66,21 +75,22 @@ void ScheduleManager::checkSchedule()
 				{
 					cout << "등록된 상영 일정이 없습니다\n";
 					system("pause");
-
 					return;
 				}
-				else
+
+				cout << "0. 종료\n";
+				switch (dbHelper.moveCursor(stmt, "\n수정할 상영 일정을 선택하세요: "))
 				{
-					cout << "0. 종료\n";
-					if (FUNCTION_SUCCESS == dbHelper.moveCursor(stmt, "\n수정할 상영 일정을 선택하세요: "))
-					{						
-						modifySchedule(schedule);
-					}
+				case FUNCTION_CANCEL:
+					return;
+				case FUNCTION_SUCCESS:
+					modifySchedule(schedule);
+					break;
+				default:
+					cout << "오류가 발생했습니다(checkSchedule).\n";
+					system("pause");
 				}
 			}
 		}
-				
-		cout << "오류가 발생했습니다.\n";
-		system("pause");
 	}
 }

@@ -13,9 +13,9 @@ private:
 	void registerSchedule();
 	void checkSchedule();
 
-	FNRETURN registerPrice(Schedule &);
-	FNRETURN deletePrice(Schedule &);
-	FNRETURN modifySchedule(Schedule &);
+	void registerPrice(Schedule &);
+	void deletePrice(Schedule &);
+	void modifySchedule(Schedule &);
 		
 	DBHelper &dbHelper;
 };
