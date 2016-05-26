@@ -54,7 +54,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 				}
 
 				cout << "0. 취소\n";
-				switch (dbHelper.moveCursor(stmt, "\n삭제할 가격을 선택하세요"))
+				switch (dbHelper.moveCursor(MDF_SALE_INFO, "\n삭제할 가격을 선택하세요"))
 				{
 				case FUNCTION_CANCEL:	// 종료
 					return;

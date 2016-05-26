@@ -79,7 +79,7 @@ void ScheduleManager::checkAndModifySchedule()
 				}
 
 				cout << "0. 종료\n";
-				switch (dbHelper.moveCursor(stmt, "\n수정할 상영 일정을 선택하세요: "))
+				switch (dbHelper.moveCursor(MDF_SALE_INFO, "\n수정할 상영 일정을 선택하세요: "))
 				{
 				case FUNCTION_CANCEL:
 					return;

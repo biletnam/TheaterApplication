@@ -41,7 +41,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 			}
 
 			cout << "0. 종료\n";
-			switch (dbHelper.moveCursor(theaterStmt, "\n선택: "))
+			switch (dbHelper.moveCursor(MDF_THEATER, "\n선택: "))
 			{
 			case FUNCTION_CANCEL:
 				return;

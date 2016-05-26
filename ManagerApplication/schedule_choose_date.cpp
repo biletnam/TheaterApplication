@@ -34,7 +34,7 @@ FNRETURN Schedule::chooseDate()
 			{
 				date.value = 0;
 				cout << "0. 종료\n";
-				return dbHelper.moveCursor(stmt, "\n선택: ");
+				return dbHelper.moveCursor(MDF_THEATER, "\n선택: ");
 			}
 		}
 	}

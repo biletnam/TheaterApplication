@@ -2,35 +2,28 @@
 
 FNRETURN Movie::show(DBHelper &dbHelper)
 {
-	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &code);
 	dbHelper.bindCol(MDF_THEATER, BIND_STRING, title);
-	//SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof code, NULL);
-	//SQLBindCol(stmt, 2, SQL_CHAR, title, BUFSIZ, NULL);
-	SQLBindCol(stmt, 3, SQL_CHAR, director, BUFSIZ, NULL);
-	SQLBindCol(stmt, 4, SQL_INTEGER, &age, sizeof age, NULL);
-	SQLBindCol(stmt, 5, SQL_INTEGER, &year, sizeof year, NULL);
-	SQLBindCol(stmt, 6, SQL_INTEGER, &runningTime, sizeof runningTime, NULL);
-	SQLRETURN ret = SQLExecute(stmt);
-
-	for (int i = 1; ret == SQL_SUCCESS; i++)
+	dbHelper.bindCol(MDF_THEATER, BIND_STRING, director);
+	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &age);
+	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &year);
+	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &runningTime);
+	
+	if (SQL_SUCCESS != dbHelper.execute(MDF_THEATER))
 	{
-		switch (ret = SQLFetch(stmt))
+		cout << "\n오류가 발생했습니다.(Movie.show)\n";
+		system("pause");
+
+		return FUNCTION_ERROR;
+	}
+
+	for (size_t i = 1;; i++)
+	{
+		switch (dbHelper.fetch(MDF_THEATER))
 		{
 		case SQL_SUCCESS:
-			cout << i << ". "
-				<< title
-				<< "(" << director << "), "
-				<< runningTime << "분, ";
-			if (age == 0)
-			{
-				cout << "전체";
-			}
-			else
-			{
-				cout << age << "세";
-			}
-			cout << ", " << year << "년\n";
+			cout << i << ". ";
+			show();
 			break;
 		case SQL_NO_DATA:
 			if (i == 1)
@@ -45,9 +38,20 @@ FNRETURN Movie::show(DBHelper &dbHelper)
 			}		
 		}
 	}
+}
 
-	cout << "\n오류가 발생했습니다.\n";
-	system("pause");
-
-	return FUNCTION_ERROR;
+void Movie::show()
+{
+	cout << title
+		<< "(" << director << "), "
+		<< runningTime << "분, ";
+	if (age == 0)
+	{
+		cout << "전체";
+	}
+	else
+	{
+		cout << age << "세";
+	}
+	cout << ", " << year << "년\n";
 }

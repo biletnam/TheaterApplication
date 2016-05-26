@@ -1,10 +1,10 @@
 #include "DB_helper.h"
 
-FNRETURN DBHelper::moveCursor(SQLHSTMT& stmt, const char* output)
+FNRETURN DBHelper::moveCursor(MDF_ENUM mdf, const char* output)
 {
 	SQLINTEGER rowCount = 0;
 	
-	if (SQL_SUCCESS == SQLRowCount(stmt, &rowCount) && 0 < rowCount)
+	if (SQL_SUCCESS == SQLRowCount(stmt[mdf], &rowCount) && 0 < rowCount)
 	{
 		cout << output;
 		FNRETURN choice = inputInteger();
@@ -21,7 +21,7 @@ FNRETURN DBHelper::moveCursor(SQLHSTMT& stmt, const char* output)
 		}
 		else
 		{
-			if (SQL_SUCCESS == SQLFetchScroll(stmt, SQL_FETCH_ABSOLUTE, choice))
+			if (SQL_SUCCESS == SQLFetchScroll(stmt[mdf], SQL_FETCH_ABSOLUTE, choice))
 			{
 				return FUNCTION_SUCCESS;
 			}

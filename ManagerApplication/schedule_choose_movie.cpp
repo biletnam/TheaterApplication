@@ -25,7 +25,7 @@ FNRETURN Schedule::chooseMovie()
 			"WHERE title LIKE ?;", SQL_NTS);
 
 		if ((movie.show(dbHelper) == FUNCTION_SUCCESS)
-			&& (dbHelper.moveCursor(stmt, "영화를 선택하세요") == FUNCTION_SUCCESS))
+			&& (dbHelper.moveCursor(MDF_THEATER, "영화를 선택하세요") == FUNCTION_SUCCESS))
 		{
 			SQLFreeStmt(stmt, SQL_UNBIND);
 

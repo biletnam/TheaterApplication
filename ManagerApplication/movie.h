@@ -16,6 +16,7 @@ public:
 	SQLSMALLINT runningTime = -1;
 
 	FNRETURN show(DBHelper &);
+	void show();
 	void setKeyword(SQLWCHAR*, const char*) const;
 };
 

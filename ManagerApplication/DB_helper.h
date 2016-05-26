@@ -34,15 +34,18 @@ public:
 	SQLRETURN bindParameter(MDF_ENUM, BIND_TYPE, void *);
 	SQLRETURN execute(MDF_ENUM, SQLWCHAR * = NULL);
 	SQLRETURN prepare(MDF_ENUM, SQLWCHAR *);
-	void initializeBindCnt();
+	SQLRETURN fetch(MDF_ENUM);
+	SQLRETURN cancel(MDF_ENUM);
+	SQLRETURN getData(MDF_ENUM, SQLUSMALLINT, BIND_TYPE, void *);
+	void initializeBindCnt(MDF_ENUM);
 	
-	FNRETURN moveCursor(SQLHSTMT&, const char*);
+	FNRETURN moveCursor(MDF_ENUM, const char*);
 	SQLHSTMT &getStmt(MDF_ENUM);
 private:
 	static bool _isConnected;
 	
-	SQLUSMALLINT bindColCnt = 0;
-	SQLUSMALLINT bindParameterCnt = 0;
+	SQLUSMALLINT bindColCnt[MDF_COUNT] = {0};
+	SQLUSMALLINT bindParameterCnt[MDF_COUNT] = {0};
 
 	SQLHENV env;
 	SQLHDBC dbc[MDF_COUNT];

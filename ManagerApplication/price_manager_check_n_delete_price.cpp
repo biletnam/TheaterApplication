@@ -34,7 +34,7 @@ void PriceManager::checkAndDeletePrice()
 				{
 					cout << "0. 종료\n";
 
-					switch (dbHelper.moveCursor(stmt, "\n삭제할 가격 정보를 선택하세요: "))
+					switch (dbHelper.moveCursor(MDF_THEATER, "\n삭제할 가격 정보를 선택하세요: "))
 					{
 					case FUNCTION_CANCEL:
 						return;
