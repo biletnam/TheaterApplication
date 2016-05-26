@@ -2,7 +2,7 @@
 
 FNRETURN Price::choose()
 {
-	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 
 	SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof code, NULL);
 	SQLBindCol(stmt, 2, SQL_CHAR, name, BUFSIZ, NULL);

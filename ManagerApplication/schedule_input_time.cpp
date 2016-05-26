@@ -36,7 +36,7 @@ FNRETURN Schedule::checkTime(const SQLSMALLINT time)
 	}
 	else if (cin.fail() == false)
 	{
-		SQLHSTMT &stmt = dbHelper.getStmt(SALE_INFO);
+		SQLHSTMT &stmt = dbHelper.getStmt(MDF_SALE_INFO);
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
 			"SELECT * FROM d%d "

@@ -25,7 +25,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 		SQLINTEGER id;	// sale_info id
 
 		Price price(dbHelper);
-		SQLHSTMT &stmt = dbHelper.getStmt(SALE_INFO);
+		SQLHSTMT &stmt = dbHelper.getStmt(MDF_SALE_INFO);
 		SQLCancel(stmt);
 		price.bindCol(stmt);
 		SQLBindCol(stmt, 4, SQL_INTEGER, &id, sizeof id, NULL);

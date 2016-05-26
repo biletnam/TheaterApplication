@@ -4,7 +4,7 @@ FNRETURN Schedule::chooseScreen()
 {
 	cout << "상영관 선택\n";
 	
-	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 	SQLCancel(stmt);
 	SQLBindCol(stmt, 1, SQL_INTEGER, &screen.number, sizeof(screen.number), NULL);
 	SQLRETURN ret = SQLExecDirect(stmt, L"SELECT number FROM screen;", SQL_NTS);

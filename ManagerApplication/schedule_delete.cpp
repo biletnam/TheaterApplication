@@ -10,10 +10,10 @@ void Schedule::del()
 	SQLWCHAR seatSql[BUFSIZ];
 	swprintf_s(seatSql, L"DROP TABLE d%ds%dt%d;", date.value, screen.number, startTime);
 
-	SQLCancel(dbHelper.getStmt(SALE_INFO));
-	SQLCancel(dbHelper.getStmt(SEAT));
-	if (SQLExecDirect(dbHelper.getStmt(SALE_INFO), saleInfoSql, SQL_NTS) == SQL_SUCCESS
-		&& SQLExecDirect(dbHelper.getStmt(SEAT), seatSql, SQL_NTS) == SQL_SUCCESS)
+	SQLCancel(dbHelper.getStmt(MDF_SALE_INFO));
+	SQLCancel(dbHelper.getStmt(MDF_SEAT));
+	if (SQLExecDirect(dbHelper.getStmt(MDF_SALE_INFO), saleInfoSql, SQL_NTS) == SQL_SUCCESS
+		&& SQLExecDirect(dbHelper.getStmt(MDF_SEAT), seatSql, SQL_NTS) == SQL_SUCCESS)
 	{
 		cout << "삭제되었습니다.\n";
 	}

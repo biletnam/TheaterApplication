@@ -9,13 +9,13 @@ class Movie
 {
 public:
 	SQLINTEGER code = 0;
-	SQLCHAR title[BUFSIZ];
-	SQLCHAR director[BUFSIZ];
-	SQLSMALLINT age;
-	SQLSMALLINT year;
-	SQLSMALLINT runningTime;
+	SQLCHAR title[BUFSIZ] = {0};
+	SQLCHAR director[BUFSIZ] = {0};
+	SQLSMALLINT age = -1;
+	SQLSMALLINT year = -1;
+	SQLSMALLINT runningTime = -1;
 
-	FNRETURN showInfo(SQLHSTMT& stmt);
+	FNRETURN show(DBHelper &);
 	void setKeyword(SQLWCHAR*, const char*) const;
 };
 

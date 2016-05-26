@@ -72,14 +72,14 @@ void MovieManager::manageMovie(MOVIE_MANAGER_FUNCTION function)
 			return;
 		}
 
-		SQLHSTMT& stmt = dbHelper.getStmt(THEATER);
+		SQLHSTMT& stmt = dbHelper.getStmt(MDF_THEATER);
 		SQLCancel(stmt);
 		SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 			BUFSIZ, 0, keyword, 0, NULL);
 		SQLPrepare(stmt, query[QUERY_SELECT], SQL_NTS);
 
 		cout << endl;
-		if (FUNCTION_SUCCESS == movie.showInfo(stmt))
+		if (FUNCTION_SUCCESS == movie.show(dbHelper))
 		{
 			cout << "0. Ãë¼Ò\n";
 			if (FUNCTION_SUCCESS == dbHelper.moveCursor(stmt, str[MOVE_CURSOR]))

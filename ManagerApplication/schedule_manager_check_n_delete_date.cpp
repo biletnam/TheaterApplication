@@ -11,7 +11,7 @@ void ScheduleManager::checkAndDeleteDate()
 			"  > 상영일 확인/삭제\n"
 			"\n";
 
-		SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+		SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 		SQLCancel(stmt);
 		Date date;
 		SQLBindCol(stmt, 1, SQL_INTEGER, &date.value, sizeof date.value, NULL);

@@ -5,7 +5,7 @@
 
 FNRETURN Schedule::chooseMovie()
 {
-	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 
 	do
 	{
@@ -24,7 +24,7 @@ FNRETURN Schedule::chooseMovie()
 			"FROM Movie_internal "
 			"WHERE title LIKE ?;", SQL_NTS);
 
-		if ((movie.showInfo(stmt) == FUNCTION_SUCCESS)
+		if ((movie.show(dbHelper) == FUNCTION_SUCCESS)
 			&& (dbHelper.moveCursor(stmt, "영화를 선택하세요") == FUNCTION_SUCCESS))
 		{
 			SQLFreeStmt(stmt, SQL_UNBIND);

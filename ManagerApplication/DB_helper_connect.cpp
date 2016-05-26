@@ -4,10 +4,10 @@ void DBHelper::connectDB()
 {
 	SQLWCHAR connectingString[MDF_COUNT][BUFSIZ];
 	SQLWCHAR mdf[MDF_COUNT][BUFSIZ];
-	wcscpy_s(mdf[THEATER], L"theater");				// 극장 정보
-	wcscpy_s(mdf[SALE_INFO], L"sale_info");			// 판매 정보
-	wcscpy_s(mdf[SEAT], L"seat");					// 상영관 좌석 정보
-	wcscpy_s(mdf[SALE_RECORD], L"sales_record");	// 판매 내역
+	wcscpy_s(mdf[MDF_THEATER], L"theater");				// 극장 정보
+	wcscpy_s(mdf[MDF_SALE_INFO], L"sale_info");			// 판매 정보
+	wcscpy_s(mdf[MDF_SEAT], L"seat");					// 상영관 좌석 정보
+	wcscpy_s(mdf[MDF_SALE_RECORD], L"sales_record");	// 판매 내역
 	SQLWCHAR* driver = L"DRIVER={SQL Server Native Client 11.0}";
 	SQLWCHAR* server = L"Server=(localdb)\\MSSQLLocalDB";
 	SQLWCHAR* trust = L"Trusted_Connection=yes";

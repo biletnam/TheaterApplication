@@ -1,9 +1,12 @@
 #include "movie.h"
 
-FNRETURN Movie::showInfo(SQLHSTMT& stmt)
+FNRETURN Movie::show(DBHelper &dbHelper)
 {
-	SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof code, NULL);
-	SQLBindCol(stmt, 2, SQL_CHAR, title, BUFSIZ, NULL);
+	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
+	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &code);
+	dbHelper.bindCol(MDF_THEATER, BIND_STRING, title);
+	//SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof code, NULL);
+	//SQLBindCol(stmt, 2, SQL_CHAR, title, BUFSIZ, NULL);
 	SQLBindCol(stmt, 3, SQL_CHAR, director, BUFSIZ, NULL);
 	SQLBindCol(stmt, 4, SQL_INTEGER, &age, sizeof age, NULL);
 	SQLBindCol(stmt, 5, SQL_INTEGER, &year, sizeof year, NULL);

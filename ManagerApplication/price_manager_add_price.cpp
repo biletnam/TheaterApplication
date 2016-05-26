@@ -1,6 +1,6 @@
 #include "price_manager.h"
 
-FNRETURN PriceManager::addPrice()
+void PriceManager::addPrice()
 {
 	for (;;)
 	{
@@ -62,12 +62,12 @@ FNRETURN PriceManager::addPrice()
 			}
 		}
 		
-		SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+		SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 		SQLCancel(stmt);
 
-		dbHelper.bindParameter(stmt, 1, INTEGER, &price.code);
-		dbHelper.bindParameter(stmt, 2, CHARACTER, price.name);
-		dbHelper.bindParameter(stmt, 3, INTEGER, &price.code);
+		dbHelper.bindParameter(MDF_THEATER, BIND_INTEGER, &price.code);
+		dbHelper.bindParameter(MDF_THEATER, BIND_STRING, price.name);
+		dbHelper.bindParameter(MDF_THEATER, BIND_INTEGER, &price.code);
 		if (SQL_SUCCESS 
 			== SQLExecDirect(stmt, L"INSERT INTO price (code, name, won) values(?, ?, ?);", SQL_NTS))
 		{

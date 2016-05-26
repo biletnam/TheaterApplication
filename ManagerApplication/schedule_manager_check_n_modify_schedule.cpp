@@ -50,7 +50,7 @@ void ScheduleManager::checkAndModifySchedule()
 			"ORDER BY start_time ASC;",
 			schedule.date.value, schedule.screen.number);
 
-		SQLHSTMT &stmt = dbHelper.getStmt(SALE_INFO);
+		SQLHSTMT &stmt = dbHelper.getStmt(MDF_SALE_INFO);
 		SQLCancel(stmt);
 		schedule.bindCol();
 		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);

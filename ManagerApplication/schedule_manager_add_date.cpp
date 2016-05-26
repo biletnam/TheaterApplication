@@ -22,22 +22,22 @@ void ScheduleManager::addDate()
 			date.show();
 			cout << endl;
 
-			SQLCancel(dbHelper.getStmt(THEATER));
-			SQLBindParameter(dbHelper.getStmt(THEATER), 1, SQL_PARAM_INPUT, SQL_C_LONG, 
+			SQLCancel(dbHelper.getStmt(MDF_THEATER));
+			SQLBindParameter(dbHelper.getStmt(MDF_THEATER), 1, SQL_PARAM_INPUT, SQL_C_LONG, 
 				SQL_INTEGER, sizeof date.value, 0, &date.value, 0, NULL);
 			
 			if (SQL_SUCCESS ==
-				SQLExecDirect(dbHelper.getStmt(THEATER), L"INSERT INTO schedule (date) VALUES (?);", SQL_NTS))
+				SQLExecDirect(dbHelper.getStmt(MDF_THEATER), L"INSERT INTO schedule (date) VALUES (?);", SQL_NTS))
 			{
 				SQLWCHAR saleInfoSql[BUFSIZ];
 				swprintf_s(saleInfoSql, L"SELECT * INTO d%d FROM sale_info;", date.value);
-				SQLCancel(dbHelper.getStmt(SALE_INFO));
-				SQLExecDirect(dbHelper.getStmt(SALE_INFO), saleInfoSql, SQL_NTS);
+				SQLCancel(dbHelper.getStmt(MDF_SALE_INFO));
+				SQLExecDirect(dbHelper.getStmt(MDF_SALE_INFO), saleInfoSql, SQL_NTS);
 
 				SQLWCHAR saleRecordSql[BUFSIZ];
 				swprintf_s(saleRecordSql, L"SELECT * INTO d%d FROM sales_record;", date.value);
-				SQLCancel(dbHelper.getStmt(SALE_RECORD));
-				SQLExecDirect(dbHelper.getStmt(SALE_RECORD), saleRecordSql, SQL_NTS);
+				SQLCancel(dbHelper.getStmt(MDF_SALE_RECORD));
+				SQLExecDirect(dbHelper.getStmt(MDF_SALE_RECORD), saleRecordSql, SQL_NTS);
 			}
 		} 
 	}

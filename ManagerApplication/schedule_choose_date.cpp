@@ -7,7 +7,7 @@ FNRETURN Schedule::chooseDate()
 	//Date today = Date::getToday();
 	Date today(1);
 	
-	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 	SQLCancel(stmt);
 	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_INTEGER, SQL_C_LONG,
 		sizeof today.value, 0, &today.value, 0, NULL);

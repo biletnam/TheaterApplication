@@ -9,7 +9,7 @@ FNRETURN Price::inputCode()
 		return FUNCTION_CANCEL;
 	}
 
-	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 	SQLCancel(stmt);
 	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_LONG, SQL_INTEGER,
 		sizeof code, 0, &code, 0, NULL);
@@ -40,7 +40,7 @@ FNRETURN Price::inputName()
 		return FUNCTION_CANCEL;
 	}
 
-	SQLHSTMT &stmt = dbHelper.getStmt(THEATER);
+	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 	SQLCancel(stmt);
 	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
 		BUFSIZ, 0, name, 0, NULL);

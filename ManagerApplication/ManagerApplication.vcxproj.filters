@@ -92,9 +92,6 @@
     <ClCompile Include="movie_set_keyword.cpp">
       <Filter>소스 파일\movie</Filter>
     </ClCompile>
-    <ClCompile Include="movie_show_info.cpp">
-      <Filter>소스 파일\movie</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_bind_col.cpp">
       <Filter>소스 파일\schedule</Filter>
     </ClCompile>
@@ -172,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="price_manager_check_n_delete_price.cpp">
       <Filter>소스 파일\price_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="movie_show.cpp">
+      <Filter>소스 파일\movie</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

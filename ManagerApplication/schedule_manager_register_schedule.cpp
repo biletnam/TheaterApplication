@@ -52,7 +52,7 @@ void ScheduleManager::registerSchedule()
 			case FUNCTION_CANCEL:
 				return;
 			}
-			SQLCancel(dbHelper.getStmt(THEATER));
+			SQLCancel(dbHelper.getStmt(MDF_THEATER));
 		} while (choice != SCHEDULE_REGISTER);
 
 		SQLWCHAR saleInfoSql[BUFSIZ];
@@ -64,17 +64,17 @@ void ScheduleManager::registerSchedule()
 			schedule.movie.code, schedule.movie.age,
 			schedule.startTime,	schedule.endTime,
 			schedule.screen.number);
-		SQLCancel(dbHelper.getStmt(SALE_INFO));
-		SQLBindParameter(dbHelper.getStmt(SALE_INFO), 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
+		SQLCancel(dbHelper.getStmt(MDF_SALE_INFO));
+		SQLBindParameter(dbHelper.getStmt(MDF_SALE_INFO), 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
 			BUFSIZ, 0, schedule.movie.title, 0, NULL);
 		
 		SQLWCHAR seatSql[BUFSIZ];
 		swprintf_s(seatSql, L"SELECT * INTO d%ds%dt%d FROM screen%d;",
 			schedule.date.value, schedule.screen.number, schedule.startTime, schedule.screen.number);
 		
-		SQLCancel(dbHelper.getStmt(SEAT));
-		if (SQL_SUCCESS == SQLExecDirect(dbHelper.getStmt(SALE_INFO), saleInfoSql, SQL_NTS)
-			&& SQL_SUCCESS == SQLExecDirect(dbHelper.getStmt(SEAT), seatSql, SQL_NTS))
+		SQLCancel(dbHelper.getStmt(MDF_SEAT));
+		if (SQL_SUCCESS == SQLExecDirect(dbHelper.getStmt(MDF_SALE_INFO), saleInfoSql, SQL_NTS)
+			&& SQL_SUCCESS == SQLExecDirect(dbHelper.getStmt(MDF_SEAT), seatSql, SQL_NTS))
 		{
 			cout << "스케쥴이 등록 되었습니다.\n";
 		}

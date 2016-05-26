@@ -14,7 +14,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 	cout << endl;
 
 	Price price(dbHelper);
-	SQLHSTMT &theaterStmt = dbHelper.getStmt(THEATER);
+	SQLHSTMT &theaterStmt = dbHelper.getStmt(MDF_THEATER);
 	SQLCancel(theaterStmt);
 	price.bindCol(theaterStmt);
 	SQLRETURN ret = SQLExecDirect(theaterStmt, L"SELECT code, name, won FROM price;", SQL_NTS);
@@ -58,7 +58,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 					schedule.screen.number,
 					price.code, price.won);
 
-				SQLHSTMT saleInfoStmt = dbHelper.getStmt(SALE_INFO);
+				SQLHSTMT saleInfoStmt = dbHelper.getStmt(MDF_SALE_INFO);
 				SQLCancel(saleInfoStmt);
 				SQLBindParameter(saleInfoStmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 					BUFSIZ, 0, schedule.movie.title, 0, NULL);

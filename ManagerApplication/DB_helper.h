@@ -9,17 +9,17 @@
 
 typedef enum
 {
-	THEATER,
-	SALE_INFO,
-	SEAT,
-	SALE_RECORD,
+	MDF_THEATER,
+	MDF_SALE_INFO,
+	MDF_SEAT,
+	MDF_SALE_RECORD,
 	MDF_COUNT
 } MDF_ENUM;
 
 typedef enum
 {
-	INTEGER,
-	CHARACTER,
+	BIND_INTEGER,
+	BIND_STRING,
 } BIND_TYPE;
 
 class DBHelper
@@ -30,13 +30,19 @@ public:
 
 	bool isConnected() const;
 
-	void bindCol(SQLHSTMT &, SQLUSMALLINT, BIND_TYPE, void *);
-	void bindParameter(SQLHSTMT &, SQLUSMALLINT, BIND_TYPE, void *);
-
+	SQLRETURN bindCol(MDF_ENUM, BIND_TYPE, void *);
+	SQLRETURN bindParameter(MDF_ENUM, BIND_TYPE, void *);
+	SQLRETURN execute(MDF_ENUM, SQLWCHAR * = NULL);
+	SQLRETURN prepare(MDF_ENUM, SQLWCHAR *);
+	void initializeBindCnt();
+	
 	FNRETURN moveCursor(SQLHSTMT&, const char*);
 	SQLHSTMT &getStmt(MDF_ENUM);
 private:
 	static bool _isConnected;
+	
+	SQLUSMALLINT bindColCnt = 0;
+	SQLUSMALLINT bindParameterCnt = 0;
 
 	SQLHENV env;
 	SQLHDBC dbc[MDF_COUNT];
