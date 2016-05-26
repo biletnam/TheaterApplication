@@ -9,17 +9,16 @@ public:
 	ScheduleManager(DBHelper &);
 
 private:
+	void checkAndDeleteDate();
 	void addDate();	
+	void checkAndModifySchedule();
 	void registerSchedule();
-	void checkSchedule();
-
+	
 	void registerPrice(Schedule &);
-	void deletePrice(Schedule &);
+	void checkAndDeletePrice(Schedule &);
 	void modifySchedule(Schedule &);
 		
 	DBHelper &dbHelper;
-public:
-	void deleteDate();
 };
 
 #endif // !SCHEDULE_MANAGE_H

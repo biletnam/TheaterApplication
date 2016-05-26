@@ -14,3 +14,8 @@ FNRETURN Price::bindCol(SQLHSTMT &stmt)
 
 	return FUNCTION_ERROR;
 }
+
+void Price::show()
+{
+	cout << name << "(" << code << ") " << won << "¿ø\n";
+}

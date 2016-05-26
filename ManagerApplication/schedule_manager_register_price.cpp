@@ -64,7 +64,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 					BUFSIZ, 0, schedule.movie.title, 0, NULL);
 				SQLBindParameter(saleInfoStmt, 2, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
 					BUFSIZ, 0, price.name, 0, NULL);
-				
+
 				if (SQL_SUCCESS == SQLExecDirect(saleInfoStmt, sql, SQL_NTS))
 				{
 					cout << "가격이 등록되었습니다.\n";
@@ -74,6 +74,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 					cout << "오류가 발생했습니다.(registerPrice)\n";
 				}
 				system("pause");
+			}
 			}
 		}
 	}

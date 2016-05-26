@@ -7,11 +7,12 @@ class Price
 {
 public:
 	SQLSMALLINT code = 0;
-	SQLCHAR name[BUFSIZ];
-	SQLINTEGER won;
+	SQLCHAR name[BUFSIZ] = {0};
+	SQLINTEGER won = 0;
 	
 	Price(DBHelper &);
 
+	void show();
 	FNRETURN choose();
 
 	FNRETURN inputCode();

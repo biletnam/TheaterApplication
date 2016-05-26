@@ -1,6 +1,6 @@
 #include "schedule_manager.h"
 
-void ScheduleManager::deletePrice(Schedule &schedule)
+void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 {
 	for (;;)
 	{
@@ -38,7 +38,7 @@ void ScheduleManager::deletePrice(Schedule &schedule)
 			return;
 		}
 
-		cout << "0. 취소";
+		cout << "0. 취소\n";
 		for (size_t i = 1; ret == SQL_SUCCESS; i++)
 		{
 			switch (ret = SQLFetch(stmt))
@@ -53,6 +53,7 @@ void ScheduleManager::deletePrice(Schedule &schedule)
 					return;
 				}
 
+				cout << "0. 취소\n";
 				switch (dbHelper.moveCursor(stmt, "\n삭제할 가격을 선택하세요"))
 				{
 				case FUNCTION_CANCEL:	// 종료

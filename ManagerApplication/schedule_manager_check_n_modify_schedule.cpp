@@ -1,6 +1,6 @@
 #include "schedule_manager.h"
 
-void ScheduleManager::checkSchedule()
+void ScheduleManager::checkAndModifySchedule()
 {
 	for (;;)
 	{
@@ -62,7 +62,7 @@ void ScheduleManager::checkSchedule()
 			return;
 		}
 
-		for (int i = 1; ret == SQL_SUCCESS; i++)
+		for (size_t i = 1; ret == SQL_SUCCESS; i++)
 		{
 			switch (ret = SQLFetch(stmt))
 			{

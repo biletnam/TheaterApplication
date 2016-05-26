@@ -8,7 +8,7 @@ public:
 private:
 	DBHelper &dbHelper;
 
-	FNRETURN checkPrice();
+	FNRETURN checkAndDeletePrice();
 	FNRETURN addPrice();
 };
 

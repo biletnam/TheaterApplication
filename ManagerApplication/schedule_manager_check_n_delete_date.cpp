@@ -1,6 +1,6 @@
 #include "schedule_manager.h"
 
-void ScheduleManager::deleteDate()
+void ScheduleManager::checkAndDeleteDate()
 {
 	for (;;)
 	{
@@ -17,8 +17,15 @@ void ScheduleManager::deleteDate()
 		SQLBindCol(stmt, 1, SQL_INTEGER, &date.value, sizeof date.value, NULL);
 
 		SQLWCHAR sql[BUFSIZ];
-		swprintf_s(sql, L"SELECT date FROM schedule WHERE date>%d;", Date::getToday());
+		swprintf_s(sql, L"SELECT date FROM schedule WHERE date>%d;", Date::getToday().value);
 		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
+
+		if (SQL_SUCCESS != ret)
+		{
+			cout << "오류가 발생했습니다(checkSchedule).\n";
+			system("pause");
+			return;
+		}
 
 		for (int i = 1; ret == SQL_SUCCESS; i++)
 		{
@@ -31,19 +38,19 @@ void ScheduleManager::deleteDate()
 			case SQL_NO_DATA:
 				if (i == 1)
 				{
-					cout << "등록된 상영 일정이 없습니다\n";
+					cout << "등록된 상영일이 없습니다\n";
 					system("pause");
 					return;
 				}
 
 				cout << "0. 종료\n";
-				switch (dbHelper.moveCursor(stmt, "\n수정할 상영 일정을 선택하세요: "))
+				switch (dbHelper.moveCursor(stmt, "\n삭제할 상영일을 선택하세요: "))
 				{
 				case FUNCTION_CANCEL:
 					return;
 				case FUNCTION_SUCCESS:
 					break;
-				default:
+				case FUNCTION_ERROR:
 					cout << "오류가 발생했습니다(checkSchedule).\n";
 					system("pause");
 				}

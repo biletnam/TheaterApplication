@@ -125,35 +125,11 @@
     <ClCompile Include="schedule_manager_modify_schedule.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_manager_delete_price.cpp">
-      <Filter>소스 파일\schedule_manager</Filter>
-    </ClCompile>
     <ClCompile Include="price_manager.cpp">
       <Filter>소스 파일\price_manager</Filter>
     </ClCompile>
-    <ClCompile Include="price_manager_check_price.cpp">
-      <Filter>소스 파일\price_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="schedule_del.cpp">
-      <Filter>소스 파일\schedule</Filter>
-    </ClCompile>
     <ClCompile Include="_price_choose.cpp">
       <Filter>소스 파일\price</Filter>
-    </ClCompile>
-    <ClCompile Include="_price_manager_add_price.cpp">
-      <Filter>소스 파일\price_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="_schedule_choose_movie.cpp">
-      <Filter>소스 파일\schedule</Filter>
-    </ClCompile>
-    <ClCompile Include="_schedule_manager_add_date.cpp">
-      <Filter>소스 파일\schedule_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="_schedule_manager_check_schedule.cpp">
-      <Filter>소스 파일\schedule_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="_schedule_manager_register_schedule.cpp">
-      <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
     <ClCompile Include="DB_helper.cpp">
       <Filter>소스 파일\DB</Filter>
@@ -170,8 +146,32 @@
     <ClCompile Include="movie_manager_manage_movie.cpp">
       <Filter>소스 파일\movie_manager</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_manager_delete_date.cpp">
+    <ClCompile Include="schedule_manager_check_n_delete_date.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_manager_add_date.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_manager_check_n_modify_schedule.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_manager_register_schedule.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_choose_movie.cpp">
+      <Filter>소스 파일\schedule</Filter>
+    </ClCompile>
+    <ClCompile Include="price_manager_add_price.cpp">
+      <Filter>소스 파일\price_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_manager_check_n_delete_price.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_delete.cpp">
+      <Filter>소스 파일\schedule</Filter>
+    </ClCompile>
+    <ClCompile Include="price_manager_check_n_delete_price.cpp">
+      <Filter>소스 파일\price_manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

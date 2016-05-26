@@ -1,6 +1,6 @@
 #include "price_manager.h"
 
-FNRETURN PriceManager::checkPrice()
+FNRETURN PriceManager::checkAndDeletePrice()
 {
 	for (;;)
 	{
@@ -52,7 +52,7 @@ FNRETURN PriceManager::checkPrice()
 			}
 		}
 
-		cout << "오류가 발생했습니다.\n";
+		cout << "오류가 발생했습니다.(check&deletePrice)\n";
 		system("pause");
 
 		return FUNCTION_ERROR;

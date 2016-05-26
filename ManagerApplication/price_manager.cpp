@@ -4,7 +4,7 @@ PriceManager::PriceManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
 	enum PriceManagerFunction
 	{
-		CHECK_PRICE_INFO = 1,
+		CHECK_N_DELETE_PRICE = 1,
 		ADD_PRICE_INFO,
 	};
 
@@ -20,13 +20,11 @@ PriceManager::PriceManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 			"0. 종료\n\n"
 
 			"선택: ";
-		int16_t choice;
-		cin >> choice;
-
-		switch (choice)
+		
+		switch (inputInteger())
 		{
-		case CHECK_PRICE_INFO:
-			checkPrice();
+		case CHECK_N_DELETE_PRICE:
+			checkAndDeletePrice();
 			break;
 		case ADD_PRICE_INFO:
 			addPrice();
