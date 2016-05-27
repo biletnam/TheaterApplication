@@ -11,50 +11,49 @@ void ScheduleManager::checkAndDeleteDate()
 			"  > 상영일 확인/삭제\n"
 			"\n";
 
-		SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
-		SQLCancel(stmt);
 		Date date;
-		SQLBindCol(stmt, 1, SQL_INTEGER, &date.value, sizeof date.value, NULL);
+		dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &date.value);
 
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L"SELECT date FROM schedule WHERE date>%d;", Date::getToday().value);
-		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
 
-		if (SQL_SUCCESS != ret)
+		if (SQL_SUCCESS != dbHelper.execute(MDF_THEATER, sql))
 		{
-			cout << "오류가 발생했습니다(checkSchedule).\n";
+			cout << "\n오류가 발생했습니다(checkSchedule).\n";
 			system("pause");
 			return;
 		}
 
-		for (int i = 1; ret == SQL_SUCCESS; i++)
+		for (size_t i = 1;; i++)
 		{
-			switch (ret = SQLFetch(stmt))
+			switch (dbHelper.fetch(MDF_THEATER))
 			{
 			case SQL_SUCCESS:
 				cout << i << ". ";
 				date.show();
-				break;
+				continue;
 			case SQL_NO_DATA:
 				if (i == 1)
 				{
 					cout << "등록된 상영일이 없습니다\n";
-					system("pause");
-					return;
 				}
-
-				cout << "0. 종료\n";
-				switch (dbHelper.moveCursor(MDF_THEATER, "\n삭제할 상영일을 선택하세요: "))
+				else
 				{
-				case FUNCTION_CANCEL:
-					return;
-				case FUNCTION_SUCCESS:
-					break;
-				case FUNCTION_ERROR:
-					cout << "오류가 발생했습니다(checkSchedule).\n";
-					system("pause");
+					cout << "0. 종료\n";
+					switch (dbHelper.moveCursor(MDF_THEATER, "\n삭제할 상영일을 선택하세요: "))
+					{
+					case FUNCTION_ERROR:
+						cout << "\n오류가 발생했습니다(checkSchedule).\n";
+						system("pause");
+					case FUNCTION_CANCEL:
+						return;
+					case FUNCTION_SUCCESS:
+						cout << "\n삭제되었습니다.\n";
+						system("pause");
+					}
 				}
 			}
+			break;
 		}
 	}
 }

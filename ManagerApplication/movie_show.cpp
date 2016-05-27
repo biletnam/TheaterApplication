@@ -2,12 +2,12 @@
 
 FNRETURN Movie::show(DBHelper &dbHelper)
 {
-	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &code);
-	dbHelper.bindCol(MDF_THEATER, BIND_STRING, title);
-	dbHelper.bindCol(MDF_THEATER, BIND_STRING, director);
-	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &age);
-	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &year);
-	dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &runningTime);
+	bindCol(MDF_THEATER, MOVIE_CODE);
+	bindCol(MDF_THEATER, MOVIE_TITLE);
+	bindCol(MDF_THEATER, MOVIE_DIRECTOR);
+	bindCol(MDF_THEATER, MOVIE_AGE);
+	bindCol(MDF_THEATER, MOVIE_YEAR);
+	bindCol(MDF_THEATER, MOVIE_RUNNINGTIME);
 	
 	if (SQL_SUCCESS != dbHelper.execute(MDF_THEATER))
 	{
@@ -54,4 +54,28 @@ void Movie::show()
 		cout << age << "¼¼";
 	}
 	cout << ", " << year << "³â\n";
+}
+
+void Movie::show(MOVIE_INFO info)
+{
+	switch (info)
+	{
+	case MOVIE_CODE:
+		cout << code;
+		break;
+	case MOVIE_TITLE:
+		cout << title;
+		break;
+	case MOVIE_DIRECTOR:
+		cout << director;
+		break;
+	case MOVIE_AGE:
+		cout << age;
+		break;
+	case MOVIE_YEAR:
+		cout << year;
+		break;
+	case MOVIE_RUNNINGTIME:
+		cout << runningTime;
+	}
 }

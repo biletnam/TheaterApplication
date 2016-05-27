@@ -11,6 +11,6 @@ enum FUNCTION_RETURN
 	FUNCTION_NULL = -3,
 };
 
-typedef int8_t FNRETURN;
+typedef int16_t FNRETURN;
 
 FNRETURN inputInteger();

@@ -28,8 +28,6 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 
 		switch (inputInteger())
 		{
-		case FUNCTION_CANCEL:
-			return;
 		case CHECK_N_DELETE_DATE:
 			checkAndDeleteDate();
 			break;
@@ -42,6 +40,8 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 		case REGISTER_SCHEDULE:
 			registerSchedule();
 			break;
+		case FUNCTION_CANCEL:
+			return;
 		default:
 			cout << "\n잘못된 입력입니다.";
 			system("pause");

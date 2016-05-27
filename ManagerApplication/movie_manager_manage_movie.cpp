@@ -28,6 +28,7 @@ void MovieManager::manageMovie(MOVIE_MANAGER_FUNCTION function)
 		str[TITLE] = "  > 새로운 영화 등록\n\n";
 		str[SET_KEYWORD] = "추가할 영화의 제목을 검색하세요";
 		str[MOVE_CURSOR] = "\n추가할 영화를 선택하세요: ";
+		str[SQL_EXECUTE_SUCCESS] = "\n추가되었습니다.\n";
 		str[SQL_EXECUTE_ERROR] = "\n이미 등록된 영화입니다.\n";
 
 		query[QUERY_SELECT] = L""
@@ -43,6 +44,7 @@ void MovieManager::manageMovie(MOVIE_MANAGER_FUNCTION function)
 		str[TITLE] = "  > 등록한 영화 확인 / 삭제\n\n";
 		str[SET_KEYWORD] = "등록한 영화의 제목을 검색하세요";
 		str[MOVE_CURSOR] = "\n삭제할 영화를 선택하세요: ";
+		str[SQL_EXECUTE_SUCCESS] = "\n삭제되었습니다.\n";
 		str[SQL_EXECUTE_ERROR] = "\n이미 삭제된 영화입니다.\n";
 
 		query[QUERY_SELECT] = L""
@@ -60,7 +62,7 @@ void MovieManager::manageMovie(MOVIE_MANAGER_FUNCTION function)
 			<< str[TITLE];
 
 		SQLWCHAR keyword[BUFSIZ];
-		Movie movie;
+		Movie movie(dbHelper);
 		movie.setKeyword(keyword, str[SET_KEYWORD]);
 		if (wcscmp(keyword, L"%0%") == 0)
 		{

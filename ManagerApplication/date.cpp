@@ -23,33 +23,56 @@ int16_t Date::getMonth() const
 	return (value % 10000) / 100;
 }
 
+int16_t Date::getLastDay()
+{
+	switch (getMonth())
+	{
+	case 4:case 6:case 9:case 11:
+		return 30;
+	case 2:
+		return (isLeapYear(getYear()) == true) ? 29 : 28;
+	default:
+		return 31;
+	}
+	
+}
+
 int16_t Date::getDay() const
 {
 	return (value % 100);
 }
 
-void Date::setYear(const int16_t year)
+bool Date::isLeapYear(const int16_t year)
 {
-	value = (year * 10000)	// year
-		+ (value % 10000);	// month, day
+	if ((0 == year % 4 && 0 != year % 100) || 0 == year % 400)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
-void Date::setMonth(const int16_t month)
+int32_t Date::getValue() const
 {
-	value = (value / 10000 * 10000)	// year
-		+ (month * 100) 			// month
-		+ (value % 100);			// day
-}
-
-void Date::setDay(const int16_t day)
-{
-	value = (value / 100 * 100)	// year, month
-		+ day;					// day
+	return value;
 }
 
 void Date::show() const
 {
-	cout << getYear() << "년 "
-		<< getMonth() << "월 "
-		<< getDay() << "일";
+	if (0 != getYear())
+	{
+		cout << getYear() << "년 ";
+	}
+
+	if (0 != getMonth())
+	{
+		cout << getMonth() << "월 ";
+	}
+
+	if (0 != getDay())
+	{
+		cout << getDay() << "일";
+	}
 }

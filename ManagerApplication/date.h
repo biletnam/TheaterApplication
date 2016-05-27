@@ -5,24 +5,27 @@
 
 class Date {
 public:
-	int32_t value;
-	
-	Date(int32_t value = 0) : value(value) {}
-
-	static Date getToday();
+	Date(const int32_t value = 0) : value(value) {}
 	void show() const;
-	bool choose();
 
-private:
+	FNRETURN inputYear();
+	FNRETURN inputMonth();
+	FNRETURN inputDay();
+
 	int16_t getYear() const;
 	int16_t getMonth() const;
+	int16_t getLastDay();
 	int16_t getDay() const;
+	int32_t getValue() const;
+	static Date getToday();
 
-	void setYear(const int16_t);
-	void setMonth(const int16_t);
-	void setDay(const int16_t);
+	bool setYear(const int16_t);
+	bool setMonth(const int16_t);
+	bool setDay(const int16_t);
+	bool setValue(const int32_t);
 
-	bool chooseYear();
-	bool chooseMonth();
-	bool chooseDay();
+	bool isLeapYear(const int16_t);
+private:
+	int32_t value;
+	
 };

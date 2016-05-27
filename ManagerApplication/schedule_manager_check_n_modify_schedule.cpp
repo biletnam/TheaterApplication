@@ -22,7 +22,7 @@ void ScheduleManager::checkAndModifySchedule()
 			{
 				break;
 			}
-			else if (schedule.date.value == 0)
+			else if (schedule.date.getValue() == 0)
 			{
 				switch (schedule.chooseDate())
 				{
@@ -37,7 +37,7 @@ void ScheduleManager::checkAndModifySchedule()
 				{
 				case FUNCTION_CANCEL:
 				case FUNCTION_NULL:
-					schedule.date.value = 0;
+					schedule.date.getValue() = 0;
 				}
 			}
 		}
