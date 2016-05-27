@@ -1,31 +1,31 @@
 #pragma once
 
 #include <time.h>
-#include "common_header.h"
+#include "DB_helper.h"
 
 class Date {
 public:
-	Date(const int32_t value = 0) : value(value) {}
+	Date(DBHelper &dbHelper) : dbHelper(dbHelper) {}
 	void show() const;
-
-	FNRETURN inputYear();
-	FNRETURN inputMonth();
-	FNRETURN inputDay();
 
 	int16_t getYear() const;
 	int16_t getMonth() const;
 	int16_t getLastDay();
 	int16_t getDay() const;
 	int32_t getValue() const;
-	static Date getToday();
+	static Date today(DBHelper &);
 
-	bool setYear(const int16_t);
-	bool setMonth(const int16_t);
-	bool setDay(const int16_t);
-	bool setValue(const int32_t);
+	FNRETURN setYear(const int16_t);
+	FNRETURN setMonth(const int16_t);
+	FNRETURN setDay(const int16_t);
+	FNRETURN setValue(const int32_t);
+
+	SQLRETURN bindCol();
+	SQLRETURN bindParameter();
 
 	bool isLeapYear(const int16_t);
+	
 private:
 	int32_t value;
-	
+	DBHelper &dbHelper;
 };

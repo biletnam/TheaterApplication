@@ -6,10 +6,10 @@ void ScheduleManager::registerSchedule()
 	enum ScheduleManagerFunction
 	{
 		SCHEDULE_REGISTER = 1,
-		SCREEN_SETTING = 2,
-		DATE_SETTING = 3,
-		MOVIE_SETTING = 4,
-		TIME_SETTING = 5,
+		CHOOSE_SCREEN,
+		CHOOSE_DATE,
+		CHOOSE_MOVIE,
+		INPUT_TIME,
 	};
 
 	for (;;)
@@ -38,21 +38,20 @@ void ScheduleManager::registerSchedule()
 			choice = inputInteger();
 			switch (choice)
 			{
-			case SCREEN_SETTING:
+			case CHOOSE_SCREEN:
 				schedule.chooseScreen();
-			case DATE_SETTING:
+			case CHOOSE_DATE:
 				schedule.chooseDate();
 				break;
-			case MOVIE_SETTING:
+			case CHOOSE_MOVIE:
 				schedule.chooseMovie();
 				break;
-			case TIME_SETTING:
+			case INPUT_TIME:
 				schedule.inputTime();
 				break;
 			case FUNCTION_CANCEL:
 				return;
 			}
-			SQLCancel(dbHelper.getStmt(MDF_THEATER));
 		} while (choice != SCHEDULE_REGISTER);
 
 		SQLWCHAR saleInfoSql[BUFSIZ];
@@ -60,7 +59,7 @@ void ScheduleManager::registerSchedule()
 			"INSERT INTO d%d "
 			"(movie_code, movie_title, age, start_time, end_time, screen) "
 			"VALUES (%d, ?, %d, %d, %d, %d);",
-			schedule.date.value, 
+			schedule.date.getValue, 
 			schedule.movie.code, schedule.movie.age,
 			schedule.startTime,	schedule.endTime,
 			schedule.screen.number);

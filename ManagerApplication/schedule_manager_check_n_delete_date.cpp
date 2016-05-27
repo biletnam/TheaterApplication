@@ -11,13 +11,10 @@ void ScheduleManager::checkAndDeleteDate()
 			"  > 상영일 확인/삭제\n"
 			"\n";
 
-		Date date;
-		dbHelper.bindCol(MDF_THEATER, BIND_INTEGER, &date.value);
-
-		SQLWCHAR sql[BUFSIZ];
-		swprintf_s(sql, L"SELECT date FROM schedule WHERE date>%d;", Date::getToday().value);
-
-		if (SQL_SUCCESS != dbHelper.execute(MDF_THEATER, sql))
+		Date date(dbHelper);
+		date.bindCol();
+		Date::today(dbHelper).bindParameter();
+		if (SQL_SUCCESS != dbHelper.execute(MDF_THEATER, L"SELECT date FROM schedule WHERE date>%d;"))
 		{
 			cout << "\n오류가 발생했습니다(checkSchedule).\n";
 			system("pause");

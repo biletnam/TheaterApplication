@@ -159,7 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="date.cpp" />
-    <ClCompile Include="date_input.cpp" />
     <ClCompile Include="DB_helper_move_cursor.cpp" />
     <ClCompile Include="DB_helper_close.cpp" />
     <ClCompile Include="DB_helper_connect.cpp" />
@@ -193,8 +192,10 @@
     <ClCompile Include="DB_helper.cpp" />
     <ClCompile Include="price.cpp" />
     <ClCompile Include="schedule_manager_input_date.cpp" />
-    <ClCompile Include="movie.cpp" />
+    <ClCompile Include="movie_bind.cpp" />
     <ClCompile Include="date_set.cpp" />
+    <ClCompile Include="date_get.cpp" />
+    <ClCompile Include="date_bind.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
