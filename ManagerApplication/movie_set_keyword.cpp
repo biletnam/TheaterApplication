@@ -1,6 +1,6 @@
 #include "movie.h"
 
-void Movie::setKeyword(SQLWCHAR *keyword, const char *output) const
+void Movie::setKeyword(SQLWCHAR *keyword) const
 {
 	cout << output << "(0을 입력하면 종료): ";
 

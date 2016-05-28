@@ -39,7 +39,7 @@ public:
 	SQLRETURN getData(MDF_ENUM, SQLUSMALLINT, BIND_TYPE, void *);
 	void initializeBindCnt(MDF_ENUM);
 	
-	FNRETURN moveCursor(MDF_ENUM, const char*);
+	FNRETURN moveCursor(MDF_ENUM);
 	SQLHSTMT &getStmt(MDF_ENUM);
 private:
 	static bool _isConnected;

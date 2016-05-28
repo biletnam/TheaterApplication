@@ -2,16 +2,21 @@
 #include <Windows.h>
 #include <string>
 #include <iostream>
-#include <functional>
 
 using namespace std;
 
+char* vvv()
+{
+	char *ccc="ccc";
+	return ccc;
+}
+
 int main()
 {
-	int iii = 2;
-
 	DBHelper db;
 	db.connectDB();
+
+	char* ccc = vvv();
 
 	db.closeDB();
 	return 0;

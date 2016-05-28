@@ -5,16 +5,36 @@
 #include "screen.h"
 #include "Date.h"
 
+enum TimeEnum
+{
+	START_TIME,
+	END_TIME,
+};
+
 class Schedule {
 public:
+	class Time
+	{
+	public:
+		Time(DBHelper &dbHelper) : dbHelper(dbHelper) {}
+
+		SQLRETURN bindCol();
+	private:
+		SQLSMALLINT startTime = 0;
+		SQLSMALLINT endTime = 0;
+
+		DBHelper &dbHelper;
+	};
+
+
+	Schedule(DBHelper &dbHelper) 
+		: dbHelper(dbHelper), movie(dbHelper), screen(dbHelper), date(dbHelper)	{};
+
 	Movie movie;
 	Screen screen;
 	Date date;
-	SQLSMALLINT startTime = 0;
-	SQLSMALLINT endTime = 0;
+	Time time;
 	
-	Schedule(DBHelper &dbHelper) : dbHelper(dbHelper) {};
-
 	FNRETURN chooseDate();
 	FNRETURN chooseScreen();
 	FNRETURN chooseMovie();

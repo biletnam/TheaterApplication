@@ -185,5 +185,23 @@
     <ClCompile Include="movie_bind.cpp">
       <Filter>소스 파일\movie</Filter>
     </ClCompile>
+    <ClCompile Include="screen.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="movie_search.cpp">
+      <Filter>소스 파일\movie</Filter>
+    </ClCompile>
+    <ClCompile Include="movie_choose.cpp">
+      <Filter>소스 파일\movie</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule_manager_set_schedule.cpp">
+      <Filter>소스 파일\schedule_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="movie_modify.cpp">
+      <Filter>소스 파일\movie</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

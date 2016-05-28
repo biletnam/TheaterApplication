@@ -20,6 +20,8 @@ private:
 	void modifySchedule(Schedule &);
 		
 	DBHelper &dbHelper;
+public:
+	FNRETURN setSchedule(Schedule & schedule);
 };
 
 #endif // !SCHEDULE_MANAGE_H

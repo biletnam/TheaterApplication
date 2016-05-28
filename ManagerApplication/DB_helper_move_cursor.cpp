@@ -1,12 +1,11 @@
 #include "DB_helper.h"
 
-FNRETURN DBHelper::moveCursor(MDF_ENUM mdf, const char* output)
+FNRETURN DBHelper::moveCursor(MDF_ENUM mdf)
 {
 	SQLINTEGER rowCount = 0;
 	
 	if (SQL_SUCCESS == SQLRowCount(stmt[mdf], &rowCount) && 0 < rowCount)
 	{
-		cout << output;
 		FNRETURN choice = inputInteger();
 
 		if (FUNCTION_CANCEL == choice)

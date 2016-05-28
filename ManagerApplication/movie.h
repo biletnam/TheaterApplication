@@ -15,6 +15,12 @@ typedef enum
 	MOVIE_RUNNINGTIME
 } MOVIE_INFO;
 
+enum MovieTable
+{
+	MOVIE_TABLE_INTERNAL,
+	MOVIE_TABLE_EXTERNAL,
+};
+
 class Movie
 {
 public:
@@ -27,10 +33,13 @@ public:
 	SQLSMALLINT year = -1;
 	SQLSMALLINT runningTime = -1;
 
-	FNRETURN show(DBHelper &);
+	FNRETURN search(MovieTable);
+	FNRETURN choose(MovieTable);
+	FNRETURN del();
+	FNRETURN insert();
 	void show();
 	void show(MOVIE_INFO);
-	void setKeyword(SQLWCHAR*, const char*) const;
+	void setKeyword(SQLWCHAR*) const;
 
 	SQLRETURN bindCol(MDF_ENUM, MOVIE_INFO);
 	SQLRETURN bindParameter(MDF_ENUM, MOVIE_INFO);

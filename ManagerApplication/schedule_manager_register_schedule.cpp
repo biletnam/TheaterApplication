@@ -3,56 +3,13 @@
 
 void ScheduleManager::registerSchedule()
 {
-	enum ScheduleManagerFunction
-	{
-		SCHEDULE_REGISTER = 1,
-		CHOOSE_SCREEN,
-		CHOOSE_DATE,
-		CHOOSE_MOVIE,
-		INPUT_TIME,
-	};
-
 	for (;;)
 	{
 		Schedule schedule(dbHelper);
-		FNRETURN choice;
-		do
+		if (FUNCTION_CANCEL == setSchedule(schedule))
 		{
-			system("cls");
-			cout <<
-				"극장 관리 시스템\n"
-				" > 상영 일정 관리\n"
-				"  > 상영 일정 등록\n"
-				"\n"
-				"새 스케쥴\n";
-			schedule.showInfo();
-
-			cout <<
-				"1. 새 스케쥴 등록\n"
-				"2. 상영관 설정\n"
-				"3. 날짜 설정\n"
-				"4. 영화 설정\n"
-				"5. 시간 설정\n"
-				"0. 종료\n";
-
-			choice = inputInteger();
-			switch (choice)
-			{
-			case CHOOSE_SCREEN:
-				schedule.chooseScreen();
-			case CHOOSE_DATE:
-				schedule.chooseDate();
-				break;
-			case CHOOSE_MOVIE:
-				schedule.chooseMovie();
-				break;
-			case INPUT_TIME:
-				schedule.inputTime();
-				break;
-			case FUNCTION_CANCEL:
-				return;
-			}
-		} while (choice != SCHEDULE_REGISTER);
+			return;
+		}
 
 		SQLWCHAR saleInfoSql[BUFSIZ];
 		swprintf_s(saleInfoSql,	L""
@@ -69,7 +26,7 @@ void ScheduleManager::registerSchedule()
 		
 		SQLWCHAR seatSql[BUFSIZ];
 		swprintf_s(seatSql, L"SELECT * INTO d%ds%dt%d FROM screen%d;",
-			schedule.date.value, schedule.screen.number, schedule.startTime, schedule.screen.number);
+			schedule.date.getValue(), schedule.screen.number, schedule.startTime, schedule.screen.number);
 		
 		SQLCancel(dbHelper.getStmt(MDF_SEAT));
 		if (SQL_SUCCESS == SQLExecDirect(dbHelper.getStmt(MDF_SALE_INFO), saleInfoSql, SQL_NTS)
