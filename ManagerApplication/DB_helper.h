@@ -14,13 +14,13 @@ typedef enum
 	MDF_SEAT,
 	MDF_SALE_RECORD,
 	MDF_COUNT
-} MDF_ENUM;
+} MdfEnum;
 
 typedef enum
 {
 	BIND_INTEGER,
 	BIND_STRING,
-} BIND_TYPE;
+} BindType;
 
 class DBHelper
 {
@@ -30,17 +30,17 @@ public:
 
 	bool isConnected() const;
 
-	SQLRETURN bindCol(MDF_ENUM, BIND_TYPE, void *);
-	SQLRETURN bindParameter(MDF_ENUM, BIND_TYPE, void *);
-	SQLRETURN execute(MDF_ENUM, SQLWCHAR * = NULL);
-	SQLRETURN prepare(MDF_ENUM, SQLWCHAR *);
-	SQLRETURN fetch(MDF_ENUM);
-	SQLRETURN cancel(MDF_ENUM);
-	SQLRETURN getData(MDF_ENUM, SQLUSMALLINT, BIND_TYPE, void *);
-	void initializeBindCnt(MDF_ENUM);
+	SQLRETURN bindCol(MdfEnum, BindType, void *);
+	SQLRETURN bindParameter(MdfEnum, BindType, void *);
+	SQLRETURN execute(MdfEnum, SQLWCHAR * = NULL);
+	SQLRETURN prepare(MdfEnum, SQLWCHAR *);
+	SQLRETURN fetch(MdfEnum);
+	SQLRETURN cancel(MdfEnum);
+	SQLRETURN getData(MdfEnum, SQLUSMALLINT, BindType, void *);
+	void initializeBindCnt(MdfEnum);
 	
-	FNRETURN moveCursor(MDF_ENUM);
-	SQLHSTMT &getStmt(MDF_ENUM);
+	FNRETURN moveCursor(MdfEnum);
+	SQLHSTMT &getStmt(MdfEnum);
 private:
 	static bool _isConnected;
 	

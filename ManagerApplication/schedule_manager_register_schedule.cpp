@@ -12,25 +12,26 @@ void ScheduleManager::registerSchedule()
 		}
 
 		SQLWCHAR saleInfoSql[BUFSIZ];
-		swprintf_s(saleInfoSql,	L""
+
+		swprintf_s(saleInfoSql, L""
 			"INSERT INTO d%d "
 			"(movie_code, movie_title, age, start_time, end_time, screen) "
-			"VALUES (%d, ?, %d, %d, %d, %d);",
-			schedule.date.getValue, 
-			schedule.movie.code, schedule.movie.age,
-			schedule.startTime,	schedule.endTime,
-			schedule.screen.number);
-		SQLCancel(dbHelper.getStmt(MDF_SALE_INFO));
-		SQLBindParameter(dbHelper.getStmt(MDF_SALE_INFO), 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
-			BUFSIZ, 0, schedule.movie.title, 0, NULL);
+			"VALUES (?, ?, ?, ?, ?, ?);",
+			schedule.date.getValue());
+		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_CODE);
+		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_TITLE);
+		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_AGE);
+		schedule.time.bindParameter(MDF_SALE_INFO, START_TIME);
+		schedule.time.bindParameter(MDF_SALE_INFO, END_TIME);
+		schedule.screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
 		
 		SQLWCHAR seatSql[BUFSIZ];
 		swprintf_s(seatSql, L"SELECT * INTO d%ds%dt%d FROM screen%d;",
-			schedule.date.getValue(), schedule.screen.number, schedule.startTime, schedule.screen.number);
+			schedule.date.getValue(), schedule.screen.getNumber(), schedule.time.getStartTime(), 
+			schedule.screen.getNumber());
 		
-		SQLCancel(dbHelper.getStmt(MDF_SEAT));
-		if (SQL_SUCCESS == SQLExecDirect(dbHelper.getStmt(MDF_SALE_INFO), saleInfoSql, SQL_NTS)
-			&& SQL_SUCCESS == SQLExecDirect(dbHelper.getStmt(MDF_SEAT), seatSql, SQL_NTS))
+		if (SQL_SUCCESS == dbHelper.execute(MDF_SALE_INFO, saleInfoSql)
+			&& SQL_SUCCESS == dbHelper.execute(MDF_SEAT, seatSql))
 		{
 			cout << "스케쥴이 등록 되었습니다.\n";
 		}

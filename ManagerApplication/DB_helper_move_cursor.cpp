@@ -1,6 +1,6 @@
 #include "DB_helper.h"
 
-FNRETURN DBHelper::moveCursor(MDF_ENUM mdf)
+FNRETURN DBHelper::moveCursor(MdfEnum mdf)
 {
 	SQLINTEGER rowCount = 0;
 	

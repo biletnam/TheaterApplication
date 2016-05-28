@@ -5,7 +5,7 @@
 #include "screen.h"
 #include "Date.h"
 
-enum TimeEnum
+enum TimeInfo
 {
 	START_TIME,
 	END_TIME,
@@ -17,8 +17,10 @@ public:
 	{
 	public:
 		Time(DBHelper &dbHelper) : dbHelper(dbHelper) {}
+		SQLSMALLINT getStartTime() const;
 
-		SQLRETURN bindCol();
+		SQLRETURN bindCol(MdfEnum, TimeInfo);
+		SQLRETURN bindParameter(MdfEnum, TimeInfo);
 	private:
 		SQLSMALLINT startTime = 0;
 		SQLSMALLINT endTime = 0;
@@ -28,7 +30,7 @@ public:
 
 
 	Schedule(DBHelper &dbHelper) 
-		: dbHelper(dbHelper), movie(dbHelper), screen(dbHelper), date(dbHelper)	{};
+		: dbHelper(dbHelper), movie(dbHelper), screen(dbHelper), date(dbHelper), time(dbHelper) {};
 
 	Movie movie;
 	Screen screen;

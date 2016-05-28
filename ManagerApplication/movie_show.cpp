@@ -16,7 +16,7 @@ void Movie::show()
 	cout << ", " << year << "³â\n";
 }
 
-void Movie::show(MOVIE_INFO info)
+void Movie::show(MovieInfo info)
 {
 	switch (info)
 	{

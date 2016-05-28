@@ -13,7 +13,7 @@ typedef enum
 	MOVIE_AGE,
 	MOVIE_YEAR,
 	MOVIE_RUNNINGTIME
-} MOVIE_INFO;
+} MovieInfo;
 
 enum MovieTable
 {
@@ -26,25 +26,28 @@ class Movie
 public:
 	Movie(DBHelper &dbHelper) : dbHelper(dbHelper) {}
 
-	SQLINTEGER code = 0;
-	SQLCHAR title[BUFSIZ] = {0};
-	SQLCHAR director[BUFSIZ] = {0};
-	SQLSMALLINT age = -1;
-	SQLSMALLINT year = -1;
-	SQLSMALLINT runningTime = -1;
-
 	FNRETURN search(MovieTable);
 	FNRETURN choose(MovieTable);
 	FNRETURN del();
 	FNRETURN insert();
+	
 	void show();
-	void show(MOVIE_INFO);
+	void show(MovieInfo);
 	void setKeyword(SQLWCHAR*) const;
 
-	SQLRETURN bindCol(MDF_ENUM, MOVIE_INFO);
-	SQLRETURN bindParameter(MDF_ENUM, MOVIE_INFO);
-	SQLRETURN getData(MDF_ENUM, SQLUSMALLINT, MOVIE_INFO);
+	SQLINTEGER getCode();
+
+	SQLRETURN bindCol(MdfEnum, MovieInfo);
+	SQLRETURN bindParameter(MdfEnum, MovieInfo);
+	SQLRETURN getData(MdfEnum, SQLUSMALLINT, MovieInfo);
 private:
+	SQLINTEGER code = 0;
+	SQLCHAR title[BUFSIZ] = { 0 };
+	SQLCHAR director[BUFSIZ] = { 0 };
+	SQLSMALLINT age = -1;
+	SQLSMALLINT year = -1;
+	SQLSMALLINT runningTime = -1;
+
 	DBHelper &dbHelper;
 };
 

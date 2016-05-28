@@ -4,12 +4,12 @@
 
 int main()
 {
-	enum ManageApplicationFunction
+	typedef enum
 	{
 		MOVIE_MANAGER = 1,
 		SCHEDULE_MANAGER,
 		PRICE_MANAGER,
-	};
+	} ManageApplicationFunction;
 
 	DBHelper dbHelper;
 	if (dbHelper.isConnected() == true)
@@ -27,26 +27,31 @@ int main()
 
 				"선택: ";
 
-			switch (inputInteger())
+			int8_t choice;
+			switch (inputPositiveInteger(choice))
 			{
-			case MOVIE_MANAGER:
-			{
-				MovieManager movieManger(dbHelper);
-				break;
-			}
-			case SCHEDULE_MANAGER:
-			{
-				ScheduleManager scheduleManager(dbHelper);
-				break;
-			}
-			case PRICE_MANAGER:
-			{
-				PriceManager priceManager(dbHelper);
-				break;
-			}
 			case FUNCTION_CANCEL:
 				return 0;
-			default:
+			case FUNCTION_SUCCESS:
+				switch (choice)
+				{
+				case MOVIE_MANAGER:
+				{
+					MovieManager movieManger(dbHelper);
+					continue;
+				}
+				case SCHEDULE_MANAGER:
+				{
+					ScheduleManager scheduleManager(dbHelper);
+					continue;
+				}
+				case PRICE_MANAGER:
+				{
+					PriceManager priceManager(dbHelper);
+					continue;
+				}
+				}
+			case FUNCTION_ERROR:
 				cout << "\n잘못된 입력입니다.\n";
 				system("pause");
 			}

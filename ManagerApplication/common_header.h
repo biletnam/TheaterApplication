@@ -3,14 +3,12 @@
 
 using namespace std;
 
-enum FUNCTION_RETURN
+typedef enum FUNCTION_RETURN
 {
 	FUNCTION_CANCEL = 0,
 	FUNCTION_SUCCESS = -1,
 	FUNCTION_ERROR = -2,
 	FUNCTION_NULL = -3,
-};
+} FNRETURN;
 
-typedef int16_t FNRETURN;
-
-FNRETURN inputInteger();
+FNRETURN inputPositiveInteger(int32_t);

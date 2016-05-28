@@ -37,6 +37,12 @@
     <Filter Include="소스 파일\price_manager">
       <UniqueIdentifier>{eb066583-99d5-4a2c-9966-dbf935915754}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\screen">
+      <UniqueIdentifier>{09169dcd-08fa-4664-a82a-1774cca24bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\schedule\time">
+      <UniqueIdentifier>{cb4ce1d0-84b6-49a9-b970-d5928edeaf6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="date.h">
@@ -185,12 +191,6 @@
     <ClCompile Include="movie_bind.cpp">
       <Filter>소스 파일\movie</Filter>
     </ClCompile>
-    <ClCompile Include="screen.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="schedule.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="movie_search.cpp">
       <Filter>소스 파일\movie</Filter>
     </ClCompile>
@@ -201,6 +201,15 @@
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
     <ClCompile Include="movie_modify.cpp">
+      <Filter>소스 파일\movie</Filter>
+    </ClCompile>
+    <ClCompile Include="screen.cpp">
+      <Filter>소스 파일\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="time.cpp">
+      <Filter>소스 파일\schedule\time</Filter>
+    </ClCompile>
+    <ClCompile Include="movie.cpp">
       <Filter>소스 파일\movie</Filter>
     </ClCompile>
   </ItemGroup>

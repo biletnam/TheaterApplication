@@ -164,9 +164,10 @@
     <ClCompile Include="DB_helper_connect.cpp" />
     <ClCompile Include="input_integer.cpp" />
     <ClCompile Include="manager_application.cpp" />
+    <ClCompile Include="movie.cpp" />
     <ClCompile Include="movie_manager.cpp" />
     <ClCompile Include="price_manager.cpp" />
-    <ClCompile Include="schedule.cpp" />
+    <ClCompile Include="time.cpp" />
     <ClCompile Include="schedule_delete.cpp" />
     <ClCompile Include="schedule_manager_check_n_delete_date.cpp" />
     <ClCompile Include="schedule_manager_modify_schedule.cpp" />
