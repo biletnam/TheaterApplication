@@ -57,7 +57,7 @@ public:
 	FNRETURN bindCol();
 	void del();
 
-	void showInfo();
+	void show();
 private:
 	DBHelper &dbHelper;
 };

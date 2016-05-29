@@ -9,13 +9,10 @@ public:
 private:
 	DBHelper &dbHelper;
 
-	enum movieManagerFunction 
-	{
-		DELETE_MOVIE = 1,
-		REGISTER_MOVIE,
-	} typedef MOVIE_MANAGER_FUNCTION;
+	
 
-	void manageMovie(MOVIE_MANAGER_FUNCTION);
+	void checkAndDeleteMovie();
+	void registerMovie();
 	void showRecent();
 };
 

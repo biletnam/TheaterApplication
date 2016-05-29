@@ -2,6 +2,12 @@
 
 MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
+	enum movieManagerFunction
+	{
+		CHECK_N_DELETE_MOVIE = 1,
+		REGISTER_MOVIE,
+	} typedef MOVIE_MANAGER_FUNCTION;
+
 	for (;;)
 	{
 		system("cls");
@@ -20,7 +26,7 @@ MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 
 			"º±≈√: ";
 
-		int8_t function = 0;
+		int32_t function = 0;
 		switch (inputPositiveInteger(function))
 		{
 		case FUNCTION_CANCEL:
@@ -28,11 +34,11 @@ MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 		case FUNCTION_SUCCESS:
 			switch (function)
 			{
-			case DELETE_MOVIE:
-				manageMovie(DELETE_MOVIE);
+			case CHECK_N_DELETE_MOVIE:
+				checkAndDeleteMovie();
 				continue;
 			case REGISTER_MOVIE:
-				manageMovie(REGISTER_MOVIE);
+				registerMovie();
 				continue;
 			}
 		case FUNCTION_ERROR:

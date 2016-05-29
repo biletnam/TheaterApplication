@@ -4,18 +4,20 @@ FNRETURN Price::inputCode()
 {
 	cout << "가격 코드를 입력하세요(0을 입력하면 종료): ";
 
+	int32_t code;
 	if (FUNCTION_CANCEL == inputPositiveInteger(code))
 	{
 		return FUNCTION_CANCEL;
 	}
+	else
+	{
+		this->code = code;
+	}
+	
+	bindParameter(MDF_THEATER, PRICE_CODE);
+	dbHelper.execute(MDF_THEATER, L"SELECT * FROM price WHERE code=?;");
 
-	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
-	SQLCancel(stmt);
-	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_LONG, SQL_INTEGER,
-		sizeof code, 0, &code, 0, NULL);
-	SQLExecDirect(stmt, L"SELECT * FROM price WHERE code=?;", SQL_NTS);
-
-	switch (SQLFetch(stmt))
+	switch (dbHelper.fetch(MDF_THEATER))
 	{
 	case SQL_SUCCESS:
 		cout << "이미 존재하는 가격 코드입니다.\n";
@@ -65,6 +67,7 @@ FNRETURN Price::inputWon()
 {
 	cout << "가격(원)을 입력하세요(0을 입력하면 종료): ";
 	
+	int32_t won;
 	if (FUNCTION_CANCEL == inputPositiveInteger(won) )
 	{
 		return FUNCTION_CANCEL;

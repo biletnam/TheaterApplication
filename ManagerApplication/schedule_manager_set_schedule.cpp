@@ -20,7 +20,7 @@ FNRETURN ScheduleManager::setSchedule(Schedule & schedule)
 			"  > 상영 일정 등록\n"
 			"\n"
 			"새 스케쥴\n";
-		schedule.showInfo();
+		schedule.show();
 
 		cout <<
 			"1. 상영관 설정\n"
@@ -30,7 +30,7 @@ FNRETURN ScheduleManager::setSchedule(Schedule & schedule)
 			"5. 새 스케쥴 등록\n"
 			"0. 종료\n";
 
-		int8_t function = 0;
+		int32_t function = 0;
 		switch (inputPositiveInteger(function))
 		{
 		case FUNCTION_CANCEL:

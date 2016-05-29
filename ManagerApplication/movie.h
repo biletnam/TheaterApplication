@@ -31,11 +31,12 @@ public:
 	FNRETURN del();
 	FNRETURN insert();
 	
+	FNRETURN showSelectResult();
 	void show();
-	void show(MovieInfo);
 	void setKeyword(SQLWCHAR*) const;
 
 	SQLINTEGER getCode();
+	void setCode(SQLINTEGER);
 
 	SQLRETURN bindCol(MdfEnum, MovieInfo);
 	SQLRETURN bindParameter(MdfEnum, MovieInfo);

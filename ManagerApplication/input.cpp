@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-FNRETURN inputPositiveInteger(int32_t positiveInteger)
+FNRETURN inputPositiveInteger(int32_t &positiveInteger)
 {
 	float input;
 	cin >> input;
@@ -18,6 +18,24 @@ FNRETURN inputPositiveInteger(int32_t positiveInteger)
 	{
 		positiveInteger = (int32_t)input;
 		return FUNCTION_SUCCESS;
+	}
+
+	return FUNCTION_ERROR;
+}
+
+FNRETURN inputYN(char &yn)
+{
+	char input[2];
+	cin >> input;
+
+	if (input[1] == 0)
+	{
+		switch (input[0])
+		{
+		case 'y': case 'Y':	case 'n': case 'N':
+			yn = input[0];
+			return FUNCTION_SUCCESS;
+		}
 	}
 
 	return FUNCTION_ERROR;

@@ -1,6 +1,6 @@
 #include "schedule.h"
 
-void Schedule::showInfo()
+void Schedule::show()
 {
 	if (date.getValue() != 0)
 	{

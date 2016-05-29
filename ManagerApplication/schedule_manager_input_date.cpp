@@ -20,7 +20,7 @@ FNRETURN ScheduleManager::inputDate(Date &date)
 	{
 		cout << "연도를 입력하세요(0을 입력하면 종료):";
 
-		int16_t year = 0;
+		int32_t year = 0;
 		inputPositiveInteger(year);
 		if (false == date.setYear(year))
 		{
@@ -36,7 +36,7 @@ FNRETURN ScheduleManager::inputDate(Date &date)
 	{
 		cout << "월을 입력하세요(0을 입력하면 종료):";
 
-		int8_t month = 0;
+		int32_t month = 0;
 		inputPositiveInteger(month);
 		if (false == date.setMonth(month))
 		{
@@ -52,7 +52,7 @@ FNRETURN ScheduleManager::inputDate(Date &date)
 	{
 		cout << "일을 입력하세요(0을 입력하면 종료):";
 
-		int8_t day = 0;
+		int32_t day = 0;
 		inputPositiveInteger(day);
 		if (false == date.setMonth(day))
 		{

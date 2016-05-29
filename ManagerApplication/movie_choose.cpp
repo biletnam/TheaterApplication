@@ -11,16 +11,18 @@ FNRETURN Movie::choose(MovieTable movieTable)
 			"0. 취소\n"
 			"\n"
 			"선택: ";
-		if (FUNCTION_SUCCESS == dbHelper.moveCursor(MDF_THEATER))
+		switch (dbHelper.moveCursor(MDF_THEATER))
 		{
+		case FUNCTION_SUCCESS:
 			return FUNCTION_SUCCESS;
-		}
-		else
-		{
+		case FUNCTION_ERROR:
 			cout << "\n오류가 발생했습니다.(Movie.choose)\n";
 			system("pause");
+		case FUNCTION_CANCEL:
+			return FUNCTION_CANCEL;
 		}
+	case FUNCTION_ERROR:
+	default:
+		return FUNCTION_ERROR;
 	}
-
-	return FUNCTION_ERROR;
 }

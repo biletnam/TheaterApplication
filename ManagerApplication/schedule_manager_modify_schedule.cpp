@@ -18,7 +18,7 @@ void ScheduleManager::modifySchedule(Schedule &schedule)
 			"  > 상영 일정 확인/수정\n"
 			"\n"
 			"선택한 상영 일정\n";
-		schedule.showInfo();
+		schedule.show();
 
 		cout << "\n"
 			"1. 상영 일정 삭제\n"
@@ -28,7 +28,7 @@ void ScheduleManager::modifySchedule(Schedule &schedule)
 			"\n"
 			"선택: ";
 
-		int8_t function = 0;
+		int32_t function = 0;
 		switch (inputPositiveInteger(function))
 		{
 		case FUNCTION_CANCEL:

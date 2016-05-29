@@ -162,7 +162,7 @@
     <ClCompile Include="DB_helper_move_cursor.cpp" />
     <ClCompile Include="DB_helper_close.cpp" />
     <ClCompile Include="DB_helper_connect.cpp" />
-    <ClCompile Include="input_positive_integer.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="manager_application.cpp" />
     <ClCompile Include="movie.cpp" />
     <ClCompile Include="movie_manager.cpp" />
@@ -171,7 +171,6 @@
     <ClCompile Include="schedule_delete.cpp" />
     <ClCompile Include="schedule_manager_check_n_delete_date.cpp" />
     <ClCompile Include="schedule_manager_modify_schedule.cpp" />
-    <ClCompile Include="movie_manager_manage_movie.cpp" />
     <ClCompile Include="movie_set_keyword.cpp" />
     <ClCompile Include="movie_show.cpp" />
     <ClCompile Include="schedule_manager_set_schedule.cpp" />
@@ -204,6 +203,8 @@
     <ClCompile Include="movie_modify.cpp" />
     <ClCompile Include="time_bind.cpp" />
     <ClCompile Include="_schedule_input_time.cpp" />
+    <ClCompile Include="movie_manager_check_n_delete_movie.cpp" />
+    <ClCompile Include="movie_manager_register_movie.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

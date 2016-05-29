@@ -6,7 +6,7 @@ FNRETURN DBHelper::moveCursor(MdfEnum mdf)
 	
 	if (SQL_SUCCESS == SQLRowCount(stmt[mdf], &rowCount) && 0 < rowCount)
 	{
-		int8_t choice = 0;
+		int32_t choice = 0;
 		switch (inputPositiveInteger(choice))
 		{
 		case FUNCTION_CANCEL:

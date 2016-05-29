@@ -25,7 +25,7 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 			"\n"
 			"º±≈√: ";
 
-		int8_t function = 0;
+		int32_t function = 0;
 		switch (inputPositiveInteger(function))
 		{
 		case FUNCTION_CANCEL:

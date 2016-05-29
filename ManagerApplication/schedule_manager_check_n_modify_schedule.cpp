@@ -15,7 +15,7 @@ void ScheduleManager::checkAndModifySchedule()
 				"  > 상영 일정 확인 / 수정\n\n"
 
 				"상영 일정 정보\n";
-			schedule.showInfo();
+			schedule.show();
 			cout << endl;
 
 			if (schedule.screen.getNumber() != 0)
@@ -68,7 +68,7 @@ void ScheduleManager::checkAndModifySchedule()
 			{
 			case SQL_SUCCESS:
 				cout << i << ". ";
-				schedule.showInfo();
+				schedule.show();
 				break;
 			case SQL_NO_DATA:
 				if (i == 1)

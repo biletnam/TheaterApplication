@@ -12,7 +12,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 			"   > 가격 정보 확인/삭제\n"
 			"\n"
 			"선택한 상영 일정\n";
-		schedule.showInfo();
+		schedule.show();
 		cout << endl;
 
 		SQLWCHAR sql[BUFSIZ];

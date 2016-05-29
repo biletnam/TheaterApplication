@@ -11,4 +11,5 @@ typedef enum FUNCTION_RETURN
 	FUNCTION_NULL = -3,
 } FNRETURN;
 
-FNRETURN inputPositiveInteger(int32_t);
+FNRETURN inputPositiveInteger(int32_t &);
+FNRETURN inputYN(char &);

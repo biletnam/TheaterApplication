@@ -10,7 +10,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 		"   > 가격 등록\n\n"
 
 		"선택한 상영 일정\n";
-	schedule.showInfo();
+	schedule.show();
 	cout << endl;
 
 	Price price(dbHelper);

@@ -7,9 +7,11 @@ using namespace std;
 
 int main()
 {
+	char ccc[2];
+	cin >> ccc;
+
 	DBHelper db;
 	db.connectDB();
-
 
 	db.closeDB();
 	return 0;
