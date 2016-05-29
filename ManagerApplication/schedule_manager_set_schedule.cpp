@@ -30,7 +30,7 @@ FNRETURN ScheduleManager::setSchedule(Schedule & schedule)
 			"5. 새 스케쥴 등록\n"
 			"0. 종료\n";
 
-		int8_t function;
+		int8_t function = 0;
 		switch (inputPositiveInteger(function))
 		{
 		case FUNCTION_CANCEL:
@@ -61,7 +61,7 @@ FNRETURN ScheduleManager::setSchedule(Schedule & schedule)
 				{
 					cout << "상영일을 선택하지 않았습니다.\n";
 				}
-				else if (0 == schedule.movie.getCode)
+				else if (0 == schedule.movie.getCode())
 				{
 					cout << "영화를 선택하지 않았습니다.\n";
 				}

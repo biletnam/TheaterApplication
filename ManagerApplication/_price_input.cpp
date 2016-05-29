@@ -4,7 +4,7 @@ FNRETURN Price::inputCode()
 {
 	cout << "가격 코드를 입력하세요(0을 입력하면 종료): ";
 
-	if ((code = inputInteger()) == FUNCTION_CANCEL)
+	if (FUNCTION_CANCEL == inputPositiveInteger(code))
 	{
 		return FUNCTION_CANCEL;
 	}
@@ -64,9 +64,8 @@ FNRETURN Price::inputName()
 FNRETURN Price::inputWon()
 {
 	cout << "가격(원)을 입력하세요(0을 입력하면 종료): ";
-	cin >> won;
-
-	if ((won = inputInteger()) == FUNCTION_CANCEL)
+	
+	if (FUNCTION_CANCEL == inputPositiveInteger(won) )
 	{
 		return FUNCTION_CANCEL;
 	}

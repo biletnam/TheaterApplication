@@ -30,7 +30,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 		switch (ret = SQLFetch(theaterStmt))
 		{
 		case SQL_SUCCESS:
-			cout << i << ". " << price.name << " " << price.won << "원\n";
+			price.show();
 			break;
 		case SQL_NO_DATA:
 			if (i == 1)
@@ -41,7 +41,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 			}
 
 			cout << "0. 종료\n";
-			switch (dbHelper.moveCursor(MDF_THEATER, "\n선택: "))
+			switch (dbHelper.moveCursor(MDF_THEATER))
 			{
 			case FUNCTION_CANCEL:
 				return;
@@ -51,21 +51,19 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 				swprintf_s(sql, L""
 					"INSERT INTO d%d "
 					"(movie_code, movie_title, age, start_time, end_time, screen, price_code, price_name, price_won) "
-					"VALUES (%d, ?, %d, %d, %d, %d, %d, ?, %d);",
-					schedule.date.value,
-					schedule.movie.code, schedule.movie.age,
-					schedule.startTime, schedule.endTime,
-					schedule.screen.number,
-					price.code, price.won);
+					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);", schedule.date.getValue());
+					
+				schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_CODE);
+				schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_TITLE);
+				schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_AGE);
+				schedule.time.bindParameter(MDF_SALE_INFO, START_TIME);
+				schedule.time.bindParameter(MDF_SALE_INFO, END_TIME);
+				schedule.screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
+				price.bindParameter(MDF_SALE_INFO, PRICE_CODE);
+				price.bindParameter(MDF_SALE_INFO, PRICE_NAME);
+				price.bindParameter(MDF_SALE_INFO, PRICE_WON);
 
-				SQLHSTMT saleInfoStmt = dbHelper.getStmt(MDF_SALE_INFO);
-				SQLCancel(saleInfoStmt);
-				SQLBindParameter(saleInfoStmt, 1, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
-					BUFSIZ, 0, schedule.movie.title, 0, NULL);
-				SQLBindParameter(saleInfoStmt, 2, SQL_PARAM_INPUT, SQL_C_WCHAR, SQL_WVARCHAR,
-					BUFSIZ, 0, price.name, 0, NULL);
-
-				if (SQL_SUCCESS == SQLExecDirect(saleInfoStmt, sql, SQL_NTS))
+				if (SQL_SUCCESS == dbHelper.execute(MDF_SALE_INFO, sql))
 				{
 					cout << "가격이 등록되었습니다.\n";
 				}

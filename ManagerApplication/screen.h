@@ -15,6 +15,7 @@ class Screen
 public:
 	Screen(DBHelper &dbHelper) : dbHelper(dbHelper) {}
 	SQLSMALLINT getNumber() const;
+	void setNumber(SQLSMALLINT);
 
 	SQLRETURN bindCol(MdfEnum, ScreenInfo);
 	SQLRETURN bindParameter(MdfEnum, ScreenInfo);

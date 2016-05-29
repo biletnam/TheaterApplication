@@ -20,7 +20,9 @@ FNRETURN ScheduleManager::inputDate(Date &date)
 	{
 		cout << "연도를 입력하세요(0을 입력하면 종료):";
 
-		if (false == date.setYear(inputInteger()))
+		int16_t year = 0;
+		inputPositiveInteger(year);
+		if (false == date.setYear(year))
 		{
 			cout << "\n잘못된 입력입니다.(0보다 크거나 같은 정수를 입력하세요)\n";
 			system("pause");
@@ -34,7 +36,9 @@ FNRETURN ScheduleManager::inputDate(Date &date)
 	{
 		cout << "월을 입력하세요(0을 입력하면 종료):";
 
-		if (false == date.setMonth(inputInteger()))
+		int8_t month = 0;
+		inputPositiveInteger(month);
+		if (false == date.setMonth(month))
 		{
 			cout << "\n잘못된 입력입니다.(0~12 사이의 정수를 입력하세요)\n";
 			system("pause");
@@ -48,7 +52,9 @@ FNRETURN ScheduleManager::inputDate(Date &date)
 	{
 		cout << "일을 입력하세요(0을 입력하면 종료):";
 
-		if (false == date.setMonth(inputInteger()))
+		int8_t day = 0;
+		inputPositiveInteger(day);
+		if (false == date.setMonth(day))
 		{
 			cout << "\n잘못된 입력입니다.(0~" << date.getLastDay() << " 사이의 정수를 입력하세요)\n";
 			system("pause");

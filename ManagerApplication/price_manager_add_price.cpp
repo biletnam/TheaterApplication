@@ -18,7 +18,7 @@ void PriceManager::addPrice()
 			price.show();
 			cout << endl;
 
-			if (0 == price.code)
+			if (0 == price.getCode())
 			{
 				switch (price.inputCode())
 				{
@@ -27,33 +27,33 @@ void PriceManager::addPrice()
 				case FUNCTION_SUCCESS:
 					break;
 				case FUNCTION_ERROR:
-					price.code = 0;
+					price.setCode(0);
 				}
 			}
-			else if (0 == *price.name)
+			else if (0 == *price.getName())
 			{
 				switch (price.inputName())
 				{
 				case FUNCTION_CANCEL:
-					price.code = 0;
+					price.setCode(0);
 					break;
 				case FUNCTION_SUCCESS:
 					break;
 				case FUNCTION_ERROR:
-					*price.name = 0;
+					price.setName((SQLCHAR*)"");
 				}
 			}
-			else if (0 == price.won)
+			else if (0 == price.getWon())
 			{
 				switch (price.inputWon())
 				{
 				case FUNCTION_CANCEL:
-					*price.name = 0;
+					price.setName((SQLCHAR*)"");
 					break;
 				case FUNCTION_SUCCESS:
 					break;
 				case FUNCTION_ERROR:
-					price.won = 0;
+					price.setWon(0);
 				}
 			}
 			else
@@ -65,9 +65,9 @@ void PriceManager::addPrice()
 		SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 		SQLCancel(stmt);
 
-		dbHelper.bindParameter(MDF_THEATER, BIND_INTEGER, &price.code);
-		dbHelper.bindParameter(MDF_THEATER, BIND_STRING, price.name);
-		dbHelper.bindParameter(MDF_THEATER, BIND_INTEGER, &price.code);
+		price.bindParameter(MDF_THEATER, PRICE_CODE);
+		price.bindParameter(MDF_THEATER, PRICE_NAME);
+		price.bindParameter(MDF_THEATER, PRICE_WON);
 		if (SQL_SUCCESS 
 			== SQLExecDirect(stmt, L"INSERT INTO price (code, name, won) values(?, ?, ?);", SQL_NTS))
 		{

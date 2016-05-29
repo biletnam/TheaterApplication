@@ -44,22 +44,25 @@ void MovieManager::manageMovie(MOVIE_MANAGER_FUNCTION function)
 	for (;;)
 	{
 		system("cls");
-		cout << 
+		cout <<
 			"극장 관리 시스템\n"
 			" > 영화 정보 관리\n"
 			<< str[TITLE];
-		
+
 		Movie movie(dbHelper);
 		switch (movie.choose(movieTable))
 		{
 		case FUNCTION_SUCCESS:
+			break;
 		case FUNCTION_CANCEL:
 			return;
 		case FUNCTION_ERROR:
+			break;
 		}
+
 		if (FUNCTION_SUCCESS == movie.search(movieTable))
 		{
-			cout << 
+			cout <<
 				"0. 취소\n"
 				"\n"
 				"선택: ";
@@ -76,6 +79,6 @@ void MovieManager::manageMovie(MOVIE_MANAGER_FUNCTION function)
 				}
 				system("pause");
 			}
-		}
+		}	
 	}
 }

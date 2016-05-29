@@ -19,8 +19,11 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 		swprintf_s(sql, L""
 			"SELECT price_code, price_name, price_won, id "
 			"FROM d%d "
-			"WHERE movie_code=%d AND start_time=%d AND screen=%d;",
-			schedule.date.value, schedule.movie.code, schedule.startTime, schedule.screen.number);
+			"WHERE movie_code=? AND start_time=? AND screen=?;",
+			schedule.date.getValue());
+		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_CODE);
+		schedule.time.bindParameter(MDF_SALE_INFO, START_TIME);
+		schedule.screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
 
 		SQLINTEGER id;	// sale_info id
 
@@ -44,7 +47,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 			switch (ret = SQLFetch(stmt))
 			{
 			case SQL_SUCCESS:
-				cout << i << ". " << price.name << " " << price.won << "원\n";
+				price.show();
 			case SQL_NO_DATA:
 				if (i == 1)		// 등록된 가격이 없을 때
 				{
@@ -53,13 +56,16 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 					return;
 				}
 
-				cout << "0. 취소\n";
-				switch (dbHelper.moveCursor(MDF_SALE_INFO, "\n삭제할 가격을 선택하세요"))
+				cout << 
+					"0. 취소\n"
+					"\n"
+					"삭제할 가격을 선택하세요";
+				switch (dbHelper.moveCursor(MDF_SALE_INFO))
 				{
 				case FUNCTION_CANCEL:	// 종료
 					return;
 				case FUNCTION_SUCCESS:	// 가격 선택: 반복
-					swprintf_s(sql, L"DELETE FROM d%d WHERE id=%d;", schedule.date.value, id);
+					swprintf_s(sql, L"DELETE FROM d%d WHERE id=%d;", schedule.date.getValue(), id);
 					SQLCancel(stmt);
 					if (SQL_SUCCESS == SQLExecDirect(stmt, sql, SQL_NTS))
 					{

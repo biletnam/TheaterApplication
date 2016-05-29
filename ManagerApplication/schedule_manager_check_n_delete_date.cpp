@@ -36,8 +36,11 @@ void ScheduleManager::checkAndDeleteDate()
 				}
 				else
 				{
-					cout << "0. 종료\n";
-					switch (dbHelper.moveCursor(MDF_THEATER, "\n삭제할 상영일을 선택하세요: "))
+					cout << 
+						"0. 종료\n"
+						"\n"
+						"삭제할 상영일을 선택하세요: ";
+					switch (dbHelper.moveCursor(MDF_THEATER))
 					{
 					case FUNCTION_ERROR:
 						cout << "\n오류가 발생했습니다(checkSchedule).\n";

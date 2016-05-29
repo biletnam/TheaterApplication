@@ -21,7 +21,7 @@ void PriceManager::checkAndDeletePrice()
 			switch (ret = SQLFetch(stmt))
 			{
 			case SQL_SUCCESS:
-				cout << i << ". " << price.name << " " << price.won << "원\n";
+				price.show();
 				break;
 			case SQL_NO_DATA:
 				if (i == 1)
@@ -32,18 +32,18 @@ void PriceManager::checkAndDeletePrice()
 				}
 				else
 				{
-					cout << "0. 종료\n";
+					cout << 
+						"0. 종료\n"
+						"\n"
+						"삭제할 가격 정보를 선택하세요: ";
 
-					switch (dbHelper.moveCursor(MDF_THEATER, "\n삭제할 가격 정보를 선택하세요: "))
+					switch (dbHelper.moveCursor(MDF_THEATER))
 					{
 					case FUNCTION_CANCEL:
 						return;
 					case FUNCTION_SUCCESS:
-						if (SQL_SUCCESS == SQLBindParameter(
-							stmt, 1, SQL_PARAM_INPUT, SQL_C_LONG, SQL_INTEGER,
-							sizeof price.code, 0, &price.code, 0, NULL)
-							&& SQL_SUCCESS == SQLExecDirect(
-								stmt, L"DELETE FROM price WHERE code=?;", SQL_NTS))
+						if (SQL_SUCCESS == price.bindParameter(MDF_THEATER, PRICE_CODE)
+							&& SQL_SUCCESS ==  dbHelper.execute(MDF_THEATER, L"DELETE FROM price WHERE code=?;"))
 						{
 							return;
 						}

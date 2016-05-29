@@ -6,29 +6,26 @@ FNRETURN DBHelper::moveCursor(MdfEnum mdf)
 	
 	if (SQL_SUCCESS == SQLRowCount(stmt[mdf], &rowCount) && 0 < rowCount)
 	{
-		FNRETURN choice = inputInteger();
-
-		if (FUNCTION_CANCEL == choice)
+		int8_t choice = 0;
+		switch (inputPositiveInteger(choice))
 		{
+		case FUNCTION_CANCEL:
 			return FUNCTION_CANCEL;
-		}
-		else if (FUNCTION_ERROR == choice || choice > rowCount)
-		{
-			cout << "잘못된 입력입니다.(moveCursor)\n";
-			system("pause");
-			return FUNCTION_ERROR;
-		}
-		else
-		{
-			if (SQL_SUCCESS == SQLFetchScroll(stmt[mdf], SQL_FETCH_ABSOLUTE, choice))
+		case FUNCTION_SUCCESS:
+			if (choice <= rowCount
+				&& SQL_SUCCESS == SQLFetchScroll(stmt[mdf], SQL_FETCH_ABSOLUTE, choice))
 			{
 				return FUNCTION_SUCCESS;
 			}
+		case FUNCTION_ERROR:
+			cout << "잘못된 입력입니다.(moveCursor)\n";
 		}
 	}
-
-	cout << "\n오류가 발생했습니다.(moveCursor)\n";
+	else
+	{
+		cout << "\n오류가 발생했습니다.(moveCursor)\n";
+	}
+		
 	system("pause");
-	
 	return FUNCTION_ERROR;
 }

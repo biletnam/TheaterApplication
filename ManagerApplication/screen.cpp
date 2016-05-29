@@ -5,6 +5,11 @@ SQLSMALLINT Screen::getNumber() const
 	return number;
 }
 
+void Screen::setNumber(SQLSMALLINT number)
+{
+	this->number = number;
+}
+
 SQLRETURN Screen::bindCol(MdfEnum mdf, ScreenInfo screenInfo)
 {
 	switch (screenInfo)

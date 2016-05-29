@@ -27,13 +27,13 @@ int main()
 
 				"º±≈√: ";
 
-			int8_t choice;
-			switch (inputPositiveInteger(choice))
+			int8_t function = 0;
+			switch (inputPositiveInteger(function))
 			{
 			case FUNCTION_CANCEL:
 				return 0;
 			case FUNCTION_SUCCESS:
-				switch (choice)
+				switch (function)
 				{
 				case MOVIE_MANAGER:
 				{

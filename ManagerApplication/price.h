@@ -3,14 +3,25 @@
 
 #include "DB_helper.h"
 
+typedef enum
+{
+	PRICE_CODE,
+	PRICE_NAME,
+	PRICE_WON,
+} PriceInfo;
+
 class Price
 {
 public:
-	SQLSMALLINT code = 0;
-	SQLCHAR name[BUFSIZ] = {0};
-	SQLINTEGER won = 0;
-	
 	Price(DBHelper &);
+
+	SQLINTEGER getCode();
+	SQLCHAR *getName();
+	SQLINTEGER getWon();
+
+	void setCode(SQLSMALLINT);
+	void setName(SQLCHAR *);
+	void setWon(SQLSMALLINT);
 
 	void show();
 	FNRETURN choose();
@@ -20,9 +31,15 @@ public:
 	FNRETURN inputWon();
 
 	FNRETURN bindCol(SQLHSTMT &);
+	SQLRETURN bindCol(MdfEnum, PriceInfo);
+	SQLRETURN bindParameter(MdfEnum, PriceInfo);
 
 private:
 	DBHelper &dbHelper;
+
+	SQLINTEGER code = 0;
+	SQLCHAR name[BUFSIZ] = { 0 };
+	SQLINTEGER won = 0;
 };
 
 #endif // !PRICE_H

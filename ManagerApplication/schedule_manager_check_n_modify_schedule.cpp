@@ -18,7 +18,7 @@ void ScheduleManager::checkAndModifySchedule()
 			schedule.showInfo();
 			cout << endl;
 
-			if (schedule.screen.number != 0)
+			if (schedule.screen.getNumber() != 0)
 			{
 				break;
 			}
@@ -37,7 +37,7 @@ void ScheduleManager::checkAndModifySchedule()
 				{
 				case FUNCTION_CANCEL:
 				case FUNCTION_NULL:
-					schedule.date.getValue() = 0;
+					schedule.date.setValue(0);
 				}
 			}
 		}
@@ -48,7 +48,7 @@ void ScheduleManager::checkAndModifySchedule()
 			"FROM d%d "
 			"WHERE screen=%d "
 			"ORDER BY start_time ASC;",
-			schedule.date.value, schedule.screen.number);
+			schedule.date.getValue(), schedule.screen.getNumber());
 
 		SQLHSTMT &stmt = dbHelper.getStmt(MDF_SALE_INFO);
 		SQLCancel(stmt);
@@ -78,8 +78,11 @@ void ScheduleManager::checkAndModifySchedule()
 					return;
 				}
 
-				cout << "0. 종료\n";
-				switch (dbHelper.moveCursor(MDF_SALE_INFO, "\n수정할 상영 일정을 선택하세요: "))
+				cout << 
+					"0. 종료\n"
+					"\n"
+					"수정할 상영 일정을 선택하세요: ";
+				switch (dbHelper.moveCursor(MDF_SALE_INFO))
 				{
 				case FUNCTION_CANCEL:
 					return;

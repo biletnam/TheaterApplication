@@ -10,7 +10,8 @@ FNRETURN Schedule::chooseMovie()
 	do
 	{
 		SQLWCHAR keyword[BUFSIZ];
-		movie.setKeyword(keyword, "등록할 영화 제목을 입력하세요");
+		cout << "등록할 영화 제목을 입력하세요";
+		movie.setKeyword(keyword);
 
 		if (wcscmp(keyword, L"%0%") == FUNCTION_CANCEL)
 		{
@@ -23,7 +24,7 @@ FNRETURN Schedule::chooseMovie()
 			"SELECT movie_code, title, director, age, year, running_time "
 			"FROM Movie_internal "
 			"WHERE title LIKE ?;", SQL_NTS);
-
+		/*
 		if ((movie.show(dbHelper) == FUNCTION_SUCCESS)
 			&& (dbHelper.moveCursor(MDF_THEATER, "영화를 선택하세요") == FUNCTION_SUCCESS))
 		{
@@ -34,6 +35,7 @@ FNRETURN Schedule::chooseMovie()
 			SQLGetData(stmt, 3, SQL_INTEGER, &movie.age, sizeof(movie.age), NULL);
 			return FUNCTION_SUCCESS;
 		}
+		*/
 	} while (true);
 		
 	return FUNCTION_ERROR;

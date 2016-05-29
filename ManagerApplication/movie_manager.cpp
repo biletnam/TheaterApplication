@@ -20,19 +20,25 @@ MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 
 			"선택: ";
 
-		switch (inputInteger())
+		int8_t function = 0;
+		switch (inputPositiveInteger(function))
 		{
-		case DELETE_MOVIE:
-			manageMovie(DELETE_MOVIE);
-			break;
-		case REGISTER_MOVIE:
-			manageMovie(REGISTER_MOVIE);
-			break;
 		case FUNCTION_CANCEL:
 			return;
-		default:
+		case FUNCTION_SUCCESS:
+			switch (function)
+			{
+			case DELETE_MOVIE:
+				manageMovie(DELETE_MOVIE);
+				continue;
+			case REGISTER_MOVIE:
+				manageMovie(REGISTER_MOVIE);
+				continue;
+			}
+		case FUNCTION_ERROR:
 			cout << "잘못된 입력입니다.\n";
 			system("pause");
 		}
+		
 	}
 }

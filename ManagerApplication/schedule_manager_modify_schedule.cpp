@@ -28,19 +28,25 @@ void ScheduleManager::modifySchedule(Schedule &schedule)
 			"\n"
 			"선택: ";
 
-		switch (inputInteger())
+		int8_t function = 0;
+		switch (inputPositiveInteger(function))
 		{
-		case DELETE_SCHEDULE:
-			schedule.del();
-		case CHECK_N_DELETE_PRICE:
-			checkAndDeletePrice(schedule);
-			break;
-		case REGISTER_PRICE:
-			registerPrice(schedule);
-			break;
 		case FUNCTION_CANCEL:
 			return;
-		default:
+		case FUNCTION_SUCCESS:
+			switch (function)
+			{
+			case DELETE_SCHEDULE:
+				schedule.del();
+				return;
+			case CHECK_N_DELETE_PRICE:
+				checkAndDeletePrice(schedule);
+				continue;
+			case REGISTER_PRICE:
+				registerPrice(schedule);
+				continue;
+			}
+		case FUNCTION_ERROR:
 			cout << "\n잘못된 입력입니다.\n";
 			system("pause");
 		}

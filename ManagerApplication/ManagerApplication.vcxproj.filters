@@ -104,9 +104,6 @@
     <ClCompile Include="schedule_choose_screen.cpp">
       <Filter>소스 파일\schedule</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_input_time.cpp">
-      <Filter>소스 파일\schedule</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_manager.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
@@ -139,9 +136,6 @@
     </ClCompile>
     <ClCompile Include="_price_input.cpp">
       <Filter>소스 파일\price</Filter>
-    </ClCompile>
-    <ClCompile Include="input_integer.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="movie_manager_manage_movie.cpp">
       <Filter>소스 파일\movie_manager</Filter>
@@ -211,6 +205,15 @@
     </ClCompile>
     <ClCompile Include="movie.cpp">
       <Filter>소스 파일\movie</Filter>
+    </ClCompile>
+    <ClCompile Include="time_bind.cpp">
+      <Filter>소스 파일\schedule\time</Filter>
+    </ClCompile>
+    <ClCompile Include="_schedule_input_time.cpp">
+      <Filter>소스 파일\schedule</Filter>
+    </ClCompile>
+    <ClCompile Include="input_positive_integer.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

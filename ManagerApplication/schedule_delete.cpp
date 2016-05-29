@@ -3,12 +3,15 @@
 void Schedule::del()
 {
 	SQLWCHAR saleInfoSql[BUFSIZ];
-	swprintf_s(saleInfoSql ,
-		L"DELETE FROM d%d WHERE movie_code=%d AND screen=%d AND start_time=%d;",
-		date.value, movie.code, screen.number, startTime);
+	swprintf_s(saleInfoSql,	
+		L"DELETE FROM d%d WHERE movie_code=? AND screen=? AND start_time=?;", 
+		date.getValue());
+	movie.bindParameter(MDF_SALE_INFO, MOVIE_CODE);
+	screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
+	time.bindParameter(MDF_SALE_INFO, START_TIME);
 
 	SQLWCHAR seatSql[BUFSIZ];
-	swprintf_s(seatSql, L"DROP TABLE d%ds%dt%d;", date.value, screen.number, startTime);
+	swprintf_s(seatSql, L"DROP TABLE d%ds%dt%d;", date.getValue(), screen.getNumber(), time.getStartTime());
 
 	SQLCancel(dbHelper.getStmt(MDF_SALE_INFO));
 	SQLCancel(dbHelper.getStmt(MDF_SEAT));

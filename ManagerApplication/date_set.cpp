@@ -47,4 +47,6 @@ FNRETURN Date::setDay(const int16_t day)
 FNRETURN Date::setValue(const int32_t value)
 {
 	this->value = value;
+
+	return FNRETURN();
 }

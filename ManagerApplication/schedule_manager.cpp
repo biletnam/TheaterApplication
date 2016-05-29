@@ -10,7 +10,7 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 		REGISTER_SCHEDULE,
 	};
 	
-	for (;;) 
+	for (;;)
 	{
 		system("cls");
 		cout <<
@@ -25,24 +25,28 @@ ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 			"\n"
 			"선택: ";
 
-
-		switch (inputInteger())
+		int8_t function = 0;
+		switch (inputPositiveInteger(function))
 		{
-		case CHECK_N_DELETE_DATE:
-			checkAndDeleteDate();
-			break;
-		case ADD_DATE:
-			addDate();
-			break;
-		case CHECK_N_MODIFY_SCHEDULE:
-			checkAndModifySchedule();
-			break;
-		case REGISTER_SCHEDULE:
-			registerSchedule();
-			break;
 		case FUNCTION_CANCEL:
 			return;
-		default:
+		case FUNCTION_SUCCESS:
+			switch (function)
+			{
+			case CHECK_N_DELETE_DATE:
+				checkAndDeleteDate();
+				continue;
+			case ADD_DATE:
+				addDate();
+				continue;
+			case CHECK_N_MODIFY_SCHEDULE:
+				checkAndModifySchedule();
+				continue;
+			case REGISTER_SCHEDULE:
+				registerSchedule();
+				continue;
+			}
+		case FUNCTION_ERROR:
 			cout << "\n잘못된 입력입니다.";
 			system("pause");
 		}

@@ -1,29 +1,27 @@
 #include "schedule.h"
 
-void Schedule::showInfo() const
+void Schedule::showInfo()
 {
-	if (date.value != 0)
+	if (date.getValue() != 0)
 	{
 		cout << "날짜 ";
 		date.show();
 		cout << endl;
 	}
 
-	if (screen.number != 0)
+	if (screen.getNumber() != 0)
 	{
-		cout << "상영관 " << screen.number << "관\n";
+		cout << "상영관 " << screen.getNumber() << "관\n";
 	}
 
-	if (movie.code != 0) 
+	if (movie.getCode() != 0)
 	{
-		cout << "영화코드 " << movie.code << endl;
-		cout << "영화제목 " <<movie.title << endl;
-		cout << "관람가 " << movie.age << endl;
+		movie.show();
 	}
 	
-	if (startTime != 0)
+	if (time.getStartTime() != 0)
 	{
-		cout << "시작시간 " << startTime << endl;
-		cout << "종료시간 " << endTime << endl;
+		cout << "시작시간 " << time.getStartTime() << endl;
+		cout << "종료시간 " << time.getEndTime() << endl;
 	}
 }

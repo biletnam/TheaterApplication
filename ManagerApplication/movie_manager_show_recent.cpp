@@ -8,6 +8,6 @@ void MovieManager::showRecent()
 		"SELECT TOP 10 movie_code, title, director, age, year, running_time "
 		"FROM Movie_internal;");
 
-	Movie movie;
-	movie.show(dbHelper);
+	Movie movie(dbHelper);
+	//movie.show(dbHelper);
 }

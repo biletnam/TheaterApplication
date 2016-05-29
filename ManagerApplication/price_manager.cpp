@@ -21,17 +21,22 @@ PriceManager::PriceManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 
 			"선택: ";
 		
-		switch (inputInteger())
+		int8_t function = 0;
+		switch (inputPositiveInteger(function))
 		{
-		case CHECK_N_DELETE_PRICE:
-			checkAndDeletePrice();
-			break;
-		case ADD_PRICE_INFO:
-			addPrice();
-			break;
 		case FUNCTION_CANCEL:
 			return;
-		default:
+		case FUNCTION_SUCCESS:
+			switch (function)
+			{
+			case CHECK_N_DELETE_PRICE:
+				checkAndDeletePrice();
+				continue;
+			case ADD_PRICE_INFO:
+				addPrice();
+				continue;
+			}
+		case FUNCTION_ERROR:
 			cout << "\n잘못된 입력입니다.\n";
 			system("pause");
 		}

@@ -1,20 +1,23 @@
 #include "schedule.h"
 
-FNRETURN Schedule::inputTime(SQLSMALLINT& time, const char *output)
+FNRETURN Schedule::inputTime(const SQLSMALLINT time)
 {
-	cout << output;
-	cin >> time;
-	return checkTime(time);
+	/*cin >> time;
+	return checkTime(time);*/
+
+	return FNRETURN();
 }
 
 FNRETURN Schedule::inputTime()
 {
-	switch (inputTime(startTime, "시작 시간을 입력하세요(0을 입력하면 종료): "))
+	/*cout << "시작 시간을 입력하세요(0을 입력하면 종료): ";
+	switch (inputTime(time.getStartTime()))
 	{
 	case FUNCTION_CANCEL:
 		return FUNCTION_CANCEL;
 	case FUNCTION_SUCCESS:
-		switch (inputTime(endTime, "종료 시간을 입력하세요(0을 입력하면 종료): "))
+		cout << "종료 시간을 입력하세요(0을 입력하면 종료): ";
+		switch (inputTime(endTime))
 		{
 		case FUNCTION_CANCEL:
 			return inputTime();
@@ -25,7 +28,9 @@ FNRETURN Schedule::inputTime()
 		return inputTime();
 	default:
 		return FUNCTION_ERROR;
-	}
+	}*/
+
+	return FNRETURN();
 }
 
 FNRETURN Schedule::checkTime(const SQLSMALLINT time)
@@ -41,7 +46,7 @@ FNRETURN Schedule::checkTime(const SQLSMALLINT time)
 		swprintf_s(sql, L""
 			"SELECT * FROM d%d "
 			"WHERE screen = %d AND start_time <= %d AND end_time >= %d;",
-			date.value, screen.number, time, time);
+			date.getValue(), screen.getNumber(), time, time);
 		SQLExecDirect(stmt, sql, SQL_NTS);
 		SQLRETURN ret = SQLFetch(stmt);
 		SQLCancel(stmt);

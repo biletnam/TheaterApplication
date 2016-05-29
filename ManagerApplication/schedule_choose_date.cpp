@@ -5,13 +5,13 @@ FNRETURN Schedule::chooseDate()
 	cout << "날짜 선택\n";
 
 	//Date today = Date::getToday();
-	Date today(1);
+	Date today(dbHelper);
+	today.setValue(1);
 	
 	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
 	SQLCancel(stmt);
-	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_INTEGER, SQL_C_LONG,
-		sizeof today.value, 0, &today.value, 0, NULL);
-	SQLBindCol(stmt, 1, SQL_INTEGER, &date.value, sizeof(date.value), NULL);
+	today.bindParameter();
+	date.bindParameter();
 	SQLRETURN ret = SQLExecDirect(stmt, L"SELECT date FROM schedule WHERE date > ?;", SQL_NTS);
 	
 	for (int i = 1; ret == SQL_SUCCESS; i++)
@@ -32,9 +32,12 @@ FNRETURN Schedule::chooseDate()
 			}
 			else
 			{
-				date.value = 0;
-				cout << "0. 종료\n";
-				return dbHelper.moveCursor(MDF_THEATER, "\n선택: ");
+				date.setValue(0);
+				cout << 
+					"0. 종료\n"
+					"\n"
+					"선택: ";
+				return dbHelper.moveCursor(MDF_THEATER);
 			}
 		}
 	}
