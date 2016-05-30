@@ -7,6 +7,7 @@ class Date {
 public:
 	Date(DBHelper &dbHelper) : dbHelper(dbHelper) {}
 	void show() const;
+	FNRETURN showSelectResult();
 
 	int16_t getYear() const;
 	int16_t getMonth() const;
@@ -26,6 +27,6 @@ public:
 	bool isLeapYear(const int16_t);
 	
 private:
-	int32_t value;
+	int32_t value = 0;
 	DBHelper &dbHelper;
 };

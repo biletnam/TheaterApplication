@@ -12,20 +12,19 @@ bool Date::isLeapYear(const int16_t year)
 	}
 }
 
-void Date::show() const
+Date Date::today(DBHelper &dbHelper)
 {
-	if (0 != getYear())
-	{
-		cout << getYear() << "³â ";
-	}
+	struct tm t;
+	time_t timer = time(NULL);
 
-	if (0 != getMonth())
-	{
-		cout << getMonth() << "¿ù ";
-	}
+	localtime_s(&t, &timer);
 
-	if (0 != getDay())
-	{
-		cout << getDay() << "ÀÏ";
-	}
+	Date date(dbHelper);
+	/*date.setYear(t.tm_year - 100);	// year
+	date.setMonth(t.tm_mon + 1);	// month
+	date.setDay(t.tm_mday + 1);		// day*/
+
+	date.setValue(1);
+
+	return date;
 }

@@ -2,8 +2,6 @@
 
 MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
-	
-
 	for (;;)
 	{
 		system("cls");

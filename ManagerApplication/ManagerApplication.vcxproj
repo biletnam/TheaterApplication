@@ -204,6 +204,7 @@
     <ClCompile Include="time_bind.cpp" />
     <ClCompile Include="_schedule_input_time.cpp" />
     <ClCompile Include="movie_manager_manage_movie.cpp" />
+    <ClCompile Include="date_show.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

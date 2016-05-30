@@ -215,5 +215,8 @@
     <ClCompile Include="movie_manager_manage_movie.cpp">
       <Filter>소스 파일\movie_manager</Filter>
     </ClCompile>
+    <ClCompile Include="date_show.cpp">
+      <Filter>소스 파일\date</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

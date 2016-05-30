@@ -2,7 +2,7 @@
 
 FNRETURN Date::setYear(const int16_t year)
 {
-	if (0 <= year)
+	if (0 < year)
 	{
 		value = (year * 10000)	// year
 			+ (value % 10000);	// month, day
@@ -17,7 +17,7 @@ FNRETURN Date::setYear(const int16_t year)
 
 FNRETURN Date::setMonth(const int16_t month)
 {
-	if (0 <= month && 12 >= month)
+	if (0 < month && 12 >= month)
 	{
 		value = (value / 10000 * 10000)	// year
 			+ (month * 100) 			// month
@@ -32,7 +32,7 @@ FNRETURN Date::setMonth(const int16_t month)
 
 FNRETURN Date::setDay(const int16_t day)
 {
-	if (0 <= day && getLastDay() >= day)
+	if (0 < day && getLastDay() >= day)
 	{
 		value = (value / 100 * 100)	// year, month
 			+ day;					// day

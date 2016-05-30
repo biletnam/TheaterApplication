@@ -5,10 +5,27 @@
 
 using namespace std;
 
+class MyClass
+{
+public:
+	virtual void show() = 0;
+	void mmm() { show(); };
+private:
+
+};
+
+class ccc : public MyClass
+{
+public:
+	void show() { cout << 111; };
+private:
+
+};
+
 int main()
 {
-	char ccc[2];
-	cin >> ccc;
+	ccc c;
+	c.mmm();
 
 	DBHelper db;
 	db.connectDB();

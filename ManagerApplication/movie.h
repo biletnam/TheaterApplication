@@ -41,7 +41,6 @@ public:
 	void setKeyword(SQLWCHAR*) const;
 
 	SQLINTEGER getCode();
-	void setCode(SQLINTEGER);
 
 	SQLRETURN bindCol(MdfEnum, MovieInfo);
 	SQLRETURN bindParameter(MdfEnum, MovieInfo);
