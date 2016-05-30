@@ -2,7 +2,7 @@
 
 FNRETURN Schedule::bindCol()
 {
-	SQLHSTMT &stmt = dbHelper.getStmt(MDF_SALE_INFO);
+	SQLHSTMT &stmt = getStmt(MDF_SALE_INFO);
 
 	if (movie.bindCol(MDF_SALE_INFO, MOVIE_CODE) == SQL_SUCCESS
 		&& movie.bindCol(MDF_SALE_INFO, MOVIE_TITLE) == SQL_SUCCESS

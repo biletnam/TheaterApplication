@@ -16,10 +16,11 @@ FNRETURN Movie::search(MovieTable movieTable)
 		"FROM %s WHERE title LIKE ?;",
 		(MOVIE_TABLE_EXTERNAL == movieTable) ? L"movie_external" : L"movie_internal");
 
-	if (SQL_SUCCESS == dbHelper.bindParameter(MDF_THEATER, BIND_STRING, keyword)
-		&& SQL_SUCCESS == dbHelper.prepare(MDF_THEATER, sql))
+	bindCol();
+	if (SQL_SUCCESS == DBHelper::bindParameter(MDF_THEATER, BIND_STRING, keyword)
+		&& SQL_SUCCESS == prepare(MDF_THEATER, sql))
 	{
-		return showSelectResult();
+		return FUNCTION_SUCCESS;
 	}
 	
 	cout << "\n오류가 발생했습니다.(Movie.search)\n";

@@ -1,27 +1,7 @@
-#include "date.h"
+#include "DB_helper.h"
 
-void Date::show()
+FNRETURN DBHelper::showSelectResult()
 {
-	if (0 != getYear())
-	{
-		cout << getYear() << "년 ";
-	}
-
-	if (0 != getMonth())
-	{
-		cout << getMonth() << "월 ";
-	}
-
-	if (0 != getDay())
-	{
-		cout << getDay() << "일";
-	}
-}
-
-FNRETURN Date::showSelectResult()
-{
-	bindCol();
-
 	if (SQL_SUCCESS == execute(MDF_THEATER))
 	{
 		cout << endl;
@@ -36,7 +16,6 @@ FNRETURN Date::showSelectResult()
 			case SQL_NO_DATA:
 				if (i == 1)
 				{
-					cout << "등록된 날짜가 없습니다\n";
 					return FUNCTION_NULL;
 				}
 				else
@@ -48,7 +27,7 @@ FNRETURN Date::showSelectResult()
 		}
 	}
 
-	cout << "오류가 발생했습니다.(Date::showSelectResult)\n";
+	cout << "오류가 발생했습니다.(showSelectResult)\n";
 	system("pause");
 	return FUNCTION_ERROR;
 }

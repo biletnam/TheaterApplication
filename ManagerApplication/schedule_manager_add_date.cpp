@@ -4,7 +4,7 @@ void ScheduleManager::addDate()
 {
 	for (;;)
 	{
-		Date date(dbHelper);
+		Date date;
 		inputDate(date);
 
 		SQLWCHAR saleInfoSql[BUFSIZ];
@@ -14,9 +14,9 @@ void ScheduleManager::addDate()
 		swprintf_s(saleRecordSql, L"SELECT * INTO d%d FROM sales_record;", date.getValue());
 
 		date.bindParameter();
-		if (SQL_SUCCESS == dbHelper.execute(MDF_THEATER, L"INSERT INTO schedule (date) VALUES (?);")
-			&& SQL_SUCCESS == dbHelper.execute(MDF_SALE_INFO, saleInfoSql)
-			&& SQL_SUCCESS == dbHelper.execute(MDF_SALE_RECORD, saleRecordSql))
+		if (SQL_SUCCESS == date.execute(MDF_THEATER, L"INSERT INTO schedule (date) VALUES (?);")
+			&& SQL_SUCCESS == date.execute(MDF_SALE_INFO, saleInfoSql)
+			&& SQL_SUCCESS == date.execute(MDF_SALE_RECORD, saleRecordSql))
 		{
 			cout << "\n상영일이 추가되었습니다.\n";
 		}

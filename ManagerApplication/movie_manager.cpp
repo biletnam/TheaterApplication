@@ -1,6 +1,6 @@
 #include "movie_manager.h"
 
-MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
+MovieManager::MovieManager()
 {
 	for (;;)
 	{

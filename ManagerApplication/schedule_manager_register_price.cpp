@@ -13,8 +13,8 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 	schedule.show();
 	cout << endl;
 
-	Price price(dbHelper);
-	SQLHSTMT &theaterStmt = dbHelper.getStmt(MDF_THEATER);
+	Price price;
+	SQLHSTMT &theaterStmt = price.getStmt(MDF_THEATER);
 	SQLCancel(theaterStmt);
 	price.bindCol(theaterStmt);
 	SQLRETURN ret = SQLExecDirect(theaterStmt, L"SELECT code, name, won FROM price;", SQL_NTS);
@@ -41,7 +41,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 			}
 
 			cout << "0. 종료\n";
-			switch (dbHelper.moveCursor(MDF_THEATER))
+			switch (price.moveCursor(MDF_THEATER))
 			{
 			case FUNCTION_CANCEL:
 				return;
@@ -63,7 +63,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 				price.bindParameter(MDF_SALE_INFO, PRICE_NAME);
 				price.bindParameter(MDF_SALE_INFO, PRICE_WON);
 
-				if (SQL_SUCCESS == dbHelper.execute(MDF_SALE_INFO, sql))
+				if (SQL_SUCCESS == price.execute(MDF_SALE_INFO, sql))
 				{
 					cout << "가격이 등록되었습니다.\n";
 				}

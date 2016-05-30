@@ -10,17 +10,22 @@ void Screen::setNumber(SQLSMALLINT number)
 	this->number = number;
 }
 
+void Screen::show()
+{
+	cout << "»ó¿µ°ü " << number << endl;
+}
+
 SQLRETURN Screen::bindCol(MdfEnum mdf, ScreenInfo screenInfo)
 {
 	switch (screenInfo)
 	{
 	case SCREEN_NUMBER:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &number);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &number);
 	case SCREEN_COL:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &col);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &col);
 	case SCREEN_ROW:
 	default:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &row);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &row);
 	}
 }
 
@@ -29,11 +34,11 @@ SQLRETURN Screen::bindParameter(MdfEnum mdf, ScreenInfo screenInfo)
 	switch (screenInfo)
 	{
 	case SCREEN_NUMBER:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &number);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &number);
 	case SCREEN_COL:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &col);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &col);
 	case SCREEN_ROW:
 	default:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &row);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &row);
 	}
 }

@@ -1,6 +1,13 @@
 #include "DB_helper.h"
 
-void DBHelper::connectDB()
+SQLUSMALLINT DBHelper::bindColCnt[MDF_COUNT];
+SQLUSMALLINT DBHelper::bindParameterCnt[MDF_COUNT];
+
+SQLHENV DBHelper::env;
+SQLHDBC DBHelper::dbc[MDF_COUNT];
+SQLHSTMT DBHelper::stmt[MDF_COUNT];
+
+FNRETURN DBHelper::connectDB()
 {
 	SQLWCHAR connectingString[MDF_COUNT][BUFSIZ];
 	SQLWCHAR mdf[MDF_COUNT][BUFSIZ];
@@ -32,9 +39,9 @@ void DBHelper::connectDB()
 		if (SQLSetStmtAttr(stmt[i], SQL_ATTR_CURSOR_SCROLLABLE, (SQLPOINTER)SQL_SCROLLABLE, 0)
 			!= SQL_SUCCESS)
 		{
-			return;
+			return FUNCTION_ERROR;
 		}
 	}
 
-	_isConnected = true;
+	return FUNCTION_SUCCESS;
 }

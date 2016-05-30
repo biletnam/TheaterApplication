@@ -1,25 +1,5 @@
 #include "DB_helper.h"
 
-DBHelper::DBHelper()
-{
-	if (_isConnected == false)
-	{
-		connectDB();
-	}
-}
-
-DBHelper::~DBHelper()
-{
-	closeDB();
-}
-
-bool DBHelper::_isConnected = false;
-
-bool DBHelper::isConnected() const
-{
-	return _isConnected;
-}
-
 SQLRETURN DBHelper::bindCol(MdfEnum mdf, BindType bindType, void *target)
 {
 	if (SQL_SUCCESS == cancel(mdf))

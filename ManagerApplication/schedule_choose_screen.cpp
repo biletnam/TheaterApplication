@@ -5,11 +5,11 @@ FNRETURN Schedule::chooseScreen()
 	cout << "상영관 선택\n";
 	
 	screen.bindParameter(MDF_THEATER, SCREEN_NUMBER);
-	if (SQL_SUCCESS == dbHelper.execute(MDF_THEATER, L"SELECT number FROM screen;"))
+	if (SQL_SUCCESS == execute(MDF_THEATER, L"SELECT number FROM screen;"))
 	{
 		for (int i = 1; SQL_SUCCESS; i++)
 		{
-			switch (dbHelper.fetch(MDF_THEATER))
+			switch (fetch(MDF_THEATER))
 			{
 			case SQL_SUCCESS:
 				cout << i << ". " << screen.getNumber() << "관\n";
@@ -29,7 +29,7 @@ FNRETURN Schedule::chooseScreen()
 						"0. 종료\n"
 						"\n"
 						"선택: ";
-					return dbHelper.moveCursor(MDF_THEATER);
+					return moveCursor(MDF_THEATER);
 				}
 			}
 		}

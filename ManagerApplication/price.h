@@ -10,11 +10,9 @@ typedef enum
 	PRICE_WON,
 } PriceInfo;
 
-class Price
+class Price : public DBHelper
 {
 public:
-	Price(DBHelper &);
-
 	SQLINTEGER getCode();
 	SQLCHAR *getName();
 	SQLINTEGER getWon();
@@ -35,8 +33,6 @@ public:
 	SQLRETURN bindParameter(MdfEnum, PriceInfo);
 
 private:
-	DBHelper &dbHelper;
-
 	SQLINTEGER code = 0;
 	SQLCHAR name[BUFSIZ] = { 0 };
 	SQLINTEGER won = 0;

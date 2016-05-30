@@ -4,7 +4,7 @@ void PriceManager::addPrice()
 {
 	for (;;)
 	{
-		Price price(dbHelper);
+		Price price;
 
 		for (;;)
 		{
@@ -62,7 +62,7 @@ void PriceManager::addPrice()
 			}
 		}
 		
-		SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
+		SQLHSTMT &stmt = price.getStmt(MDF_THEATER);
 		SQLCancel(stmt);
 
 		price.bindParameter(MDF_THEATER, PRICE_CODE);

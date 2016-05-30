@@ -10,18 +10,16 @@ typedef enum
 	SCREEN_COL,
 } ScreenInfo;
 
-class Screen
+class Screen : public DBHelper
 {
 public:
-	Screen(DBHelper &dbHelper) : dbHelper(dbHelper) {}
 	SQLSMALLINT getNumber() const;
 	void setNumber(SQLSMALLINT);
+	void show();
 
 	SQLRETURN bindCol(MdfEnum, ScreenInfo);
 	SQLRETURN bindParameter(MdfEnum, ScreenInfo);
 private:
-	DBHelper &dbHelper;
-
 	SQLSMALLINT number = 0;
 	SQLSMALLINT row;
 	SQLSMALLINT col;

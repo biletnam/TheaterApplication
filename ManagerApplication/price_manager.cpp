@@ -1,6 +1,6 @@
 #include "price_manager.h"
 
-PriceManager::PriceManager(DBHelper &dbHelper) : dbHelper(dbHelper)
+PriceManager::PriceManager()
 {
 	enum PriceManagerFunction
 	{

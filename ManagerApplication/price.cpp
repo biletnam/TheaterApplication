@@ -1,8 +1,5 @@
 #include "price.h"
 
-Price::Price(DBHelper &dbHelper) : dbHelper(dbHelper) 
-{}
-
 FNRETURN Price::bindCol(SQLHSTMT &stmt)
 {
 	if (SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof code, NULL) == SQL_SUCCESS
@@ -20,12 +17,12 @@ SQLRETURN Price::bindCol(MdfEnum mdf, PriceInfo priceInfo)
 	switch (priceInfo)
 	{
 	case PRICE_CODE:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &code);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &code);
 	case PRICE_NAME:
-		return dbHelper.bindCol(mdf, BIND_STRING, name);
+		return DBHelper::bindCol(mdf, BIND_STRING, name);
 	case PRICE_WON:
 	default:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &won);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &won);
 	}
 }
 
@@ -34,12 +31,12 @@ SQLRETURN Price::bindParameter(MdfEnum mdf, PriceInfo priceInfo)
 	switch (priceInfo)
 	{
 	case PRICE_CODE:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &code);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &code);
 	case PRICE_NAME:
-		return dbHelper.bindParameter(mdf, BIND_STRING, name);
+		return DBHelper::bindParameter(mdf, BIND_STRING, name);
 	case PRICE_WON:
 	default:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &won);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &won);
 	}
 }
 

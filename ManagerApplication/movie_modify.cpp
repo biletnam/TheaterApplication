@@ -20,7 +20,7 @@ FNRETURN Movie::modify(ModifyMovieType type)
 			case 'y':case 'Y':
 				if (SQL_SUCCESS == bindParameter(MDF_THEATER, MOVIE_CODE)
 					&& SQL_SUCCESS ==
-					dbHelper.execute(MDF_THEATER, ((type == DELETE_MOVIE) ? L""
+					execute(MDF_THEATER, ((type == DELETE_MOVIE) ? L""
 						"DELETE FROM movie_internal WHERE movie_code=?;" : L""
 						"INSERT INTO "
 						"movie_internal (movie_code, title, director, age, year, running_time) "

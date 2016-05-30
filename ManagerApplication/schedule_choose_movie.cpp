@@ -5,7 +5,7 @@
 
 FNRETURN Schedule::chooseMovie()
 {
-	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
+	SQLHSTMT &stmt = getStmt(MDF_THEATER);
 
 	do
 	{

@@ -6,7 +6,7 @@
 
 class ScheduleManager {
 public:
-	ScheduleManager(DBHelper &);
+	ScheduleManager();
 
 private:
 	void checkAndDeleteDate();
@@ -19,7 +19,6 @@ private:
 	void checkAndDeletePrice(Schedule &);
 	void modifySchedule(Schedule &);
 		
-	DBHelper &dbHelper;
 public:
 	FNRETURN setSchedule(Schedule & schedule);
 };

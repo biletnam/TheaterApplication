@@ -9,3 +9,9 @@ SQLSMALLINT Schedule::Time::getEndTime() const
 {
 	return endTime;
 }
+
+void Schedule::Time::show()
+{
+	cout << "시작 시간: " << startTime
+		<< "\n종영 시간: " << endTime << endl;
+}

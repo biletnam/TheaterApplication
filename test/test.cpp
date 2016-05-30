@@ -8,28 +8,32 @@ using namespace std;
 class MyClass
 {
 public:
-	virtual void show() = 0;
-	void mmm() { show(); };
-private:
-
-};
-
-class ccc : public MyClass
-{
-public:
-	void show() { cout << 111; };
+	void operator()() {
+		cout << 111;
+	};
+	MyClass();
+	~MyClass();
 private:
 
 };
 
 int main()
 {
-	ccc c;
-	c.mmm();
+	MyClass mmm;
+	mmm();
 
 	DBHelper db;
 	db.connectDB();
 
 	db.closeDB();
 	return 0;
+}
+
+MyClass::MyClass()
+{
+	this->~MyClass();
+}
+
+MyClass::~MyClass()
+{
 }

@@ -12,14 +12,14 @@ bool Date::isLeapYear(const int16_t year)
 	}
 }
 
-Date Date::today(DBHelper &dbHelper)
+Date Date::getToday()
 {
 	struct tm t;
 	time_t timer = time(NULL);
 
 	localtime_s(&t, &timer);
 
-	Date date(dbHelper);
+	Date date;
 	/*date.setYear(t.tm_year - 100);	// year
 	date.setMonth(t.tm_mon + 1);	// month
 	date.setDay(t.tm_mday + 1);		// day*/

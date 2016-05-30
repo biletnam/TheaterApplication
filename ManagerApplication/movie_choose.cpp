@@ -1,5 +1,5 @@
 #include "movie.h"
-
+/*
 FNRETURN Movie::choose(MovieTable movieTable)
 {
 	if (code == 0)
@@ -21,7 +21,7 @@ FNRETURN Movie::choose(MovieTable movieTable)
 				"\n"
 				"º±≈√: ";
 
-			if (FUNCTION_ERROR == dbHelper.moveCursor(MDF_THEATER))
+			if (FUNCTION_ERROR == moveCursor(MDF_THEATER))
 			{
 				return FUNCTION_ERROR;
 			}
@@ -29,4 +29,4 @@ FNRETURN Movie::choose(MovieTable movieTable)
 	}
 
 	return FUNCTION_SUCCESS;
-}
+}*/

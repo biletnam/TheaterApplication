@@ -27,33 +27,33 @@ typedef enum
 	INSERT_MOVIE,
 } ModifyMovieType;
 
-class Movie
+class Movie : public DBHelper
 {
 public:
-	Movie(DBHelper &dbHelper) : dbHelper(dbHelper) {}
-
 	FNRETURN search(MovieTable);
-	FNRETURN choose(MovieTable);
+	//FNRETURN choose(MovieTable);
 	FNRETURN modify(ModifyMovieType);
 	
-	FNRETURN showSelectResult();
+	//FNRETURN showSelectResult();
 	void show();
+	void showNullMessage();
+	void initialize();
+
 	void setKeyword(SQLWCHAR*) const;
 
 	SQLINTEGER getCode();
 
+	SQLRETURN bindCol();
 	SQLRETURN bindCol(MdfEnum, MovieInfo);
 	SQLRETURN bindParameter(MdfEnum, MovieInfo);
 	SQLRETURN getData(MdfEnum, SQLUSMALLINT, MovieInfo);
 private:
 	SQLINTEGER code = 0;
-	SQLCHAR title[BUFSIZ] = { 0 };
-	SQLCHAR director[BUFSIZ] = { 0 };
-	SQLSMALLINT age = -1;
-	SQLSMALLINT year = -1;
-	SQLSMALLINT runningTime = -1;
-
-	DBHelper &dbHelper;
+	SQLCHAR title[BUFSIZ];
+	SQLCHAR director[BUFSIZ];
+	SQLSMALLINT age;
+	SQLSMALLINT year;
+	SQLSMALLINT runningTime;
 };
 
 #endif // !MOVIE_H

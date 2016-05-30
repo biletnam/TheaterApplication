@@ -4,7 +4,7 @@ void ScheduleManager::checkAndModifySchedule()
 {
 	for (;;)
 	{
-		Schedule schedule(dbHelper);
+		Schedule schedule;
 
 		for (;;)
 		{
@@ -50,7 +50,7 @@ void ScheduleManager::checkAndModifySchedule()
 			"ORDER BY start_time ASC;",
 			schedule.date.getValue(), schedule.screen.getNumber());
 
-		SQLHSTMT &stmt = dbHelper.getStmt(MDF_SALE_INFO);
+		SQLHSTMT &stmt = schedule.getStmt(MDF_SALE_INFO);
 		SQLCancel(stmt);
 		schedule.bindCol();
 		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
@@ -82,7 +82,7 @@ void ScheduleManager::checkAndModifySchedule()
 					"0. 종료\n"
 					"\n"
 					"수정할 상영 일정을 선택하세요: ";
-				switch (dbHelper.moveCursor(MDF_SALE_INFO))
+				switch (schedule.moveCursor(MDF_SALE_INFO))
 				{
 				case FUNCTION_CANCEL:
 					return;

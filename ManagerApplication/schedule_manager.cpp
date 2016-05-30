@@ -1,6 +1,6 @@
 #include "schedule_manager.h"
 
-ScheduleManager::ScheduleManager(DBHelper &dbHelper) : dbHelper(dbHelper)
+ScheduleManager::ScheduleManager()
 {
 	enum ScheduleManagerFunction
 	{

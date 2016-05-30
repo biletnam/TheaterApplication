@@ -10,8 +10,8 @@ void PriceManager::checkAndDeletePrice()
 			" > 가격 정보 관리\n"
 			"  > 가격 정보 확인/삭제\n\n";
 
-		Price price(dbHelper);
-		SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
+		Price price;
+		SQLHSTMT &stmt = price.getStmt(MDF_THEATER);
 		SQLCancel(stmt);
 		price.bindCol(stmt);
 		SQLRETURN ret = SQLExecDirect(stmt, L"SELECT code, name, won FROM price;", SQL_NTS);
@@ -37,13 +37,13 @@ void PriceManager::checkAndDeletePrice()
 						"\n"
 						"삭제할 가격 정보를 선택하세요: ";
 
-					switch (dbHelper.moveCursor(MDF_THEATER))
+					switch (price.moveCursor(MDF_THEATER))
 					{
 					case FUNCTION_CANCEL:
 						return;
 					case FUNCTION_SUCCESS:
 						if (SQL_SUCCESS == price.bindParameter(MDF_THEATER, PRICE_CODE)
-							&& SQL_SUCCESS ==  dbHelper.execute(MDF_THEATER, L"DELETE FROM price WHERE code=?;"))
+							&& SQL_SUCCESS ==  price.execute(MDF_THEATER, L"DELETE FROM price WHERE code=?;"))
 						{
 							return;
 						}

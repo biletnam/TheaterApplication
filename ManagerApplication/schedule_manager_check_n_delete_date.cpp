@@ -2,7 +2,7 @@
 
 void ScheduleManager::checkAndDeleteDate()
 {
-	Date date(dbHelper);
+	Date date;
 
 	for (;;)
 	{
@@ -18,8 +18,8 @@ void ScheduleManager::checkAndDeleteDate()
 
 		}
 		
-		Date::today(dbHelper).bindParameter();
-		if (SQL_SUCCESS != dbHelper.execute(MDF_THEATER, L"SELECT date FROM schedule WHERE date>?;"))
+		Date::getToday().bindParameter();
+		if (SQL_SUCCESS != date.execute(MDF_THEATER, L"SELECT date FROM schedule WHERE date>?;"))
 		{
 			cout << "\n오류가 발생했습니다(checkSchedule).\n";
 			system("pause");
@@ -33,7 +33,7 @@ void ScheduleManager::checkAndDeleteDate()
 				"0. 종료\n"
 				"\n"
 				"삭제할 상영일을 선택하세요: ";
-			switch (dbHelper.moveCursor(MDF_THEATER))
+			switch (date.moveCursor(MDF_THEATER))
 			{
 			case FUNCTION_ERROR:
 				cout << "\n오류가 발생했습니다(checkAndDeletedate).\n";

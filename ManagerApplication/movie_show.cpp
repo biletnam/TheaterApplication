@@ -1,5 +1,5 @@
 #include "movie.h"
-
+/*
 FNRETURN Movie::showSelectResult()
 {
 	bindCol(MDF_THEATER, MOVIE_CODE);
@@ -9,12 +9,12 @@ FNRETURN Movie::showSelectResult()
 	bindCol(MDF_THEATER, MOVIE_YEAR);
 	bindCol(MDF_THEATER, MOVIE_RUNNINGTIME);
 
-	if (SQL_SUCCESS == dbHelper.execute(MDF_THEATER))
+	if (SQL_SUCCESS == execute(MDF_THEATER))
 	{
 		cout << endl;
 		for (size_t i = 1;; i++)
 		{
-			switch (dbHelper.fetch(MDF_THEATER))
+			switch (fetch(MDF_THEATER))
 			{
 			case SQL_SUCCESS:
 				cout << i << ". ";
@@ -39,7 +39,7 @@ FNRETURN Movie::showSelectResult()
 	system("pause");
 	return FUNCTION_ERROR;
 }
-
+*/
 void Movie::show()
 {
 	cout << title
@@ -54,4 +54,10 @@ void Movie::show()
 		cout << age << "세";
 	}
 	cout << ", " << year << "년\n";
+}
+
+void Movie::showNullMessage()
+{
+	cout << "\n등록된 영화가 없습니다.\n";
+	system("pause");
 }

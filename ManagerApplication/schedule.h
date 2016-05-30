@@ -12,33 +12,24 @@ enum TimeInfo
 	END_TIME,
 };
 
-class Schedule {
+class Schedule : public DBHelper {
 public:
-	class Time
+	class Time : public DBHelper
 	{
 	public:
-		Time(DBHelper &dbHelper) : dbHelper(dbHelper) {}
 		SQLSMALLINT getStartTime() const;
 		SQLSMALLINT getEndTime() const;
 
 		SQLRETURN bindCol(MdfEnum, TimeInfo);
 		SQLRETURN bindParameter(MdfEnum, TimeInfo);
 
-		
+		void show();
 	private:
 		SQLSMALLINT startTime = 0;
 		SQLSMALLINT endTime = 0;
-
-		DBHelper &dbHelper;
 	};
 
-	Schedule(DBHelper &dbHelper) : 
-		dbHelper(dbHelper), 
-		movie(dbHelper), 
-		screen(dbHelper), 
-		date(dbHelper), 
-		time(dbHelper), 
-		price(dbHelper) {};
+	Schedule() {}
 
 	Movie movie;
 	Screen screen;
@@ -59,7 +50,6 @@ public:
 
 	void show();
 private:
-	DBHelper &dbHelper;
 };
 
 #endif // !SCHEDULE_H

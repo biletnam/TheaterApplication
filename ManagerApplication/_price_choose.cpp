@@ -2,7 +2,7 @@
 
 FNRETURN Price::choose()
 {
-	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
+	SQLHSTMT &stmt = getStmt(MDF_THEATER);
 
 	SQLBindCol(stmt, 1, SQL_INTEGER, &code, sizeof code, NULL);
 	SQLBindCol(stmt, 2, SQL_CHAR, name, BUFSIZ, NULL);
@@ -26,7 +26,7 @@ FNRETURN Price::choose()
 			else
 			{
 				cout << "가격을 선택하세요";
-				if (dbHelper.moveCursor(MDF_THEATER))
+				if (moveCursor(MDF_THEATER))
 				{
 
 				}

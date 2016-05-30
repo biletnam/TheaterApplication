@@ -5,10 +5,10 @@ FNRETURN Schedule::chooseDate()
 	cout << "날짜 선택\n";
 
 	//Date today = Date::getToday();
-	Date today(dbHelper);
+	Date today;
 	today.setValue(1);
 	
-	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
+	SQLHSTMT &stmt = getStmt(MDF_THEATER);
 	SQLCancel(stmt);
 	today.bindParameter();
 	date.bindParameter();
@@ -37,7 +37,7 @@ FNRETURN Schedule::chooseDate()
 					"0. 종료\n"
 					"\n"
 					"선택: ";
-				return dbHelper.moveCursor(MDF_THEATER);
+				return moveCursor(MDF_THEATER);
 			}
 		}
 	}

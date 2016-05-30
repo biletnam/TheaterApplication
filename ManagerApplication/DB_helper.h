@@ -25,10 +25,14 @@ typedef enum
 class DBHelper
 {
 public:
-	DBHelper();
-	~DBHelper();
+	virtual void show() = 0;
 
-	bool isConnected() const;
+	static FNRETURN connectDB();
+	static void closeDB();
+
+	FNRETURN showSelectResult();
+	FNRETURN choose();
+	
 
 	SQLRETURN bindCol(MdfEnum, BindType, void *);
 	SQLRETURN bindParameter(MdfEnum, BindType, void *);
@@ -42,17 +46,12 @@ public:
 	FNRETURN moveCursor(MdfEnum);
 	SQLHSTMT &getStmt(MdfEnum);
 private:
-	static bool _isConnected;
-	
-	SQLUSMALLINT bindColCnt[MDF_COUNT] = {0};
-	SQLUSMALLINT bindParameterCnt[MDF_COUNT] = {0};
+	static SQLUSMALLINT bindColCnt[MDF_COUNT];
+	static SQLUSMALLINT bindParameterCnt[MDF_COUNT];
 
-	SQLHENV env;
-	SQLHDBC dbc[MDF_COUNT];
-	SQLHSTMT stmt[MDF_COUNT];
-
-	void connectDB();
-	void closeDB();
+	static SQLHENV env;
+	static SQLHDBC dbc[MDF_COUNT];
+	static SQLHSTMT stmt[MDF_COUNT];
 };
 
 #endif // !DB_HELPER_H

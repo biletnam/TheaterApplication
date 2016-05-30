@@ -4,9 +4,8 @@
 class PriceManager
 {
 public:
-	PriceManager(DBHelper &);
+	PriceManager();
 private:
-	DBHelper &dbHelper;
 
 	void checkAndDeletePrice();
 	void addPrice();

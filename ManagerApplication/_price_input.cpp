@@ -15,9 +15,9 @@ FNRETURN Price::inputCode()
 	}
 	
 	bindParameter(MDF_THEATER, PRICE_CODE);
-	dbHelper.execute(MDF_THEATER, L"SELECT * FROM price WHERE code=?;");
+	execute(MDF_THEATER, L"SELECT * FROM price WHERE code=?;");
 
-	switch (dbHelper.fetch(MDF_THEATER))
+	switch (fetch(MDF_THEATER))
 	{
 	case SQL_SUCCESS:
 		cout << "이미 존재하는 가격 코드입니다.\n";
@@ -42,7 +42,7 @@ FNRETURN Price::inputName()
 		return FUNCTION_CANCEL;
 	}
 
-	SQLHSTMT &stmt = dbHelper.getStmt(MDF_THEATER);
+	SQLHSTMT &stmt = getStmt(MDF_THEATER);
 	SQLCancel(stmt);
 	SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_WVARCHAR,
 		BUFSIZ, 0, name, 0, NULL);

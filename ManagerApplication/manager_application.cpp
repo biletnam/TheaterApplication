@@ -11,8 +11,7 @@ int main()
 		PRICE_MANAGER,
 	} ManageApplicationFunction;
 
-	DBHelper dbHelper;
-	if (dbHelper.isConnected() == true)
+	if (FUNCTION_SUCCESS == DBHelper::connectDB())
 	{
 		for(;;)
 		{
@@ -37,17 +36,17 @@ int main()
 				{
 				case MOVIE_MANAGER:
 				{
-					MovieManager movieManger(dbHelper);
+					MovieManager movieManger;
 					continue;
 				}
 				case SCHEDULE_MANAGER:
 				{
-					ScheduleManager scheduleManager(dbHelper);
+					ScheduleManager scheduleManager;
 					continue;
 				}
 				case PRICE_MANAGER:
 				{
-					PriceManager priceManager(dbHelper);
+					PriceManager priceManager;
 					continue;
 				}
 				}
@@ -63,5 +62,6 @@ int main()
 		system("pause");
 	}
 
+	DBHelper::closeDB();
 	return 0;
 }

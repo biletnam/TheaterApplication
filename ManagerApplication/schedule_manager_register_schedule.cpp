@@ -5,7 +5,7 @@ void ScheduleManager::registerSchedule()
 {
 	for (;;)
 	{
-		Schedule schedule(dbHelper);
+		Schedule schedule;
 		if (FUNCTION_CANCEL == setSchedule(schedule))
 		{
 			return;
@@ -30,8 +30,8 @@ void ScheduleManager::registerSchedule()
 			schedule.date.getValue(), schedule.screen.getNumber(), schedule.time.getStartTime(), 
 			schedule.screen.getNumber());
 		
-		if (SQL_SUCCESS == dbHelper.execute(MDF_SALE_INFO, saleInfoSql)
-			&& SQL_SUCCESS == dbHelper.execute(MDF_SEAT, seatSql))
+		if (SQL_SUCCESS == schedule.execute(MDF_SALE_INFO, saleInfoSql)
+			&& SQL_SUCCESS == schedule.execute(MDF_SEAT, seatSql))
 		{
 			cout << "스케쥴이 등록 되었습니다.\n";
 		}

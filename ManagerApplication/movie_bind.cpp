@@ -1,22 +1,39 @@
 #include "movie.h"
 
+SQLRETURN Movie::bindCol()
+{
+	if (SQL_SUCCESS == DBHelper::bindCol(MDF_THEATER, BIND_INTEGER, &code)
+		&& SQL_SUCCESS == DBHelper::bindCol(MDF_THEATER, BIND_STRING, title)
+		&& SQL_SUCCESS == DBHelper::bindCol(MDF_THEATER, BIND_STRING, director)
+		&& SQL_SUCCESS == DBHelper::bindCol(MDF_THEATER, BIND_INTEGER, &age)
+		&& SQL_SUCCESS == DBHelper::bindCol(MDF_THEATER, BIND_INTEGER, &year)
+		&& SQL_SUCCESS == DBHelper::bindCol(MDF_THEATER, BIND_INTEGER, &runningTime))
+	{
+		return SQL_SUCCESS;
+	}
+	else
+	{
+		return SQL_ERROR;
+	}
+}
+
 SQLRETURN Movie::bindCol(MdfEnum mdf, MovieInfo info)
 {
 	switch (info)
 	{
 	case MOVIE_CODE:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &code);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &code);
 	case MOVIE_TITLE:
-		return dbHelper.bindCol(mdf, BIND_STRING, title);
+		return DBHelper::bindCol(mdf, BIND_STRING, title);
 	case MOVIE_DIRECTOR:
-		return dbHelper.bindCol(mdf, BIND_STRING, director);
+		return DBHelper::bindCol(mdf, BIND_STRING, director);
 	case MOVIE_AGE:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &age);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &age);
 	case MOVIE_YEAR:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &year);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &year);
 	case MOVIE_RUNNINGTIME:
 	default:
-		return dbHelper.bindCol(mdf, BIND_INTEGER, &runningTime);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &runningTime);
 	}
 }
 
@@ -25,18 +42,18 @@ SQLRETURN Movie::bindParameter(MdfEnum mdf, MovieInfo info)
 	switch (info)
 	{
 	case MOVIE_CODE:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &code);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &code);
 	case MOVIE_TITLE:
-		return dbHelper.bindParameter(mdf, BIND_STRING, title);
+		return DBHelper::bindParameter(mdf, BIND_STRING, title);
 	case MOVIE_DIRECTOR:
-		return dbHelper.bindParameter(mdf, BIND_STRING, director);
+		return DBHelper::bindParameter(mdf, BIND_STRING, director);
 	case MOVIE_AGE:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &age);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &age);
 	case MOVIE_YEAR:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &year);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &year);
 	case MOVIE_RUNNINGTIME:
 	default:
-		return dbHelper.bindParameter(mdf, BIND_INTEGER, &runningTime);
+		return DBHelper::bindParameter(mdf, BIND_INTEGER, &runningTime);
 	}
 }
 
@@ -45,17 +62,17 @@ SQLRETURN Movie::getData(MdfEnum mdf, SQLUSMALLINT column, MovieInfo info)
 	switch (info)
 	{
 	case MOVIE_CODE:
-		return dbHelper.getData(mdf, column, BIND_INTEGER, &code);
+		return DBHelper::getData(mdf, column, BIND_INTEGER, &code);
 	case MOVIE_TITLE:
-		return dbHelper.getData(mdf, column, BIND_STRING, title);
+		return DBHelper::getData(mdf, column, BIND_STRING, title);
 	case MOVIE_DIRECTOR:
-		return dbHelper.getData(mdf, column, BIND_STRING, director);
+		return DBHelper::getData(mdf, column, BIND_STRING, director);
 	case MOVIE_AGE:
-		return dbHelper.getData(mdf, column, BIND_INTEGER, &age);
+		return DBHelper::getData(mdf, column, BIND_INTEGER, &age);
 	case MOVIE_YEAR:
-		return dbHelper.getData(mdf, column, BIND_INTEGER, &year);
+		return DBHelper::getData(mdf, column, BIND_INTEGER, &year);
 	case MOVIE_RUNNINGTIME:
 	default:
-		return dbHelper.getData(mdf, column, BIND_INTEGER, &runningTime);
+		return DBHelper::getData(mdf, column, BIND_INTEGER, &runningTime);
 	}
 }

@@ -27,8 +27,8 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 
 		SQLINTEGER id;	// sale_info id
 
-		Price price(dbHelper);
-		SQLHSTMT &stmt = dbHelper.getStmt(MDF_SALE_INFO);
+		Price price;
+		SQLHSTMT &stmt = price.getStmt(MDF_SALE_INFO);
 		SQLCancel(stmt);
 		price.bindCol(stmt);
 		SQLBindCol(stmt, 4, SQL_INTEGER, &id, sizeof id, NULL);
@@ -60,7 +60,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 					"0. 취소\n"
 					"\n"
 					"삭제할 가격을 선택하세요";
-				switch (dbHelper.moveCursor(MDF_SALE_INFO))
+				switch (price.moveCursor(MDF_SALE_INFO))
 				{
 				case FUNCTION_CANCEL:	// 종료
 					return;

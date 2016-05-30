@@ -3,10 +3,9 @@
 #include <time.h>
 #include "DB_helper.h"
 
-class Date {
+class Date : public DBHelper{
 public:
-	Date(DBHelper &dbHelper) : dbHelper(dbHelper) {}
-	void show() const;
+	void show();
 	FNRETURN showSelectResult();
 
 	int16_t getYear() const;
@@ -14,7 +13,7 @@ public:
 	int16_t getLastDay();
 	int16_t getDay() const;
 	int32_t getValue() const;
-	static Date today(DBHelper &);
+	static Date getToday();
 
 	FNRETURN setYear(const int16_t);
 	FNRETURN setMonth(const int16_t);
@@ -28,5 +27,4 @@ public:
 	
 private:
 	int32_t value = 0;
-	DBHelper &dbHelper;
 };
