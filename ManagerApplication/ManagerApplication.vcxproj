@@ -203,8 +203,7 @@
     <ClCompile Include="movie_modify.cpp" />
     <ClCompile Include="time_bind.cpp" />
     <ClCompile Include="_schedule_input_time.cpp" />
-    <ClCompile Include="movie_manager_check_n_delete_movie.cpp" />
-    <ClCompile Include="movie_manager_register_movie.cpp" />
+    <ClCompile Include="movie_manager_manage_movie.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

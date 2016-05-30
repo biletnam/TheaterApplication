@@ -2,27 +2,31 @@
 
 FNRETURN Movie::choose(MovieTable movieTable)
 {
-	switch (search(movieTable))
+	if (code == 0)
 	{
-	case FUNCTION_CANCEL:
-		return FUNCTION_CANCEL;
-	case FUNCTION_SUCCESS:
-		cout <<
-			"0. 취소\n"
-			"\n"
-			"선택: ";
-		switch (dbHelper.moveCursor(MDF_THEATER))
+		switch (search(movieTable))
 		{
-		case FUNCTION_SUCCESS:
-			return FUNCTION_SUCCESS;
-		case FUNCTION_ERROR:
-			cout << "\n오류가 발생했습니다.(Movie.choose)\n";
-			system("pause");
 		case FUNCTION_CANCEL:
 			return FUNCTION_CANCEL;
+		case FUNCTION_ERROR:
+			code = 0;
+			return FUNCTION_ERROR;
+		case FUNCTION_NULL:
+			system("pause");
+			return FUNCTION_NULL;
+		case FUNCTION_SUCCESS:
+			code = 0;
+			cout <<
+				"0. 취소\n"
+				"\n"
+				"선택: ";
+
+			if (FUNCTION_ERROR == dbHelper.moveCursor(MDF_THEATER))
+			{
+				return FUNCTION_ERROR;
+			}
 		}
-	case FUNCTION_ERROR:
-	default:
-		return FUNCTION_ERROR;
 	}
+
+	return FUNCTION_SUCCESS;
 }

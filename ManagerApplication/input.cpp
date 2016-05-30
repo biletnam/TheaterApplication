@@ -25,7 +25,7 @@ FNRETURN inputPositiveInteger(int32_t &positiveInteger)
 
 FNRETURN inputYN(char &yn)
 {
-	char input[2];
+	char input[BUFSIZ];
 	cin >> input;
 
 	if (input[1] == 0)

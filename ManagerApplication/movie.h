@@ -15,11 +15,17 @@ typedef enum
 	MOVIE_RUNNINGTIME
 } MovieInfo;
 
-enum MovieTable
+typedef enum
 {
 	MOVIE_TABLE_INTERNAL,
 	MOVIE_TABLE_EXTERNAL,
-};
+} MovieTable;
+
+typedef enum
+{
+	DELETE_MOVIE,
+	INSERT_MOVIE,
+} ModifyMovieType;
 
 class Movie
 {
@@ -28,8 +34,7 @@ public:
 
 	FNRETURN search(MovieTable);
 	FNRETURN choose(MovieTable);
-	FNRETURN del();
-	FNRETURN insert();
+	FNRETURN modify(ModifyMovieType);
 	
 	FNRETURN showSelectResult();
 	void show();

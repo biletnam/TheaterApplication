@@ -209,14 +209,11 @@
     <ClCompile Include="_schedule_input_time.cpp">
       <Filter>소스 파일\schedule</Filter>
     </ClCompile>
-    <ClCompile Include="movie_manager_check_n_delete_movie.cpp">
-      <Filter>소스 파일\movie_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="movie_manager_register_movie.cpp">
-      <Filter>소스 파일\movie_manager</Filter>
-    </ClCompile>
     <ClCompile Include="input.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="movie_manager_manage_movie.cpp">
+      <Filter>소스 파일\movie_manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,11 +2,7 @@
 
 MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 {
-	enum movieManagerFunction
-	{
-		CHECK_N_DELETE_MOVIE = 1,
-		REGISTER_MOVIE,
-	} typedef MOVIE_MANAGER_FUNCTION;
+	
 
 	for (;;)
 	{
@@ -35,10 +31,10 @@ MovieManager::MovieManager(DBHelper &dbHelper) : dbHelper(dbHelper)
 			switch (function)
 			{
 			case CHECK_N_DELETE_MOVIE:
-				checkAndDeleteMovie();
+				manageMovie(CHECK_N_DELETE_MOVIE);
 				continue;
 			case REGISTER_MOVIE:
-				registerMovie();
+				manageMovie(REGISTER_MOVIE);
 				continue;
 			}
 		case FUNCTION_ERROR:
