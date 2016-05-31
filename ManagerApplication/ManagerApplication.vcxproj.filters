@@ -185,9 +185,6 @@
     <ClCompile Include="movie_search.cpp">
       <Filter>소스 파일\movie</Filter>
     </ClCompile>
-    <ClCompile Include="movie_choose.cpp">
-      <Filter>소스 파일\movie</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_manager_set_schedule.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
@@ -223,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="DB_helper_choose.cpp">
       <Filter>소스 파일\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="date_modify.cpp">
+      <Filter>소스 파일\date</Filter>
+    </ClCompile>
+    <ClCompile Include="date_input.cpp">
+      <Filter>소스 파일\date</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

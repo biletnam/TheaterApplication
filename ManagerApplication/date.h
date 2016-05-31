@@ -5,8 +5,22 @@
 
 class Date : public DBHelper{
 public:
+	enum DateType
+	{
+		DATE_YEAR,
+		DATE_MONTH,
+		DATE_DAY,
+	};
+
 	void show();
-	FNRETURN showSelectResult();
+	//FNRETURN showSelectResult();
+	FNRETURN modify(ModifyType);
+
+	FNRETURN input();
+	FNRETURN input(DateType);
+	FNRETURN inputYear();
+	FNRETURN inputMonth();
+	FNRETURN inputDay();
 
 	int16_t getYear() const;
 	int16_t getMonth() const;
@@ -15,6 +29,7 @@ public:
 	int32_t getValue() const;
 	static Date getToday();
 
+	FNRETURN set(DateType, const int16_t);
 	FNRETURN setYear(const int16_t);
 	FNRETURN setMonth(const int16_t);
 	FNRETURN setDay(const int16_t);

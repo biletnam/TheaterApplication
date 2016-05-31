@@ -22,6 +22,12 @@ typedef enum
 	BIND_STRING,
 } BindType;
 
+typedef enum 
+{
+	MODIFY_INSERT,
+	MODIFY_DELETE,
+} ModifyType;
+
 class DBHelper
 {
 public:
@@ -30,8 +36,8 @@ public:
 	static FNRETURN connectDB();
 	static void closeDB();
 
-	FNRETURN showSelectResult();
-	FNRETURN choose();
+	FNRETURN showSelectResult(MdfEnum);
+	FNRETURN choose(MdfEnum);
 	
 
 	SQLRETURN bindCol(MdfEnum, BindType, void *);

@@ -16,8 +16,9 @@ void Date::show()
 	{
 		cout << getDay() << "ÀÏ";
 	}
+	cout << endl;
 }
-
+/*
 FNRETURN Date::showSelectResult()
 {
 	bindCol();
@@ -52,3 +53,4 @@ FNRETURN Date::showSelectResult()
 	system("pause");
 	return FUNCTION_ERROR;
 }
+*/

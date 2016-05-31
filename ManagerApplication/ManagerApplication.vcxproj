@@ -199,7 +199,6 @@
     <ClCompile Include="date_get.cpp" />
     <ClCompile Include="date_bind.cpp" />
     <ClCompile Include="movie_search.cpp" />
-    <ClCompile Include="movie_choose.cpp" />
     <ClCompile Include="movie_modify.cpp" />
     <ClCompile Include="time_bind.cpp" />
     <ClCompile Include="_schedule_input_time.cpp" />
@@ -207,6 +206,8 @@
     <ClCompile Include="date_show.cpp" />
     <ClCompile Include="DB_helper_show.cpp" />
     <ClCompile Include="DB_helper_choose.cpp" />
+    <ClCompile Include="date_modify.cpp" />
+    <ClCompile Include="date_input.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -16,7 +16,7 @@ void MovieManager::manageMovie(MovieManagerFunction function)
 		if (movie.getCode() != 0)
 		{
 			(CHECK_N_DELETE_MOVIE == function) ?
-				movie.modify(DELETE_MOVIE) : movie.modify(INSERT_MOVIE);
+				movie.modify(MODIFY_DELETE) : movie.modify(MODIFY_INSERT);
 		}
 		else
 		{
@@ -26,7 +26,8 @@ void MovieManager::manageMovie(MovieManagerFunction function)
 			case FUNCTION_CANCEL:
 				return;
 			case FUNCTION_SUCCESS:
-				switch (movie.choose())
+				cout << endl;
+				switch (movie.choose(MDF_THEATER))
 				{
 				case FUNCTION_NULL:
 					cout << "등록된 영화가 없습니다.\n";
@@ -37,13 +38,5 @@ void MovieManager::manageMovie(MovieManagerFunction function)
 				}
 			}
 		}
-
-		/*else if (FUNCTION_CANCEL 
-			== movie.choose(
-			((CHECK_N_DELETE_MOVIE == function) ? 
-				MOVIE_TABLE_INTERNAL : MOVIE_TABLE_EXTERNAL)))
-		{
-			return;
-		}*/
 	}
 }

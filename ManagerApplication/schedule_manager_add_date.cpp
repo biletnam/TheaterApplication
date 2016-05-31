@@ -2,28 +2,47 @@
 
 void ScheduleManager::addDate()
 {
+	Date date;
 	for (;;)
 	{
-		Date date;
-		inputDate(date);
+		system("cls");
+		cout <<
+			"극장 관리 시스템\n"
+			" > 상영 일정 관리\n"
+			"  > 상영일 추가\n";
 
-		SQLWCHAR saleInfoSql[BUFSIZ];
-		swprintf_s(saleInfoSql, L"SELECT * INTO d%d FROM sale_info;", date.getValue());
-
-		SQLWCHAR saleRecordSql[BUFSIZ];
-		swprintf_s(saleRecordSql, L"SELECT * INTO d%d FROM sales_record;", date.getValue());
-
-		date.bindParameter();
-		if (SQL_SUCCESS == date.execute(MDF_THEATER, L"INSERT INTO schedule (date) VALUES (?);")
-			&& SQL_SUCCESS == date.execute(MDF_SALE_INFO, saleInfoSql)
-			&& SQL_SUCCESS == date.execute(MDF_SALE_RECORD, saleRecordSql))
+		if (0 != date.getValue())
 		{
-			cout << "\n상영일이 추가되었습니다.\n";
+			cout << "\n추가할 날짜: \n";
+			date.show();
 		}
-		else
+
+		if(0 != date.getYear()
+			&& 0 != date.getMonth()
+			&& 0 != date.getDay())
 		{
-			cout << "\n오류가 발생했습니다.(addDate)\n";
+			SQLWCHAR saleInfoSql[BUFSIZ];
+			swprintf_s(saleInfoSql, L"SELECT * INTO d%d FROM sale_info;", date.getValue());
+
+			SQLWCHAR saleRecordSql[BUFSIZ];
+			swprintf_s(saleRecordSql, L"SELECT * INTO d%d FROM sales_record;", date.getValue());
+
+			date.bindParameter();
+			if (SQL_SUCCESS == date.execute(MDF_THEATER, L"INSERT INTO schedule (date) VALUES (?);")
+				&& SQL_SUCCESS == date.execute(MDF_SALE_INFO, saleInfoSql)
+				&& SQL_SUCCESS == date.execute(MDF_SALE_RECORD, saleRecordSql))
+			{
+				cout << "\n상영일이 추가되었습니다.\n";
+			}
+			else
+			{
+				cout << "\n오류가 발생했습니다.(addDate)\n";
+			}
+			system("pause");
 		}
-		system("pause");
+		else if (FUNCTION_CANCEL == date.input())
+		{
+			return;
+		}
 	}
 }

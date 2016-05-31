@@ -1,8 +1,8 @@
 #include "DB_helper.h"
 
-FNRETURN DBHelper::choose()
+FNRETURN DBHelper::choose(MdfEnum mdf)
 {
-	switch (showSelectResult())
+	switch (showSelectResult(mdf))
 	{
 	case FUNCTION_ERROR:
 		return FUNCTION_ERROR;
@@ -15,7 +15,7 @@ FNRETURN DBHelper::choose()
 			"\n"
 			"º±≈√: ";
 
-		switch (moveCursor(MDF_THEATER))
+		switch (moveCursor(mdf))
 		{
 		case FUNCTION_CANCEL:
 			return FUNCTION_CANCEL;

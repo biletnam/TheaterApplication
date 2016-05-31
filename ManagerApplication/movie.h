@@ -21,20 +21,12 @@ typedef enum
 	MOVIE_TABLE_EXTERNAL,
 } MovieTable;
 
-typedef enum
-{
-	DELETE_MOVIE,
-	INSERT_MOVIE,
-} ModifyMovieType;
-
 class Movie : public DBHelper
 {
 public:
 	FNRETURN search(MovieTable);
-	//FNRETURN choose(MovieTable);
-	FNRETURN modify(ModifyMovieType);
+	FNRETURN modify(ModifyType);
 	
-	//FNRETURN showSelectResult();
 	void show();
 	void showNullMessage();
 	void initialize();
@@ -54,6 +46,8 @@ private:
 	SQLSMALLINT age;
 	SQLSMALLINT year;
 	SQLSMALLINT runningTime;
+
+	SQLWCHAR keyword[BUFSIZ];
 };
 
 #endif // !MOVIE_H

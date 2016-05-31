@@ -1,13 +1,13 @@
 #include "DB_helper.h"
 
-FNRETURN DBHelper::showSelectResult()
+FNRETURN DBHelper::showSelectResult(MdfEnum mdf)
 {
-	if (SQL_SUCCESS == execute(MDF_THEATER))
+	if (SQL_SUCCESS == execute(mdf))
 	{
 		cout << endl;
 		for (size_t i = 1;; i++)
 		{
-			switch (fetch(MDF_THEATER))
+			switch (fetch(mdf))
 			{
 			case SQL_SUCCESS:
 				cout << i << ". ";

@@ -3,7 +3,6 @@
 FNRETURN Movie::search(MovieTable movieTable)
 {
 	cout << "영화 제목을 검색하세요(0을 입력하면 종료): ";
-	SQLWCHAR keyword[BUFSIZ];
 	setKeyword(keyword);
 	if (wcscmp(keyword, L"%0%") == 0)
 	{
