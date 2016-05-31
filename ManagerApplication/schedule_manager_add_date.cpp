@@ -13,32 +13,20 @@ void ScheduleManager::addDate()
 
 		if (0 != date.getValue())
 		{
-			cout << "\n추가할 날짜: \n";
+			cout << "\n추가할 날짜 정보: \n";
 			date.show();
 		}
 
-		if(0 != date.getYear()
-			&& 0 != date.getMonth()
-			&& 0 != date.getDay())
+		if (0 != date.get(DATE_YEAR)
+			&& 0 != date.get(DATE_MONTH)
+			&& 0 != date.get(DATE_DAY))
 		{
-			SQLWCHAR saleInfoSql[BUFSIZ];
-			swprintf_s(saleInfoSql, L"SELECT * INTO d%d FROM sale_info;", date.getValue());
-
-			SQLWCHAR saleRecordSql[BUFSIZ];
-			swprintf_s(saleRecordSql, L"SELECT * INTO d%d FROM sales_record;", date.getValue());
-
-			date.bindParameter();
-			if (SQL_SUCCESS == date.execute(MDF_THEATER, L"INSERT INTO schedule (date) VALUES (?);")
-				&& SQL_SUCCESS == date.execute(MDF_SALE_INFO, saleInfoSql)
-				&& SQL_SUCCESS == date.execute(MDF_SALE_RECORD, saleRecordSql))
+			switch (date.modify(MODIFY_INSERT))
 			{
-				cout << "\n상영일이 추가되었습니다.\n";
+			case FUNCTION_SUCCESS:
+			case FUNCTION_CANCEL:
+				date.initialize();
 			}
-			else
-			{
-				cout << "\n오류가 발생했습니다.(addDate)\n";
-			}
-			system("pause");
 		}
 		else if (FUNCTION_CANCEL == date.input())
 		{

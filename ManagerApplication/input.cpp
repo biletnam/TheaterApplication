@@ -23,7 +23,7 @@ FNRETURN inputPositiveInteger(int32_t &positiveInteger)
 	return FUNCTION_ERROR;
 }
 
-FNRETURN inputYN(char &yn)
+FNRETURN inputYN()
 {
 	char input[BUFSIZ];
 	cin >> input;
@@ -32,9 +32,10 @@ FNRETURN inputYN(char &yn)
 	{
 		switch (input[0])
 		{
-		case 'y': case 'Y':	case 'n': case 'N':
-			yn = input[0];
+		case 'y': case 'Y':
 			return FUNCTION_SUCCESS;
+		case 'n': case 'N':
+			return FUNCTION_CANCEL;
 		}
 	}
 

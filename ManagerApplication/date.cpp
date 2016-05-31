@@ -1,30 +1,40 @@
 #include "Date.h"
 
-bool Date::isLeapYear(const int16_t year)
+void Date::show()
 {
-	if ((0 == year % 4 && 0 != year % 100) || 0 == year % 400)
+	if (0 != get(DATE_YEAR))
 	{
-		return true;
+		cout << get(DATE_YEAR) << "³â ";
 	}
-	else
+
+	if (0 != get(DATE_MONTH))
 	{
-		return false;
+		cout << get(DATE_MONTH) << "¿ù ";
 	}
+
+	if (0 != get(DATE_DAY))
+	{
+		cout << get(DATE_DAY) << "ÀÏ";
+	}
+	cout << endl;
 }
 
-Date Date::getToday()
+SQLRETURN Date::bindCol()
 {
-	struct tm t;
-	time_t timer = time(NULL);
+	return DBHelper::bindCol(MDF_THEATER, BIND_INTEGER, &value);
+}
 
-	localtime_s(&t, &timer);
+SQLRETURN Date::bindParameter()
+{
+	return DBHelper::bindParameter(MDF_THEATER, BIND_INTEGER, &value);
+}
 
-	Date date;
-	/*date.setYear(t.tm_year - 100);	// year
-	date.setMonth(t.tm_mon + 1);	// month
-	date.setDay(t.tm_mday + 1);		// day*/
+SQLRETURN Date::prepare(SQLWCHAR *sql)
+{
+	return DBHelper::prepare(MDF_THEATER, sql);
+}
 
-	date.setValue(1);
-
-	return date;
+SQLRETURN Date::choose()
+{
+	return DBHelper::choose(MDF_THEATER);
 }

@@ -4,10 +4,10 @@ FNRETURN Schedule::chooseScreen()
 {
 	cout << "상영관 선택\n";
 	
-	screen.bindParameter(MDF_THEATER, SCREEN_NUMBER);
+	screen.bindCol(MDF_THEATER, SCREEN_NUMBER);
 	if (SQL_SUCCESS == execute(MDF_THEATER, L"SELECT number FROM screen;"))
 	{
-		for (int i = 1; SQL_SUCCESS; i++)
+		for (int i = 1;; i++)
 		{
 			switch (fetch(MDF_THEATER))
 			{
@@ -34,9 +34,7 @@ FNRETURN Schedule::chooseScreen()
 			}
 		}
 	}
-		
-	
-	
+			
 	cout << "오류가 발생했습니다.\n";
 	system("pause");
 

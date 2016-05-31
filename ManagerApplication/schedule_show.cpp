@@ -6,7 +6,6 @@ void Schedule::show()
 	{
 		cout << "³¯Â¥ ";
 		date.show();
-		cout << endl;
 	}
 
 	if (screen.getNumber() != 0)

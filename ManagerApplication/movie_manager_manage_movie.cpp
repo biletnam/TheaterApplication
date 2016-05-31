@@ -15,8 +15,15 @@ void MovieManager::manageMovie(MovieManagerFunction function)
 
 		if (movie.getCode() != 0)
 		{
-			(CHECK_N_DELETE_MOVIE == function) ?
-				movie.modify(MODIFY_DELETE) : movie.modify(MODIFY_INSERT);
+			cout << "선택한 영화 정보:\n";
+			movie.show();
+			switch (((CHECK_N_DELETE_MOVIE == function) ?
+				movie.modify(MODIFY_DELETE) : movie.modify(MODIFY_INSERT)))
+			{
+			case FUNCTION_SUCCESS:
+			case FUNCTION_CANCEL:
+				movie.initialize();
+			}
 		}
 		else
 		{
@@ -26,7 +33,6 @@ void MovieManager::manageMovie(MovieManagerFunction function)
 			case FUNCTION_CANCEL:
 				return;
 			case FUNCTION_SUCCESS:
-				cout << endl;
 				switch (movie.choose(MDF_THEATER))
 				{
 				case FUNCTION_NULL:

@@ -24,12 +24,11 @@ public:
 		SQLRETURN bindParameter(MdfEnum, TimeInfo);
 
 		void show();
+		void initialize();
 	private:
 		SQLSMALLINT startTime = 0;
 		SQLSMALLINT endTime = 0;
 	};
-
-	Schedule() {}
 
 	Movie movie;
 	Screen screen;
@@ -37,7 +36,7 @@ public:
 	Time time;
 	Price price;
 	
-	FNRETURN chooseDate();
+	FNRETURN choose();
 	FNRETURN chooseScreen();
 	FNRETURN chooseMovie();
 
@@ -45,10 +44,12 @@ public:
 	FNRETURN inputTime();
 	FNRETURN checkTime(const SQLSMALLINT);
 	
-	FNRETURN bindCol();
-	void del();
+	SQLRETURN bindCol();
+	SQLRETURN del();
+	SQLRETURN prepare(SQLWCHAR *);
 
 	void show();
+	void initialize();
 private:
 };
 

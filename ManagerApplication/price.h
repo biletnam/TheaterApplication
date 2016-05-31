@@ -21,6 +21,7 @@ public:
 	void setName(SQLCHAR *);
 	void setWon(SQLSMALLINT);
 
+	void initialize();
 	void show();
 	FNRETURN choose();
 
@@ -34,8 +35,8 @@ public:
 
 private:
 	SQLINTEGER code = 0;
-	SQLCHAR name[BUFSIZ] = { 0 };
-	SQLINTEGER won = 0;
+	SQLCHAR name[BUFSIZ];
+	SQLINTEGER won;
 };
 
 #endif // !PRICE_H

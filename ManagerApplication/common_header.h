@@ -12,4 +12,4 @@ typedef enum FUNCTION_RETURN
 } FNRETURN;
 
 FNRETURN inputPositiveInteger(int32_t &);
-FNRETURN inputYN(char &);
+FNRETURN inputYN();

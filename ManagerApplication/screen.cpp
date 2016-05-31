@@ -15,6 +15,21 @@ void Screen::show()
 	cout << "»ó¿µ°ü " << number << endl;
 }
 
+void Screen::initialize()
+{
+	number = 0;
+}
+
+FNRETURN Screen::choose()
+{
+	return DBHelper::choose(MDF_THEATER);
+}
+
+SQLRETURN Screen::prepare(SQLWCHAR *sql)
+{
+	return DBHelper::prepare(MDF_THEATER, sql);
+}
+
 SQLRETURN Screen::bindCol(MdfEnum mdf, ScreenInfo screenInfo)
 {
 	switch (screenInfo)

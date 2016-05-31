@@ -14,7 +14,6 @@ private:
 	void checkAndModifySchedule();
 	void registerSchedule();
 	
-	FNRETURN inputDate(Date &);
 	void registerPrice(Schedule &);
 	void checkAndDeletePrice(Schedule &);
 	void modifySchedule(Schedule &);

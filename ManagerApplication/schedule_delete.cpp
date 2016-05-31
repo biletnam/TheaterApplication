@@ -1,6 +1,6 @@
 #include "schedule.h"
 
-void Schedule::del()
+SQLRETURN Schedule::del()
 {
 	SQLWCHAR saleInfoSql[BUFSIZ];
 	swprintf_s(saleInfoSql,	
@@ -25,4 +25,6 @@ void Schedule::del()
 		cout << "오류가 발생했습니다.\n";
 	}
 	system("pause");
+
+	return SQLRETURN();
 }

@@ -25,7 +25,8 @@ class Movie : public DBHelper
 {
 public:
 	FNRETURN search(MovieTable);
-	FNRETURN modify(ModifyType);
+	SQLRETURN del();
+	SQLRETURN insert();
 	
 	void show();
 	void showNullMessage();

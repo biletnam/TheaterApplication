@@ -2,44 +2,50 @@
 
 void ScheduleManager::checkAndModifySchedule()
 {
+	Schedule schedule;
 	for (;;)
 	{
-		Schedule schedule;
+		system("cls");
+		cout <<
+			"극장 관리 시스템\n"
+			" > 상영 일정 관리\n"
+			"  > 상영 일정 확인 / 수정\n";
 
-		for (;;)
+		if (0 != schedule.screen.getNumber()
+			|| 0 != schedule.date.getValue())
 		{
-			system("cls");
-			cout <<
-				"극장 관리 시스템\n"
-				" > 상영 일정 관리\n"
-				"  > 상영 일정 확인 / 수정\n\n"
-
-				"상영 일정 정보\n";
+			cout << "\n상영 일정 정보\n";
 			schedule.show();
-			cout << endl;
-
-			if (schedule.screen.getNumber() != 0)
+		}
+				
+		if (0 == schedule.date.getValue())
+		{
+			cout << "\n상영일 선택";
+			Date::getToday().bindParameter();
+			schedule.date.bindCol();
+			schedule.date.prepare(L"SELECT date FROM schedule WHERE date>?;");
+			switch (schedule.date.choose())
 			{
-				break;
+			case FUNCTION_CANCEL:
+			case FUNCTION_ERROR:
+			case FUNCTION_NULL:
+				return;
 			}
-			else if (schedule.date.getValue() == 0)
+			continue;
+		}
+		else if (0 == schedule.screen.getNumber())
+		{
+			cout << "\n상영관 선택\n";
+			schedule.screen.bindCol(MDF_THEATER, SCREEN_NUMBER);
+			schedule.screen.prepare(L"SELECT number FROM screen;");
+			switch (schedule.screen.choose())
 			{
-				switch (schedule.chooseDate())
-				{
-				case FUNCTION_CANCEL:
-				case FUNCTION_NULL:
-					return;
-				}
+			case FUNCTION_NULL:
+				return;
+			case FUNCTION_CANCEL:
+				schedule.date.initialize();
 			}
-			else
-			{
-				switch (schedule.chooseScreen())
-				{
-				case FUNCTION_CANCEL:
-				case FUNCTION_NULL:
-					schedule.date.setValue(0);
-				}
-			}
+			continue;
 		}
 
 		SQLWCHAR sql[BUFSIZ];
@@ -50,50 +56,20 @@ void ScheduleManager::checkAndModifySchedule()
 			"ORDER BY start_time ASC;",
 			schedule.date.getValue(), schedule.screen.getNumber());
 
-		SQLHSTMT &stmt = schedule.getStmt(MDF_SALE_INFO);
-		SQLCancel(stmt);
 		schedule.bindCol();
-		SQLRETURN ret = SQLExecDirect(stmt, sql, SQL_NTS);
-		
-		if (SQL_SUCCESS != ret)
+		SQLRETURN ret = schedule.prepare(sql);
+
+		switch (schedule.choose())
 		{
-			cout << "오류가 발생했습니다(checkSchedule).\n";
-			system("pause");
+		case FUNCTION_CANCEL:
 			return;
-		}
-
-		for (size_t i = 1; ret == SQL_SUCCESS; i++)
-		{
-			switch (ret = SQLFetch(stmt))
-			{
-			case SQL_SUCCESS:
-				cout << i << ". ";
-				schedule.show();
-				break;
-			case SQL_NO_DATA:
-				if (i == 1)
-				{
-					cout << "등록된 상영 일정이 없습니다\n";
-					system("pause");
-					return;
-				}
-
-				cout << 
-					"0. 종료\n"
-					"\n"
-					"수정할 상영 일정을 선택하세요: ";
-				switch (schedule.moveCursor(MDF_SALE_INFO))
-				{
-				case FUNCTION_CANCEL:
-					return;
-				case FUNCTION_SUCCESS:
-					modifySchedule(schedule);
-					break;
-				default:
-					cout << "오류가 발생했습니다(checkSchedule).\n";
-					system("pause");
-				}
-			}
+		case FUNCTION_SUCCESS:
+			modifySchedule(schedule);
+			break;
+		case FUNCTION_ERROR:
+		case FUNCTION_NULL:
+		default:
+			schedule.initialize();
 		}
 	}
 }

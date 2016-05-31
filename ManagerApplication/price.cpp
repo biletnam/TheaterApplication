@@ -70,6 +70,11 @@ void Price::setWon(SQLSMALLINT wond)
 	this->won = won;
 }
 
+void Price::initialize()
+{
+	code = 0;
+}
+
 void Price::show()
 {
 	cout << name << "(" << code << ") " << won << "¿ø\n";

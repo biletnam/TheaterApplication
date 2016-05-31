@@ -4,12 +4,10 @@ FNRETURN DBHelper::choose(MdfEnum mdf)
 {
 	switch (showSelectResult(mdf))
 	{
-	case FUNCTION_ERROR:
-		return FUNCTION_ERROR;
 	case FUNCTION_NULL:
 		return FUNCTION_NULL;
 	case FUNCTION_SUCCESS:
-	default:
+		initialize();
 		cout <<
 			"0. Ãë¼Ò\n"
 			"\n"
@@ -19,9 +17,10 @@ FNRETURN DBHelper::choose(MdfEnum mdf)
 		{
 		case FUNCTION_CANCEL:
 			return FUNCTION_CANCEL;
-		case FUNCTION_ERROR:
-			return FUNCTION_ERROR;
 		}
 		return FUNCTION_SUCCESS;
 	}
+
+	initialize();
+	return FUNCTION_ERROR;
 }

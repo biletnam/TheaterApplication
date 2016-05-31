@@ -38,7 +38,10 @@ public:
 
 	FNRETURN showSelectResult(MdfEnum);
 	FNRETURN choose(MdfEnum);
-	
+	FNRETURN modify(ModifyType);
+	virtual SQLRETURN del() { return SQLRETURN(); }
+	virtual SQLRETURN insert() { return SQLRETURN(); }
+	virtual void initialize() = 0;
 
 	SQLRETURN bindCol(MdfEnum, BindType, void *);
 	SQLRETURN bindParameter(MdfEnum, BindType, void *);

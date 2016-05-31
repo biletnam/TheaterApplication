@@ -2,34 +2,31 @@
 
 FNRETURN Date::input()
 {
-	if (0 == getYear())
+	if (0 == get(DATE_YEAR))
 	{
 		return input(DATE_YEAR);
 	}
-	else if (0 == getMonth())
+	else if (0 == get(DATE_MONTH))
 	{
 		switch (input(DATE_MONTH))
 		{
 		case FUNCTION_CANCEL:
-			setYear(0);
+			set(DATE_YEAR, 0);
 		case FUNCTION_SUCCESS:
 			return FUNCTION_SUCCESS;
-		case FUNCTION_ERROR:
-			return FUNCTION_ERROR;
 		}
 	}
-	else if (0 == getDay())
+	else if (0 == get(DATE_DAY))
 	{
 		switch (input(DATE_DAY))
 		{
 		case FUNCTION_CANCEL:
-			setMonth(0);
+			set(DATE_MONTH, 0);
 		case FUNCTION_SUCCESS:
 			return FUNCTION_SUCCESS;
-		case FUNCTION_ERROR:
-			return FUNCTION_ERROR;
 		}
 	}
+	return FUNCTION_ERROR;
 }
 
 FNRETURN Date::input(DateType type)
@@ -54,7 +51,10 @@ FNRETURN Date::input(DateType type)
 		{
 			return FUNCTION_SUCCESS;
 		}
+	case FUNCTION_CANCEL:
+		return FUNCTION_CANCEL;
 	case FUNCTION_ERROR:
+	default:
 		cout << "\n잘못된 입력입니다."; 
 		switch (type)
 		{
@@ -69,7 +69,5 @@ FNRETURN Date::input(DateType type)
 		}
 		system("pause");
 		return FUNCTION_ERROR;
-	case FUNCTION_CANCEL:
-		return FUNCTION_CANCEL;
 	}
 }

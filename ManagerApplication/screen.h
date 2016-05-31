@@ -16,7 +16,11 @@ public:
 	SQLSMALLINT getNumber() const;
 	void setNumber(SQLSMALLINT);
 	void show();
+	void initialize();
 
+	FNRETURN choose();
+	
+	SQLRETURN prepare(SQLWCHAR *);
 	SQLRETURN bindCol(MdfEnum, ScreenInfo);
 	SQLRETURN bindParameter(MdfEnum, ScreenInfo);
 private:

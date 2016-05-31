@@ -44,7 +44,7 @@ FNRETURN ScheduleManager::setSchedule(Schedule & schedule)
 				schedule.chooseScreen();
 				continue;
 			case CHOOSE_DATE:
-				schedule.chooseDate();
+				schedule.date.choose();
 				continue;
 			case CHOOSE_MOVIE:
 				schedule.chooseMovie();
