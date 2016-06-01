@@ -23,7 +23,7 @@ void ScheduleManager::checkAndModifySchedule()
 			cout << "\n상영일 선택";
 			Date::getToday().bindParameter();
 			SQLRETURN ret = schedule.date.bindCol();
-			schedule.date.prepare(L"SELECT date FROM schedule WHERE date>?;");
+			schedule.date.prepare(L"SELECT date FROM date WHERE date_value>?;");
 			switch (schedule.date.choose())
 			{
 			case FUNCTION_NULL:
@@ -54,14 +54,17 @@ void ScheduleManager::checkAndModifySchedule()
 
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
-			"SELECT movie_code, movie_title, age, start_time, end_time "
+			"SELECT movie_code, movie_title, age, start_time, end_time, id "
 			"FROM d%d "
-			"WHERE screen=%d "
+			"WHERE screen=? "
 			"ORDER BY start_time ASC;",
-			schedule.date.getValue(), schedule.screen.getNumber());
+			schedule.date.getValue());
 
+		schedule.screen.bindParameter(MDF_SCHEDULE, SCREEN_NUMBER);
 		schedule.bindCol();
-		SQLRETURN ret = schedule.prepare(sql);
+		SQLINTEGER id;
+		schedule.DBHelper::bindCol(MDF_SCHEDULE, BIND_INTEGER, &id);
+		schedule.prepare(sql);
 
 		switch (schedule.choose())
 		{

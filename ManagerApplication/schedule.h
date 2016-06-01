@@ -4,7 +4,6 @@
 #include "movie.h"
 #include "screen.h"
 #include "Date.h"
-#include "price.h"
 
 enum TimeInfo
 {
@@ -34,7 +33,6 @@ public:
 	Screen screen;
 	Date date;
 	Time time;
-	Price price;
 	
 	FNRETURN choose();
 	FNRETURN chooseScreen();

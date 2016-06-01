@@ -7,13 +7,8 @@ class MovieManager {
 public:
 	MovieManager();
 private:
-	typedef enum
-	{
-		CHECK_N_DELETE_MOVIE = 1,
-		REGISTER_MOVIE,
-	} MovieManagerFunction;
-
-	void manageMovie(MovieManagerFunction);
+	void checkAndDeleteMovie();
+	void registereMovie();
 	void showRecent();
 };
 

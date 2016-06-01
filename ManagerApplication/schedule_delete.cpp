@@ -6,7 +6,7 @@ SQLRETURN Schedule::del()
 	swprintf_s(saleInfoSql,	
 		L"DELETE FROM d%d WHERE movie_code=? AND screen=? AND start_time=?;", 
 		date.getValue());
-	movie.bindParameter(MDF_SALE_INFO, MOVIE_CODE);
+	movie.bindParameter(MDF_SCHEDULE, MOVIE_CODE);
 	screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
 	time.bindParameter(MDF_SALE_INFO, START_TIME);
 

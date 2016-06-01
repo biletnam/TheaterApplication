@@ -196,18 +196,16 @@
     <ClCompile Include="date_set.cpp" />
     <ClCompile Include="date_get.cpp" />
     <ClCompile Include="movie_search.cpp" />
-    <ClCompile Include="movie_modify.cpp" />
     <ClCompile Include="time_bind.cpp" />
     <ClCompile Include="_schedule_input_time.cpp" />
-    <ClCompile Include="movie_manager_manage_movie.cpp" />
     <ClCompile Include="DB_helper_show.cpp" />
     <ClCompile Include="DB_helper_choose.cpp" />
-    <ClCompile Include="date_modify.cpp" />
     <ClCompile Include="date_input.cpp" />
-    <ClCompile Include="DB_helper_modify.cpp" />
     <ClCompile Include="schedule.cpp" />
     <ClCompile Include="price_get.cpp" />
     <ClCompile Include="price_set.cpp" />
+    <ClCompile Include="movie_manager_register_movie.cpp" />
+    <ClCompile Include="movie_manager_check_n_delete_movie.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

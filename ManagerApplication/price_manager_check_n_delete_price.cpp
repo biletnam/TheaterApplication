@@ -13,7 +13,7 @@ void PriceManager::checkAndDeletePrice()
 		Price price;
 		SQLHSTMT &stmt = price.getStmt(MDF_THEATER);
 		SQLCancel(stmt);
-		price.bindCol(stmt);
+		price.bindCol(MDF_THEATER);
 		SQLRETURN ret = SQLExecDirect(stmt, L"SELECT code, name, won FROM price;", SQL_NTS);
 
 		for (size_t i = 1; SQL_SUCCESS == ret; i++)

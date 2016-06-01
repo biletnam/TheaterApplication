@@ -1,10 +1,5 @@
 #include "schedule.h"
 
-FNRETURN Schedule::insertPrice()
-{
-	return FNRETURN();
-}
-
 FNRETURN Schedule::inputTime(const SQLSMALLINT time)
 {
 	/*cin >> time;

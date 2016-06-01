@@ -2,6 +2,12 @@
 
 MovieManager::MovieManager()
 {
+	enum MovieManagerFunction
+	{
+		CHECK_N_DELETE_MOVIE = 1,
+		REGISTER_MOVIE,
+	};
+
 	for (;;)
 	{
 		system("cls");
@@ -29,16 +35,15 @@ MovieManager::MovieManager()
 			switch (function)
 			{
 			case CHECK_N_DELETE_MOVIE:
-				manageMovie(CHECK_N_DELETE_MOVIE);
+				checkAndDeleteMovie();
 				continue;
 			case REGISTER_MOVIE:
-				manageMovie(REGISTER_MOVIE);
+				registereMovie();
 				continue;
 			}
 		case FUNCTION_ERROR:
 			cout << "잘못된 입력입니다.\n";
 			system("pause");
 		}
-		
 	}
 }

@@ -14,8 +14,6 @@ class Date : public DBHelper{
 public:
 	void show();
 	void initialize() { value = 0; }
-	SQLRETURN del();
-	SQLRETURN insert();
 	SQLRETURN prepare(SQLWCHAR *);
 	SQLRETURN choose();
 
@@ -28,7 +26,6 @@ public:
 	static Date getToday();
 
 	FNRETURN set(DateType, const int16_t);
-	
 
 	SQLRETURN bindCol();
 	SQLRETURN bindParameter();

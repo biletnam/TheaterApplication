@@ -16,7 +16,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 	Price price;
 	SQLHSTMT &theaterStmt = price.getStmt(MDF_THEATER);
 	SQLCancel(theaterStmt);
-	price.bindCol(theaterStmt);
+	price.bindCol(MDF_THEATER);
 	SQLRETURN ret = SQLExecDirect(theaterStmt, L"SELECT code, name, won FROM price;", SQL_NTS);
 	if (ret != SQL_SUCCESS)
 	{

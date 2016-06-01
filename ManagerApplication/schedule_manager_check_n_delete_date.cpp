@@ -15,9 +15,32 @@ void ScheduleManager::checkAndDeleteDate()
 		{
 			cout << "\n선택한 날짜 정보:\n";
 			date.show();
-			switch (date.modify(MODIFY_DELETE))
+
+			cout << "\n삭제하시겠습니까?(y/n): ";
+			switch (inputYN())
 			{
+			case FUNCTION_ERROR:
+				cout << "\n잘못된 입력입니다.\n";
+				system("pause");
+				break;
 			case FUNCTION_SUCCESS:
+				date.bindParameter();
+				SQLWCHAR sql[BUFSIZ];
+				swprintf_s(sql, L"DROP TABLE d%d;", date.getValue());
+				if (SQL_SUCCESS == date.execute(MDF_THEATER, L"DELETE FROM schedule WHERE date=?;")
+					&& SQL_SUCCESS == date.execute(MDF_SCHEDULE, sql)
+					&& SQL_SUCCESS == date.execute(MDF_SALE_INFO, sql)
+					&& SQL_SUCCESS == date.execute(MDF_SALE_RECORD, sql))
+				{
+					cout << "\n삭제되었습니다.\n";
+					system("pause");
+				}
+				else
+				{
+					cout << "\n오류가 발생했습니다.(checkAndDeleteDate)\n";
+					system("pause");
+					break;
+				}
 			case FUNCTION_CANCEL:
 				date.initialize();
 			}
@@ -25,7 +48,7 @@ void ScheduleManager::checkAndDeleteDate()
 		else
 		{
 			Date::getToday().bindParameter();
-			if (SQL_SUCCESS != date.prepare(L"SELECT date FROM schedule WHERE date>?;"))
+			if (SQL_SUCCESS != date.prepare(L"SELECT date FROM date WHERE date_value>?;"))
 			{
 				cout << "\n오류가 발생했습니다(checkSchedule).\n";
 				system("pause");

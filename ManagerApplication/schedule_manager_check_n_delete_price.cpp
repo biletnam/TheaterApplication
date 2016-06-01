@@ -26,7 +26,8 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 		schedule.screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
 
 		SQLINTEGER id;	// sale_info id
-		schedule.price.bindCol(MDF_SALE_INFO);
+		Price price;
+		price.bindCol(MDF_SALE_INFO);
 		schedule.DBHelper::bindCol(MDF_SALE_INFO, BIND_INTEGER, &id);
 		//SQLBindCol(stmt, 4, SQL_INTEGER, &id, sizeof id, NULL);
 
@@ -55,7 +56,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 			switch (schedule.fetch(MDF_SALE_INFO))
 			{
 			case SQL_SUCCESS:
-				schedule.price.show();
+				price.show();
 			case SQL_NO_DATA:
 				if (i == 1)		// 등록된 가격이 없을 때
 				{
@@ -68,7 +69,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 					"0. 취소\n"
 					"\n"
 					"삭제할 가격을 선택하세요";
-				switch (schedule.price.moveCursor(MDF_SALE_INFO))
+				switch (price.moveCursor(MDF_SALE_INFO))
 				{
 				case FUNCTION_CANCEL:	// 종료
 					return;

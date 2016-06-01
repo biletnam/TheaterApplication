@@ -2,11 +2,11 @@
 
 SQLRETURN Schedule::prepare(SQLWCHAR *sql)
 {
-	return DBHelper::prepare(MDF_SALE_INFO, sql);
+	return DBHelper::prepare(MDF_SCHEDULE, sql);
 }
 FNRETURN Schedule::choose()
 {
-	return DBHelper::choose(MDF_SALE_INFO);
+	return DBHelper::choose(MDF_SCHEDULE);
 }
 
 void Schedule::initialize()
@@ -15,5 +15,4 @@ void Schedule::initialize()
 	screen.initialize();
 	date.initialize();
 	time.initialize();
-	price.initialize();
 }
