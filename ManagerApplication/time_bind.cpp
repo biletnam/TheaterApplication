@@ -5,10 +5,10 @@ SQLRETURN Schedule::Time::bindCol(MdfEnum mdf, TimeInfo timeInfo)
 	switch (timeInfo)
 	{
 	case START_TIME:
-		return DBHelper::bindCol(MDF_THEATER, BIND_INTEGER, &startTime);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &startTime);
 	case END_TIME:
 	default:
-		return DBHelper::bindCol(MDF_THEATER, BIND_INTEGER, &endTime);
+		return DBHelper::bindCol(mdf, BIND_INTEGER, &endTime);
 	}
 }
 

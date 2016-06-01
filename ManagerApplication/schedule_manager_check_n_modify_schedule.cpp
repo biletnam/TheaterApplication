@@ -22,13 +22,15 @@ void ScheduleManager::checkAndModifySchedule()
 		{
 			cout << "\n상영일 선택";
 			Date::getToday().bindParameter();
-			schedule.date.bindCol();
+			SQLRETURN ret = schedule.date.bindCol();
 			schedule.date.prepare(L"SELECT date FROM schedule WHERE date>?;");
 			switch (schedule.date.choose())
 			{
+			case FUNCTION_NULL:
+				cout << "\n등록된 상영 예정일이 없습니다.\n";
+				system("pause");
 			case FUNCTION_CANCEL:
 			case FUNCTION_ERROR:
-			case FUNCTION_NULL:
 				return;
 			}
 			continue;
@@ -41,6 +43,8 @@ void ScheduleManager::checkAndModifySchedule()
 			switch (schedule.screen.choose())
 			{
 			case FUNCTION_NULL:
+				cout << "\n등록된 가격 정보가 없습니다.\n";
+				system("pause");
 				return;
 			case FUNCTION_CANCEL:
 				schedule.date.initialize();
@@ -66,8 +70,10 @@ void ScheduleManager::checkAndModifySchedule()
 		case FUNCTION_SUCCESS:
 			modifySchedule(schedule);
 			break;
-		case FUNCTION_ERROR:
 		case FUNCTION_NULL:
+			cout << "등록된 상영 일정이 없습니다\n";
+			system("pause");
+		case FUNCTION_ERROR:
 		default:
 			schedule.initialize();
 		}

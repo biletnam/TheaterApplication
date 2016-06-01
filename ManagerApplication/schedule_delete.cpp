@@ -13,18 +13,14 @@ SQLRETURN Schedule::del()
 	SQLWCHAR seatSql[BUFSIZ];
 	swprintf_s(seatSql, L"DROP TABLE d%ds%dt%d;", date.getValue(), screen.getNumber(), time.getStartTime());
 
-	SQLCancel(DBHelper::getStmt(MDF_SALE_INFO));
-	SQLCancel(DBHelper::getStmt(MDF_SEAT));
-	if (SQLExecDirect(DBHelper::getStmt(MDF_SALE_INFO), saleInfoSql, SQL_NTS) == SQL_SUCCESS
-		&& SQLExecDirect(DBHelper::getStmt(MDF_SEAT), seatSql, SQL_NTS) == SQL_SUCCESS)
+	// return 값 확인해야 함
+	if (SQL_SUCCESS == execute(MDF_SALE_INFO, saleInfoSql)
+		&& SQL_SUCCESS == execute(MDF_SEAT, seatSql) )
 	{
-		cout << "삭제되었습니다.\n";
+		return SQL_SUCCESS;
 	}
 	else
 	{
-		cout << "오류가 발생했습니다.\n";
+		return SQL_ERROR;
 	}
-	system("pause");
-
-	return SQLRETURN();
 }

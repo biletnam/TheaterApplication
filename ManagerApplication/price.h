@@ -23,13 +23,12 @@ public:
 
 	void initialize();
 	void show();
-	FNRETURN choose();
 
 	FNRETURN inputCode();
 	FNRETURN inputName();
 	FNRETURN inputWon();
 
-	FNRETURN bindCol(SQLHSTMT &);
+	SQLRETURN bindCol(MdfEnum);
 	SQLRETURN bindCol(MdfEnum, PriceInfo);
 	SQLRETURN bindParameter(MdfEnum, PriceInfo);
 

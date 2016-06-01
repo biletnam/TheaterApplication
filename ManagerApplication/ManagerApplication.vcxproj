@@ -166,6 +166,7 @@
     <ClCompile Include="manager_application.cpp" />
     <ClCompile Include="movie.cpp" />
     <ClCompile Include="movie_manager.cpp" />
+    <ClCompile Include="price_bind.cpp" />
     <ClCompile Include="price_manager.cpp" />
     <ClCompile Include="time.cpp" />
     <ClCompile Include="schedule_delete.cpp" />
@@ -175,7 +176,6 @@
     <ClCompile Include="movie_show.cpp" />
     <ClCompile Include="schedule_manager_set_schedule.cpp" />
     <ClCompile Include="screen.cpp" />
-    <ClCompile Include="_price_choose.cpp" />
     <ClCompile Include="schedule_bind_col.cpp" />
     <ClCompile Include="schedule_choose_movie.cpp" />
     <ClCompile Include="schedule_choose_screen.cpp" />
@@ -206,6 +206,8 @@
     <ClCompile Include="date_input.cpp" />
     <ClCompile Include="DB_helper_modify.cpp" />
     <ClCompile Include="schedule.cpp" />
+    <ClCompile Include="price_get.cpp" />
+    <ClCompile Include="price_set.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
