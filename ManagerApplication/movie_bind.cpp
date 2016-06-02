@@ -32,8 +32,9 @@ SQLRETURN Movie::bindCol(MdfEnum mdf, MovieInfo info)
 	case MOVIE_YEAR:
 		return DBHelper::bindCol(mdf, BIND_INTEGER, &year);
 	case MOVIE_RUNNINGTIME:
-	default:
 		return DBHelper::bindCol(mdf, BIND_INTEGER, &runningTime);
+	default:
+		return SQL_ERROR;
 	}
 }
 
@@ -52,27 +53,8 @@ SQLRETURN Movie::bindParameter(MdfEnum mdf, MovieInfo info)
 	case MOVIE_YEAR:
 		return DBHelper::bindParameter(mdf, BIND_INTEGER, &year);
 	case MOVIE_RUNNINGTIME:
-	default:
 		return DBHelper::bindParameter(mdf, BIND_INTEGER, &runningTime);
-	}
-}
-
-SQLRETURN Movie::getData(MdfEnum mdf, SQLUSMALLINT column, MovieInfo info)
-{
-	switch (info)
-	{
-	case MOVIE_CODE:
-		return DBHelper::getData(mdf, column, BIND_INTEGER, &code);
-	case MOVIE_TITLE:
-		return DBHelper::getData(mdf, column, BIND_STRING, title);
-	case MOVIE_DIRECTOR:
-		return DBHelper::getData(mdf, column, BIND_STRING, director);
-	case MOVIE_AGE:
-		return DBHelper::getData(mdf, column, BIND_INTEGER, &age);
-	case MOVIE_YEAR:
-		return DBHelper::getData(mdf, column, BIND_INTEGER, &year);
-	case MOVIE_RUNNINGTIME:
 	default:
-		return DBHelper::getData(mdf, column, BIND_INTEGER, &runningTime);
+		return SQL_ERROR;
 	}
 }

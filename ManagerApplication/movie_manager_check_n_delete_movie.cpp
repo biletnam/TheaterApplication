@@ -2,8 +2,7 @@
 
 void MovieManager::checkAndDeleteMovie()
 {
-	Movie movie;
-	for (;;)
+	for (Movie movie;;)
 	{
 		system("cls");
 		cout <<
@@ -12,7 +11,7 @@ void MovieManager::checkAndDeleteMovie()
 			"  > 등록한 영화 확인 / 삭제\n";
 		cout << endl;
 
-		if (movie.getCode() != 0)
+		if (0 < movie.getCode())
 		{
 			cout << "선택한 영화 정보:\n";
 			movie.show();
@@ -56,7 +55,7 @@ void MovieManager::checkAndDeleteMovie()
 					system("pause");
 				case FUNCTION_CANCEL:
 				case FUNCTION_ERROR:
-					movie.initialize();
+					break;
 				}
 			}
 		}

@@ -37,7 +37,6 @@ public:
 	SQLRETURN bindCol();
 	SQLRETURN bindCol(MdfEnum, MovieInfo);
 	SQLRETURN bindParameter(MdfEnum, MovieInfo);
-	SQLRETURN getData(MdfEnum, SQLUSMALLINT, MovieInfo);
 private:
 	SQLINTEGER code = 0;
 	SQLCHAR title[BUFSIZ];

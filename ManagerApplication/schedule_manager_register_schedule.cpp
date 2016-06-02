@@ -12,8 +12,7 @@ void ScheduleManager::registerSchedule()
 		REGISTER_SCHEDULE,
 	};
 
-	Schedule schedule;
-	for (;;)
+	for (Schedule schedule;;)
 	{
 		system("cls");
 		cout <<

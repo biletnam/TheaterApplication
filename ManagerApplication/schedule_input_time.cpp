@@ -68,7 +68,7 @@ bool Schedule::isPossibleTime(SQLINTEGER time)
 	SQLWCHAR sql[BUFSIZ];
 	swprintf_s(sql, L""
 		"SELECT * FROM d%d "
-		"WHERE screen = %d AND start_time <= %d AND end_time >= %d;",
+		"WHERE screen=%d AND start_time <= %d AND end_time >= %d;",
 		date.getValue(), screen.getNumber(), time, time);
 	execute(MDF_SCHEDULE, sql);
 	

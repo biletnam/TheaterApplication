@@ -24,7 +24,6 @@ private:
 	void setScreen(Screen &);
 	void setMovie(Movie &);
 	void setTime(Schedule &);
-public:
 };
 
 #endif // !SCHEDULE_MANAGE_H

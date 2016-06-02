@@ -2,8 +2,7 @@
 
 void ScheduleManager::registerPrice(Schedule &schedule)
 {
-	Price price;
-	for (;;)
+	for (Price price;;)
 	{
 		system("cls");
 		cout <<
@@ -21,7 +20,7 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 			cout << "\n선택한 가격 정보\n";
 			price.show();
 
-			cout << "\n삭제하시겠습니까?(y/n): ";
+			cout << "\n등록하시겠습니까?(y/n): ";
 			switch (inputYN())
 			{
 			case FUNCTION_ERROR:
@@ -34,8 +33,8 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 					"INSERT INTO d%d "
 					"(schedule_id, price_code, price_name, price_won) "
 					"VALUES (%d, ?, ?, ?);", schedule.date.getValue(), schedule.getId());
-				price.bindCol(MDF_PRICE);
-				if (SQL_SUCCESS == price.execute(MDF_PRICE, sql))
+				if (SQL_SUCCESS == price.bindCol(MDF_PRICE)
+					&& SQL_SUCCESS == price.execute(MDF_PRICE, sql))
 				{
 					cout << "\n등록되었습니다.\n";
 					system("pause");
@@ -52,8 +51,9 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 		}
 		else
 		{
-			price.bindCol(MDF_THEATER);
-			if (price.execute(MDF_THEATER, L"SELECT code, name, won FROM price;"))
+			
+			if (SQL_SUCCESS != price.bindCol(MDF_THEATER)
+				|| SQL_SUCCESS != price.prepare(MDF_THEATER, L"SELECT code, name, won FROM price;"))
 			{
 				cout << "오류가 발생했습니다.(registerPrice)\n";
 				system("pause");
@@ -67,8 +67,9 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 				system("pause");
 			case FUNCTION_CANCEL:
 				return;
-				//case FUNCTION_SUCCESS:
-				//case FUNCTION_ERROR:
+			case FUNCTION_SUCCESS:
+			case FUNCTION_ERROR:
+				break;
 			}
 		}
 	}

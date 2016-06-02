@@ -58,7 +58,7 @@ void MovieManager::registereMovie()
 					system("pause");
 				case FUNCTION_CANCEL:
 				case FUNCTION_ERROR:
-					movie.initialize();
+					break;
 				}
 			}
 		}

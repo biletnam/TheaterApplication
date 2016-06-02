@@ -23,23 +23,19 @@ typedef enum
 	BIND_STRING,
 } BindType;
 
-typedef enum 
-{
-	MODIFY_INSERT,
-	MODIFY_DELETE,
-} ModifyType;
-
 class DBHelper
 {
 public:
-	virtual void show() = 0;
-
 	static FNRETURN connectDB();
 	static void closeDB();
 
 	FNRETURN showSelectResult(MdfEnum);
 	FNRETURN choose(MdfEnum);
+	FNRETURN moveCursor(MdfEnum);
+
+	virtual void show() = 0;
 	virtual void initialize() = 0;
+	void initializeBindCnt(MdfEnum);
 
 	SQLRETURN bindCol(MdfEnum, BindType, void *);
 	SQLRETURN bindParameter(MdfEnum, BindType, void *);
@@ -47,11 +43,6 @@ public:
 	SQLRETURN prepare(MdfEnum, SQLWCHAR *);
 	SQLRETURN fetch(MdfEnum);
 	SQLRETURN cancel(MdfEnum);
-	SQLRETURN getData(MdfEnum, SQLUSMALLINT, BindType, void *);
-	void initializeBindCnt(MdfEnum);
-	
-	FNRETURN moveCursor(MdfEnum);
-	SQLHSTMT &getStmt(MdfEnum);
 private:
 	static SQLUSMALLINT bindColCnt[MDF_COUNT];
 	static SQLUSMALLINT bindParameterCnt[MDF_COUNT];

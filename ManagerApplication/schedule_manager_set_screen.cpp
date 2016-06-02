@@ -12,7 +12,7 @@ void ScheduleManager::setScreen(Screen &screen)
 			"   > 상영관 설정\n"
 			"\n";
 
-		switch (screen.choose())
+		switch (screen.choose(MDF_THEATER))
 		{
 		case FUNCTION_ERROR:
 			cout << "잘못된 입력입니다.";

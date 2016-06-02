@@ -174,14 +174,11 @@
     <ClCompile Include="movie_show.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="schedule_bind.cpp" />
-    <ClCompile Include="schedule_choose_movie.cpp" />
-    <ClCompile Include="schedule_choose_screen.cpp" />
     <ClCompile Include="schedule_manager.cpp" />
     <ClCompile Include="schedule_manager_add_date.cpp" />
     <ClCompile Include="schedule_manager_check_schedule.cpp" />
     <ClCompile Include="schedule_manager_register_price.cpp" />
     <ClCompile Include="schedule_manager_register_schedule.cpp" />
-    <ClCompile Include="schedule_show.cpp" />
     <ClCompile Include="movie_manager_show_recent.cpp" />
     <ClCompile Include="schedule_manager_check_n_delete_price.cpp" />
     <ClCompile Include="price_manager_check_n_delete_price.cpp" />
@@ -199,7 +196,6 @@
     <ClCompile Include="date_input.cpp" />
     <ClCompile Include="schedule.cpp" />
     <ClCompile Include="price_get.cpp" />
-    <ClCompile Include="price_set.cpp" />
     <ClCompile Include="movie_manager_register_movie.cpp" />
     <ClCompile Include="movie_manager_check_n_delete_movie.cpp" />
     <ClCompile Include="schedule_manager_delete_schedule.cpp" />

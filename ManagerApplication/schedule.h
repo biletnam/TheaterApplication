@@ -17,10 +17,6 @@ enum ScheduleInfo
 
 class Schedule : public DBHelper {
 public:
-	FNRETURN choose();
-	FNRETURN chooseScreen();
-	FNRETURN chooseMovie();
-
 	FNRETURN inputTime();
 	FNRETURN inputStartTime();
 	FNRETURN inputEndTime();
@@ -28,8 +24,6 @@ public:
 	
 	SQLRETURN bindCol();
 	SQLRETURN bindParameter();
-	SQLRETURN bindParameter(ScheduleInfo);
-	SQLRETURN prepare(SQLWCHAR *);
 
 	void show();
 	void initialize();

@@ -2,9 +2,7 @@
 
 void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 {
-	Price price;
-	SQLINTEGER id;
-	for (;;)
+	for (Price price;;)
 	{
 		system("cls");
 		cout <<
@@ -31,7 +29,8 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 				break;
 			case FUNCTION_SUCCESS:
 				SQLWCHAR sql[BUFSIZ];
-				swprintf_s(sql, L"DELETE FROM d%d WHERE id=%d;", schedule.date.getValue(), id);
+				swprintf_s(sql, L"DELETE FROM d%d WHERE shedule_id=%d AND code=%d;", 
+					schedule.date.getValue(), schedule.getId(), price.getCode());
 				if (SQL_SUCCESS == price.execute(MDF_PRICE, sql))
 				{
 					cout << "\n삭제되었습니다.\n";
@@ -50,13 +49,10 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 		else
 		{
 			SQLWCHAR sql[BUFSIZ];
-			swprintf_s(sql, L"SELECT code, name, won, id FROM d%d WHERE schedule_id=%d;"
+			swprintf_s(sql, L"SELECT code, name, won FROM d%d WHERE schedule_id=%d;"
 				, schedule.date.getValue(), schedule.getId());
-
-			price.bindCol(MDF_PRICE);
-			price.DBHelper::bindCol(MDF_PRICE, BIND_INTEGER, &id);
-
-			if (SQL_SUCCESS != price.prepare(MDF_PRICE, sql))
+			if (SQL_SUCCESS != price.bindCol(MDF_PRICE)
+				|| SQL_SUCCESS != price.prepare(MDF_PRICE, sql))
 			{
 				cout << "오류가 발생했습니다.(checkAndDeletePrice)\n";
 				system("pause");
@@ -70,8 +66,9 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 				system("pause");
 			case FUNCTION_CANCEL:
 				return;
-				//case FUNCTION_SUCCESS:
-				//case FUNCTION_ERROR:
+			case FUNCTION_SUCCESS:
+			case FUNCTION_ERROR:
+				break;
 			}
 		}
 	}

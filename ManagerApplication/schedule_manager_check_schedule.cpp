@@ -2,8 +2,7 @@
 
 void ScheduleManager::checkAndModifySchedule()
 {
-	Schedule schedule;
-	for (;;)
+	for (Schedule schedule;;)
 	{
 		system("cls");
 		cout <<
@@ -22,7 +21,7 @@ void ScheduleManager::checkAndModifySchedule()
 		{
 			cout << "\n상영일 선택";
 			Date::getToday().bindParameter();
-			SQLRETURN ret = schedule.date.bindCol();
+			schedule.date.bindCol();
 			schedule.date.prepare(L"SELECT date FROM date WHERE date_value>?;");
 			switch (schedule.date.choose())
 			{
@@ -39,8 +38,8 @@ void ScheduleManager::checkAndModifySchedule()
 		{
 			cout << "\n상영관 선택\n";
 			schedule.screen.bindCol(MDF_THEATER, SCREEN_NUMBER);
-			schedule.screen.prepare(L"SELECT number FROM screen;");
-			switch (schedule.screen.choose())
+			schedule.prepare(MDF_THEATER, L"SELECT number FROM screen;");
+			switch (schedule.choose(MDF_THEATER))
 			{
 			case FUNCTION_NULL:
 				cout << "\n등록된 가격 정보가 없습니다.\n";
@@ -56,15 +55,12 @@ void ScheduleManager::checkAndModifySchedule()
 		swprintf_s(sql, L""
 			"SELECT id, movie_code, movie_title, age, start_time, end_time "
 			"FROM d%d "
-			"WHERE screen=? "
+			"WHERE screen=%d "
 			"ORDER BY start_time ASC;",
-			schedule.date.getValue());
-
-		schedule.screen.bindParameter(MDF_SCHEDULE, SCREEN_NUMBER);
+			schedule.date.getValue(), schedule.screen.getNumber());
 		schedule.bindCol();
-		schedule.prepare(sql);
-
-		switch (schedule.choose())
+		schedule.prepare(MDF_SCHEDULE, sql);
+		switch (schedule.choose(MDF_SCHEDULE))
 		{
 		case FUNCTION_CANCEL:
 			return;
@@ -75,8 +71,7 @@ void ScheduleManager::checkAndModifySchedule()
 			cout << "등록된 상영 일정이 없습니다\n";
 			system("pause");
 		case FUNCTION_ERROR:
-		default:
-			schedule.initialize();
+			break;
 		}
 	}
 }

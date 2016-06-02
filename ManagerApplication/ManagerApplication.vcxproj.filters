@@ -98,9 +98,6 @@
     <ClCompile Include="movie_set_keyword.cpp">
       <Filter>소스 파일\movie</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_choose_screen.cpp">
-      <Filter>소스 파일\schedule</Filter>
-    </ClCompile>
     <ClCompile Include="schedule_manager.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
     </ClCompile>
@@ -127,9 +124,6 @@
     </ClCompile>
     <ClCompile Include="schedule_manager_add_date.cpp">
       <Filter>소스 파일\schedule_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="schedule_choose_movie.cpp">
-      <Filter>소스 파일\schedule</Filter>
     </ClCompile>
     <ClCompile Include="price_manager_add_price.cpp">
       <Filter>소스 파일\price_manager</Filter>
@@ -173,13 +167,7 @@
     <ClCompile Include="schedule.cpp">
       <Filter>소스 파일\schedule</Filter>
     </ClCompile>
-    <ClCompile Include="schedule_show.cpp">
-      <Filter>소스 파일\schedule</Filter>
-    </ClCompile>
     <ClCompile Include="price_get.cpp">
-      <Filter>소스 파일\price</Filter>
-    </ClCompile>
-    <ClCompile Include="price_set.cpp">
       <Filter>소스 파일\price</Filter>
     </ClCompile>
     <ClCompile Include="price_bind.cpp">

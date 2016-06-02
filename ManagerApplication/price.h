@@ -17,10 +17,6 @@ public:
 	SQLCHAR *getName();
 	SQLINTEGER getWon();
 
-	void setCode(SQLSMALLINT);
-	void setName(SQLCHAR *);
-	void setWon(SQLSMALLINT);
-
 	void initialize();
 	void show();
 

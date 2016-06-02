@@ -12,18 +12,20 @@ void ScheduleManager::setMovie(Movie &movie)
 			"   > 영화 설정\n"
 			"\n";
 
-		switch (movie.choose(MDF_THEATER))
+		switch (movie.search(MOVIE_TABLE_INTERNAL))
 		{
-		case FUNCTION_ERROR:
-			cout << "잘못된 입력입니다.";
-			system("pause");
-			break;
-		case FUNCTION_NULL:
-			cout << "등록 가능한 상영관이 없습니다\n";
-			system("pause");
-		case FUNCTION_SUCCESS:
 		case FUNCTION_CANCEL:
 			return;
+		case FUNCTION_SUCCESS:
+			switch (movie.choose(MDF_THEATER))
+			{
+			case FUNCTION_NULL:
+				cout << "등록된 영화가 없습니다.\n";
+				system("pause");
+			case FUNCTION_CANCEL:
+			case FUNCTION_ERROR:
+				movie.initialize();
+			}
 		}
 	}
 }

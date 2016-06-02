@@ -6,7 +6,6 @@ class PriceManager
 public:
 	PriceManager();
 private:
-
 	void checkAndDeletePrice();
 	void addPrice();
 };

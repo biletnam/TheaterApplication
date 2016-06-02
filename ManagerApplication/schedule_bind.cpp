@@ -33,27 +33,3 @@ SQLRETURN Schedule::bindParameter()
 		return SQL_ERROR;
 	}
 }
-
-SQLRETURN Schedule::bindParameter(ScheduleInfo scheduleInfo)
-{
-	switch (scheduleInfo)
-	{
-	case SCHEDULE_SCREEN:
-		return screen.bindParameter(MDF_THEATER, SCREEN_NUMBER);
-	case SCHEDULE_START_TIME:
-		return DBHelper::bindParameter(MDF_THEATER, BIND_INTEGER, &startTime);
-	case SCHEDULE_END_TIME:
-		return DBHelper::bindParameter(MDF_THEATER, BIND_INTEGER, &endTime);
-	case SCHEDULE_ID:
-		return DBHelper::bindParameter(MDF_THEATER, BIND_INTEGER, &id);
-	case SCHEDULE_MOVIE:
-		if (SQL_SUCCESS == movie.bindParameter(MDF_SCHEDULE, MOVIE_CODE)
-			&& SQL_SUCCESS == movie.bindParameter(MDF_SCHEDULE, MOVIE_TITLE)
-			&& SQL_SUCCESS == movie.bindParameter(MDF_SCHEDULE, MOVIE_AGE))
-		{
-			return SQL_SUCCESS;
-		}
-	}
-
-	return SQL_ERROR;
-}

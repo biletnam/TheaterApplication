@@ -22,7 +22,7 @@ FNRETURN Movie::search(MovieTable movieTable)
 		return FUNCTION_SUCCESS;
 	}
 	
-	cout << "\n오류가 발생했습니다.(Movie.search)\n";
+	cout << "\n오류가 발생했습니다.(Movie::search)\n";
 	system("pause");
 
 	return FUNCTION_ERROR;

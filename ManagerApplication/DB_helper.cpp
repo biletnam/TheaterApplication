@@ -34,22 +34,6 @@ SQLRETURN DBHelper::bindParameter(MdfEnum mdf, BindType bindType, void *target)
 	return SQL_ERROR;
 }
 
-SQLRETURN DBHelper::getData(MdfEnum mdf, SQLUSMALLINT column, BindType bindType, void *target)
-{
-	if (SQL_SUCCESS == SQLFreeStmt(stmt[mdf], SQL_UNBIND))
-	{
-		switch (bindType)
-		{
-		case BIND_INTEGER:
-			return SQLGetData(stmt[mdf], column, SQL_INTEGER, target, sizeof(SQLINTEGER), NULL);
-		case BIND_STRING:
-			return SQLGetData(stmt[mdf], column, SQL_CHAR, target, BUFSIZ, NULL);
-		}
-	}
-
-	return SQL_ERROR;
-}
-
 SQLRETURN DBHelper::execute(MdfEnum mdf, SQLWCHAR *sql)
 {
 	if (sql != NULL)
@@ -88,9 +72,4 @@ void DBHelper::initializeBindCnt(MdfEnum mdf)
 {
 	bindColCnt[mdf] = 0;
 	bindParameterCnt[mdf] = 0;
-}
-
-SQLHSTMT & DBHelper::getStmt(MdfEnum mdf)
-{
-	return stmt[mdf];
 }

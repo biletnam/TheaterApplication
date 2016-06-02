@@ -5,11 +5,6 @@ SQLSMALLINT Screen::getNumber() const
 	return number;
 }
 
-void Screen::setNumber(SQLSMALLINT number)
-{
-	this->number = number;
-}
-
 void Screen::show()
 {
 	cout << "»ó¿µ°ü " << number << endl;
@@ -18,16 +13,6 @@ void Screen::show()
 void Screen::initialize()
 {
 	number = 0;
-}
-
-FNRETURN Screen::choose()
-{
-	return DBHelper::choose(MDF_THEATER);
-}
-
-SQLRETURN Screen::prepare(SQLWCHAR *sql)
-{
-	return DBHelper::prepare(MDF_THEATER, sql);
 }
 
 SQLRETURN Screen::bindCol(MdfEnum mdf, ScreenInfo screenInfo)
