@@ -12,8 +12,8 @@ void ScheduleManager::setTime(Schedule &schedule)
 			"   > 시간 설정\n"
 			"\n";
 
-		if (0 != schedule.time.getStartTime()
-			&& 0 != schedule.time.getEndTime())
+		if (0 != schedule.getStartTime()
+			&& 0 != schedule.getEndTime())
 		{
 			return;
 		}

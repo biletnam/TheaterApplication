@@ -5,10 +5,10 @@ void ScheduleManager::registerSchedule()
 {
 	enum ScheduleManagerFunction
 	{
-		CHOOSE_SCREEN = 1,
-		CHOOSE_DATE,
-		CHOOSE_MOVIE,
-		INPUT_TIME,
+		SET_SCREEN = 1,
+		SET_DATE,
+		SET_MOVIE,
+		SET_TIME,
 		REGISTER_SCHEDULE,
 	};
 
@@ -37,20 +37,24 @@ void ScheduleManager::registerSchedule()
 		{
 		case FUNCTION_CANCEL:
 			return;
+		case FUNCTION_ERROR:
+			cout << "\n잘못된 입력입니다.\n";
+			system("pause");
+			continue;
 		case FUNCTION_SUCCESS:
 			switch (function)
 			{
-			case CHOOSE_SCREEN:
-				schedule.chooseScreen();
+			case SET_SCREEN:
+				setScreen(schedule.screen);
 				continue;
-			case CHOOSE_DATE:
-				schedule.date.choose();
+			case SET_DATE:
+				setDate(schedule.date);
 				continue;
-			case CHOOSE_MOVIE:
-				schedule.chooseMovie();
+			case SET_MOVIE:
+				setMovie(schedule.movie);
 				continue;
-			case INPUT_TIME:
-				schedule.inputTime();
+			case SET_TIME:
+				setTime(schedule);
 				continue;
 			case REGISTER_SCHEDULE:
 				if (0 == schedule.screen.getNumber())
@@ -65,51 +69,41 @@ void ScheduleManager::registerSchedule()
 				{
 					cout << "영화를 선택하지 않았습니다.\n";
 				}
-				else if (schedule.time.getStartTime() == 0)
+				else if (0 == schedule.getStartTime())
 				{
 					cout << "상영 시간을 입력하지 않았습니다.\n";
 				}
 				else
 				{
-					break;;
+					break;
 				}
 				system("pause");
 				continue;
 			}
-			break;
-		case FUNCTION_ERROR:
-			cout << "\n잘못된 입력입니다.\n";
-			system("pause");
 		}
 
 
-		SQLWCHAR saleInfoSql[BUFSIZ];
-
-		swprintf_s(saleInfoSql, L""
+		SQLWCHAR scheduleSql[BUFSIZ];
+		swprintf_s(scheduleSql, L""
 			"INSERT INTO d%d "
 			"(movie_code, movie_title, age, start_time, end_time, screen) "
 			"VALUES (?, ?, ?, ?, ?, ?);",
 			schedule.date.getValue());
-		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_CODE);
-		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_TITLE);
-		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_AGE);
-		schedule.time.bindParameter(MDF_SALE_INFO, START_TIME);
-		schedule.time.bindParameter(MDF_SALE_INFO, END_TIME);
-		schedule.screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
+		schedule.bindParameter();
 		
 		SQLWCHAR seatSql[BUFSIZ];
-		swprintf_s(seatSql, L"SELECT * INTO d%ds%dt%d FROM screen%d;",
-			schedule.date.getValue(), schedule.screen.getNumber(), schedule.time.getStartTime(), 
+		swprintf_s(seatSql, L"SELECT * INTO d%ds%d FROM screen%d;",
+			schedule.date.getValue(), schedule.getId(),
 			schedule.screen.getNumber());
 		
-		if (SQL_SUCCESS == schedule.execute(MDF_SALE_INFO, saleInfoSql)
+		if (SQL_SUCCESS == schedule.execute(MDF_SCHEDULE, scheduleSql)
 			&& SQL_SUCCESS == schedule.execute(MDF_SEAT, seatSql))
 		{
-			cout << "스케쥴이 등록 되었습니다.\n";
+			cout << "상영 일정이 등록 되었습니다.\n";
 		}
 		else
 		{
-			cout << "스케쥴 등록을 실패했습니다.\n";
+			cout << "상영 일정 등록을 실패했습니다.\n";
 		}
 		system("pause");
 	}

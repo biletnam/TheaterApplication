@@ -24,10 +24,8 @@ void ScheduleManager::deleteSchedule(Schedule &schedule)
 		case FUNCTION_SUCCESS:
 			SQLWCHAR scheduleSql[BUFSIZ];
 			swprintf_s(scheduleSql,
-				L"DELETE FROM d%d WHERE id=?;",
-				schedule.date.getValue());
-			schedule.bindParameter(MDF_SCHEDULE);
-			schedule.bindParameter(MDF_PRICE);
+				L"DELETE FROM d%d WHERE id=%d;",
+				schedule.date.getValue(), schedule.getId());
 
 			SQLWCHAR seatSql[BUFSIZ];
 			swprintf_s(seatSql, L"DROP TABLE d%ds%d;", schedule.date.getValue(), schedule.getId());

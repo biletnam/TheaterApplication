@@ -41,11 +41,9 @@ Date Date::getToday()
 	localtime_s(&t, &timer);
 
 	Date date;
-	/*date.setYear(t.tm_year - 100);	// year
-	date.setMonth(t.tm_mon + 1);	// month
-	date.setDay(t.tm_mday + 1);		// day*/
-
-	date.value = 1;
+	date.set(DATE_YEAR, t.tm_year - 100);	// year
+	date.set(DATE_MONTH, t.tm_mon + 1);		// month
+	date.set(DATE_DAY, t.tm_mday + 1);		// day
 
 	return date;
 }

@@ -70,8 +70,9 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 				system("pause");
 			case FUNCTION_CANCEL:
 				return;
-			//case FUNCTION_SUCCESS:
-			//case FUNCTION_ERROR:
+				//case FUNCTION_SUCCESS:
+				//case FUNCTION_ERROR:
 			}
 		}
+	}
 }

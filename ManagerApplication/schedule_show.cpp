@@ -18,9 +18,9 @@ void Schedule::show()
 		movie.show();
 	}
 	
-	if (time.getStartTime() != 0)
+	if (getStartTime() != 0)
 	{
-		cout << "시작시간 " << time.getStartTime() << endl;
-		cout << "종료시간 " << time.getEndTime() << endl;
+		cout << "시작시간 " << getStartTime() << endl;
+		cout << "종료시간 " << getEndTime() << endl;
 	}
 }

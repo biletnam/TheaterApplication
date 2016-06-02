@@ -18,8 +18,8 @@ FNRETURN DBHelper::choose(MdfEnum mdf)
 		case FUNCTION_CANCEL:
 			return FUNCTION_CANCEL;
 		case FUNCTION_SUCCESS:
+			return FUNCTION_SUCCESS;
 		}
-		return FUNCTION_SUCCESS;
 	}
 
 	initialize();

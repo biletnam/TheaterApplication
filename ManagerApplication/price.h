@@ -3,12 +3,12 @@
 
 #include "DB_helper.h"
 
-typedef enum
+enum PriceInfo
 {
 	PRICE_CODE,
 	PRICE_NAME,
 	PRICE_WON,
-} PriceInfo;
+};
 
 class Price : public DBHelper
 {
@@ -24,6 +24,7 @@ public:
 	void initialize();
 	void show();
 
+	FNRETURN input();
 	FNRETURN inputCode();
 	FNRETURN inputName();
 	FNRETURN inputWon();
@@ -34,8 +35,8 @@ public:
 
 private:
 	SQLINTEGER code = 0;
-	SQLCHAR name[BUFSIZ];
-	SQLINTEGER won;
+	SQLCHAR name[BUFSIZ] = {0};
+	SQLINTEGER won = -1;
 };
 
 #endif // !PRICE_H

@@ -5,10 +5,14 @@
 #include "screen.h"
 #include "Date.h"
 
-enum TimeType
+enum ScheduleInfo
 {
-	START_TIME,
-	END_TIME,
+	SCHEDULE_MOVIE,
+	SCHEDULE_SCREEN,
+	SCHEDULE_DATE,
+	SCHEDULE_START_TIME,
+	SCHEDULE_END_TIME,
+	SCHEDULE_ID,
 };
 
 class Schedule : public DBHelper {
@@ -22,8 +26,9 @@ public:
 	FNRETURN inputEndTime();
 	bool isPossibleTime(SQLINTEGER);
 	
-	SQLRETURN bindParameter(MdfEnum);
 	SQLRETURN bindCol();
+	SQLRETURN bindParameter();
+	SQLRETURN bindParameter(ScheduleInfo);
 	SQLRETURN prepare(SQLWCHAR *);
 
 	void show();

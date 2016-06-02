@@ -2,6 +2,7 @@
 
 void PriceManager::checkAndDeletePrice()
 {
+	Price price;
 	for (;;)
 	{
 		system("cls");
@@ -9,51 +10,56 @@ void PriceManager::checkAndDeletePrice()
 			"극장 관리 시스템\n"
 			" > 가격 정보 관리\n"
 			"  > 가격 정보 확인/삭제\n\n";
-
-		Price price;
-		SQLHSTMT &stmt = price.getStmt(MDF_THEATER);
-		SQLCancel(stmt);
-		price.bindCol(MDF_THEATER);
-		SQLRETURN ret = SQLExecDirect(stmt, L"SELECT code, name, won FROM price;", SQL_NTS);
-
-		for (size_t i = 1; SQL_SUCCESS == ret; i++)
+		
+		if (0 < price.getCode())
 		{
-			switch (ret = SQLFetch(stmt))
+			cout << "\n선택한 날짜 정보:\n";
+			price.show();
+
+			cout << "\n삭제하시겠습니까?(y/n): ";
+			switch (inputYN())
 			{
-			case SQL_SUCCESS:
-				price.show();
+			case FUNCTION_ERROR:
+				cout << "\n잘못된 입력입니다.\n";
+				system("pause");
 				break;
-			case SQL_NO_DATA:
-				if (i == 1)
+			case FUNCTION_SUCCESS:
+				price.bindParameter(MDF_THEATER, PRICE_CODE);
+				if (SQL_SUCCESS == price.execute(MDF_THEATER, L"DELETE FROM price WHERE code=?;"))
 				{
-					cout << "등록된 가격 정보가 없습니다.\n";
+					cout << "\n삭제되었습니다.\n";
 					system("pause");
-					return;
 				}
 				else
 				{
-					cout << 
-						"0. 종료\n"
-						"\n"
-						"삭제할 가격 정보를 선택하세요: ";
-
-					switch (price.moveCursor(MDF_THEATER))
-					{
-					case FUNCTION_CANCEL:
-						return;
-					case FUNCTION_SUCCESS:
-						if (SQL_SUCCESS == price.bindParameter(MDF_THEATER, PRICE_CODE)
-							&& SQL_SUCCESS ==  price.execute(MDF_THEATER, L"DELETE FROM price WHERE code=?;"))
-						{
-							return;
-						}
-					}
+					cout << "\n오류가 발생했습니다.(checkAndDeletePrice)\n";
+					system("pause");
+					break;
 				}
+			case FUNCTION_CANCEL:
+				price.initialize();
 			}
 		}
+		else
+		{
+			price.bindCol(MDF_THEATER);
+			if (SQL_SUCCESS != price.prepare(MDF_THEATER, L"SELECT code, name, won FROM price;"))
+			{
+				cout << "\n오류가 발생했습니다(checkAndDeletePrice).\n";
+				system("pause");
+				return;
+			}
 
-		cout << "오류가 발생했습니다.(check&deletePrice)\n";
-		system("pause");
+			price.bindCol(MDF_THEATER);
+			switch (price.choose(MDF_THEATER))
+			{
+			case FUNCTION_CANCEL:
+				return;
+			case FUNCTION_NULL:
+				cout << "등록된 가격 정보가 없습니다\n";
+				system("pause");
+			}
+		}
 	}
 }
 
