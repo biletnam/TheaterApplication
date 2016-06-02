@@ -37,8 +37,7 @@ void ScheduleManager::modifySchedule(Schedule &schedule)
 			switch (function)
 			{
 			case DELETE_SCHEDULE:
-				schedule.modify(MODIFY_DELETE);
-				//schedule.del();
+				deleteSchedule(schedule);
 				return;
 			case CHECK_N_DELETE_PRICE:
 				checkAndDeletePrice(schedule);

@@ -54,7 +54,7 @@ void ScheduleManager::checkAndModifySchedule()
 
 		SQLWCHAR sql[BUFSIZ];
 		swprintf_s(sql, L""
-			"SELECT movie_code, movie_title, age, start_time, end_time, id "
+			"SELECT id, movie_code, movie_title, age, start_time, end_time "
 			"FROM d%d "
 			"WHERE screen=? "
 			"ORDER BY start_time ASC;",
@@ -62,8 +62,6 @@ void ScheduleManager::checkAndModifySchedule()
 
 		schedule.screen.bindParameter(MDF_SCHEDULE, SCREEN_NUMBER);
 		schedule.bindCol();
-		SQLINTEGER id;
-		schedule.DBHelper::bindCol(MDF_SCHEDULE, BIND_INTEGER, &id);
 		schedule.prepare(sql);
 
 		switch (schedule.choose())

@@ -11,8 +11,5 @@ FNRETURN Schedule::choose()
 
 void Schedule::initialize()
 {
-	movie.initialize();
-	screen.initialize();
-	date.initialize();
-	time.initialize();
+	id = 0;
 }

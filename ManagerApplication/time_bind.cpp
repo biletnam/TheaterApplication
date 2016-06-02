@@ -1,8 +1,8 @@
 #include "schedule.h"
 
-SQLRETURN Schedule::Time::bindCol(MdfEnum mdf, TimeInfo timeInfo)
+SQLRETURN Schedule::Time::bindCol(MdfEnum mdf, TimeType type)
 {
-	switch (timeInfo)
+	switch (type)
 	{
 	case START_TIME:
 		return DBHelper::bindCol(mdf, BIND_INTEGER, &startTime);
@@ -12,9 +12,9 @@ SQLRETURN Schedule::Time::bindCol(MdfEnum mdf, TimeInfo timeInfo)
 	}
 }
 
-SQLRETURN Schedule::Time::bindParameter(MdfEnum mdf, TimeInfo timeInfo)
+SQLRETURN Schedule::Time::bindParameter(MdfEnum mdf, TimeType type)
 {
-	switch (timeInfo)
+	switch (type)
 	{
 	case START_TIME:
 		return DBHelper::bindParameter(mdf, BIND_INTEGER, &startTime);

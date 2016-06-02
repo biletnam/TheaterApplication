@@ -11,7 +11,7 @@ typedef enum
 {
 	MDF_THEATER,
 	MDF_SCHEDULE,
-	MDF_SALE_INFO,
+	MDF_PRICE,
 	MDF_SEAT,
 	MDF_SALE_RECORD,
 	MDF_COUNT
@@ -39,8 +39,6 @@ public:
 
 	FNRETURN showSelectResult(MdfEnum);
 	FNRETURN choose(MdfEnum);
-	virtual SQLRETURN del() { return SQLRETURN(); }
-	virtual SQLRETURN insert() { return SQLRETURN(); }
 	virtual void initialize() = 0;
 
 	SQLRETURN bindCol(MdfEnum, BindType, void *);

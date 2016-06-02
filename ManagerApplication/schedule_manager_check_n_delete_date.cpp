@@ -29,7 +29,7 @@ void ScheduleManager::checkAndDeleteDate()
 				swprintf_s(sql, L"DROP TABLE d%d;", date.getValue());
 				if (SQL_SUCCESS == date.execute(MDF_THEATER, L"DELETE FROM schedule WHERE date=?;")
 					&& SQL_SUCCESS == date.execute(MDF_SCHEDULE, sql)
-					&& SQL_SUCCESS == date.execute(MDF_SALE_INFO, sql)
+					&& SQL_SUCCESS == date.execute(MDF_PRICE, sql)
 					&& SQL_SUCCESS == date.execute(MDF_SALE_RECORD, sql))
 				{
 					cout << "\n삭제되었습니다.\n";

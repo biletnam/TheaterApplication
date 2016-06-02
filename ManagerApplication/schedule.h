@@ -5,7 +5,7 @@
 #include "screen.h"
 #include "Date.h"
 
-enum TimeInfo
+enum TimeType
 {
 	START_TIME,
 	END_TIME,
@@ -13,42 +13,32 @@ enum TimeInfo
 
 class Schedule : public DBHelper {
 public:
-	class Time : public DBHelper
-	{
-	public:
-		SQLSMALLINT getStartTime() const;
-		SQLSMALLINT getEndTime() const;
-
-		SQLRETURN bindCol(MdfEnum, TimeInfo);
-		SQLRETURN bindParameter(MdfEnum, TimeInfo);
-
-		void show();
-		void initialize();
-	private:
-		SQLSMALLINT startTime = 0;
-		SQLSMALLINT endTime = 0;
-	};
-
-	Movie movie;
-	Screen screen;
-	Date date;
-	Time time;
-	
 	FNRETURN choose();
 	FNRETURN chooseScreen();
 	FNRETURN chooseMovie();
 
-	FNRETURN inputTime(const SQLSMALLINT time);
 	FNRETURN inputTime();
-	FNRETURN checkTime(const SQLSMALLINT);
+	FNRETURN inputStartTime();
+	FNRETURN inputEndTime();
+	bool isPossibleTime(SQLINTEGER);
 	
+	SQLRETURN bindParameter(MdfEnum);
 	SQLRETURN bindCol();
-	SQLRETURN del();
 	SQLRETURN prepare(SQLWCHAR *);
 
 	void show();
 	void initialize();
+	SQLINTEGER getId() { return id; };
+	SQLSMALLINT getStartTime() { return startTime; }
+	SQLSMALLINT getEndTime() { return endTime; }
+
+	Movie movie;
+	Screen screen;
+	Date date;
 private:
+	SQLINTEGER id = 0;
+	SQLSMALLINT startTime = 0;
+	SQLSMALLINT endTime = 0;
 };
 
 #endif // !SCHEDULE_H

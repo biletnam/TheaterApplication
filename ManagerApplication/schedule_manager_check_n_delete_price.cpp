@@ -2,6 +2,8 @@
 
 void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 {
+	Price price;
+	SQLINTEGER id;
 	for (;;)
 	{
 		system("cls");
@@ -15,77 +17,61 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 		schedule.show();
 		cout << endl;
 
-		SQLWCHAR sql[BUFSIZ];
-		swprintf_s(sql, L""
-			"SELECT price_code, price_name, price_won, id "
-			"FROM d%d "
-			"WHERE movie_code=? AND start_time=? AND screen=?;",
-			schedule.date.getValue());
-		schedule.movie.bindParameter(MDF_SALE_INFO, MOVIE_CODE);
-		schedule.time.bindParameter(MDF_SALE_INFO, START_TIME);
-		schedule.screen.bindParameter(MDF_SALE_INFO, SCREEN_NUMBER);
-
-		SQLINTEGER id;	// sale_info id
-		Price price;
-		price.bindCol(MDF_SALE_INFO);
-		schedule.DBHelper::bindCol(MDF_SALE_INFO, BIND_INTEGER, &id);
-		//SQLBindCol(stmt, 4, SQL_INTEGER, &id, sizeof id, NULL);
-
-		if (SQL_SUCCESS != schedule.prepare(sql) )
+		if (0 < price.getCode())
 		{
-			cout << "오류가 발생했습니다.(checkAndDeletePrice)\n";
-			system("pause");
-			return;
-		}
+			cout << "\n선택한 가격 정보\n";
+			price.show();
 
-		switch (schedule.choose())
-		{
-		case FUNCTION_SUCCESS:
-			swprintf_s(sql, L"DELETE FROM d%d WHERE id=%d;", schedule.date.getValue(), id);
-		case FUNCTION_CANCEL:
-		case FUNCTION_ERROR:
-		case FUNCTION_NULL:
-		default:
-			break;
-		}
-
-
-		cout << "0. 취소\n";
-		for (size_t i = 1;; i++)
-		{
-			switch (schedule.fetch(MDF_SALE_INFO))
+			cout << "\n삭제하시겠습니까?(y/n): ";
+			switch (inputYN())
 			{
-			case SQL_SUCCESS:
-				price.show();
-			case SQL_NO_DATA:
-				if (i == 1)		// 등록된 가격이 없을 때
+			case FUNCTION_ERROR:
+				cout << "\n잘못된 입력입니다.\n";
+				system("pause");
+				break;
+			case FUNCTION_SUCCESS:
+				SQLWCHAR sql[BUFSIZ];
+				swprintf_s(sql, L"DELETE FROM d%d WHERE id=%d;", schedule.date.getValue(), id);
+				if (SQL_SUCCESS == price.execute(MDF_PRICE, sql))
 				{
-					cout << "\n등록된 가격이 없습니다\n";
-					system("pause");
-					return;
-				}
-
-				cout << 
-					"0. 취소\n"
-					"\n"
-					"삭제할 가격을 선택하세요";
-				switch (price.moveCursor(MDF_SALE_INFO))
-				{
-				case FUNCTION_CANCEL:	// 종료
-					return;
-				case FUNCTION_SUCCESS:	// 가격 선택: 반복
-					swprintf_s(sql, L"DELETE FROM d%d WHERE id=%d;", schedule.date.getValue(), id);
-					if (SQL_SUCCESS == schedule.execute(MDF_SALE_INFO, sql))
-					{
-						cout << "가격이 삭제되었습니다.\n";
-					}
-					else	// 선택 에러: 반복
-					{
-						cout << "오류가 발생했습니다.(deletePrice)\n";
-					}
+					cout << "\n삭제되었습니다.\n";
 					system("pause");
 				}
+				else
+				{
+					cout << "\n오류가 발생했습니다.(checkAndDeletePrice)\n";
+					system("pause");
+					break;
+				}
+			case FUNCTION_CANCEL:
+				price.initialize();
 			}
 		}
-	}
+		else
+		{
+			SQLWCHAR sql[BUFSIZ];
+			swprintf_s(sql, L"SELECT code, name, won, id FROM d%d WHERE schedule_id=%d;"
+				, schedule.date.getValue(), schedule.getId());
+
+			price.bindCol(MDF_PRICE);
+			price.DBHelper::bindCol(MDF_PRICE, BIND_INTEGER, &id);
+
+			if (SQL_SUCCESS != price.prepare(MDF_PRICE, sql))
+			{
+				cout << "오류가 발생했습니다.(checkAndDeletePrice)\n";
+				system("pause");
+				return;
+			}
+
+			switch (price.choose(MDF_PRICE))
+			{
+			case FUNCTION_NULL:
+				cout << "등록된 가격 정보가 없습니다.\n";
+				system("pause");
+			case FUNCTION_CANCEL:
+				return;
+			//case FUNCTION_SUCCESS:
+			//case FUNCTION_ERROR:
+			}
+		}
 }

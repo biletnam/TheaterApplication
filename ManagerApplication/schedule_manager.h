@@ -10,16 +10,21 @@ public:
 
 private:
 	void checkAndDeleteDate();
-	void addDate();	
-	void checkAndModifySchedule();
-	void registerSchedule();
 	
-	void registerPrice(Schedule &);
-	void checkAndDeletePrice(Schedule &);
+	void addDate();	
+	
+	void checkAndModifySchedule();
 	void modifySchedule(Schedule &);
-		
+	void deleteSchedule(Schedule &);
+	void checkAndDeletePrice(Schedule &);
+	void registerPrice(Schedule &);
+	
+	void registerSchedule();
+	void setDate(Date &);
+	void setScreen(Screen &);
+	void setMovie(Movie &);
+	void setTime(Schedule &);
 public:
-	FNRETURN setSchedule(Schedule & schedule);
 };
 
 #endif // !SCHEDULE_MANAGE_H

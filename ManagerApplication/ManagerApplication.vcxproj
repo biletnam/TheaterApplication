@@ -168,20 +168,17 @@
     <ClCompile Include="movie_manager.cpp" />
     <ClCompile Include="price_bind.cpp" />
     <ClCompile Include="price_manager.cpp" />
-    <ClCompile Include="time.cpp" />
-    <ClCompile Include="schedule_delete.cpp" />
     <ClCompile Include="schedule_manager_check_n_delete_date.cpp" />
     <ClCompile Include="schedule_manager_modify_schedule.cpp" />
     <ClCompile Include="movie_set_keyword.cpp" />
     <ClCompile Include="movie_show.cpp" />
-    <ClCompile Include="schedule_manager_set_schedule.cpp" />
     <ClCompile Include="screen.cpp" />
-    <ClCompile Include="schedule_bind_col.cpp" />
+    <ClCompile Include="schedule_bind.cpp" />
     <ClCompile Include="schedule_choose_movie.cpp" />
     <ClCompile Include="schedule_choose_screen.cpp" />
     <ClCompile Include="schedule_manager.cpp" />
     <ClCompile Include="schedule_manager_add_date.cpp" />
-    <ClCompile Include="schedule_manager_check_n_modify_schedule.cpp" />
+    <ClCompile Include="schedule_manager_check_schedule.cpp" />
     <ClCompile Include="schedule_manager_register_price.cpp" />
     <ClCompile Include="schedule_manager_register_schedule.cpp" />
     <ClCompile Include="schedule_show.cpp" />
@@ -196,8 +193,7 @@
     <ClCompile Include="date_set.cpp" />
     <ClCompile Include="date_get.cpp" />
     <ClCompile Include="movie_search.cpp" />
-    <ClCompile Include="time_bind.cpp" />
-    <ClCompile Include="_schedule_input_time.cpp" />
+    <ClCompile Include="schedule_input_time.cpp" />
     <ClCompile Include="DB_helper_show.cpp" />
     <ClCompile Include="DB_helper_choose.cpp" />
     <ClCompile Include="date_input.cpp" />
@@ -206,6 +202,11 @@
     <ClCompile Include="price_set.cpp" />
     <ClCompile Include="movie_manager_register_movie.cpp" />
     <ClCompile Include="movie_manager_check_n_delete_movie.cpp" />
+    <ClCompile Include="schedule_manager_delete_schedule.cpp" />
+    <ClCompile Include="schedule_manager_set_date.cpp" />
+    <ClCompile Include="schedule_manager_set_screen.cpp" />
+    <ClCompile Include="schedule_manager_set_movie.cpp" />
+    <ClCompile Include="schedule_manager_set_time.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
