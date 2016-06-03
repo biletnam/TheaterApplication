@@ -2,14 +2,18 @@
 #include <Windows.h>
 #include <string>
 #include <iostream>
+#include <ctype.h>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-	wcout.imbue(locale("korean"));
-	wcout << L"¾Æ¶ó¾Æ";
-	
+	char* ccc = "asdfadf";
+	string sss = "dasff";
+
+	float fff;
+	char delim = ' ';
 	DBHelper db;
 	db.connectDB();
 

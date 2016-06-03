@@ -12,19 +12,26 @@ void PriceManager::addPrice()
 			"  > 가격 정보 추가\n"
 			"\n";
 
-		if (0 != price.getCode()
-			|| 0 != *price.getName()
-			|| 0 != price.getWon())
+		if (0 < price.getCode())
 		{
-			cout << "새로운 가격 정보\n";
-			price.show();
+			cout << "새로운 가격 정보\n"
+				<< "가격 코드: " << price.getCode() << endl;
+			if (0 != *price.getName())
+			{
+				wcout << L"가격 이름: " << price.getName() << endl;
+				if (-1 < price.getWon())
+				{
+					cout << "가격: " << price.getWon() << "원\n";
+				}
+			}
+			cout << endl;
 		}
 
-		if (0 != price.getCode()
+		if (0 < price.getCode()
 			&& 0 != *price.getName()
-			&& 0 != price.getWon())
+			&& -1 < price.getWon())
 		{
-			cout << "\n추가하시겠습니까?(y/n): ";
+			cout << "추가하시겠습니까?(y/n): ";
 			switch (inputYN())
 			{
 			case FUNCTION_ERROR:

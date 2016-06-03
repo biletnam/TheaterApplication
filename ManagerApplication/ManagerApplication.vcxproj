@@ -192,7 +192,6 @@
     <ClCompile Include="DB_helper_choose.cpp" />
     <ClCompile Include="date_input.cpp" />
     <ClCompile Include="schedule.cpp" />
-    <ClCompile Include="price_get.cpp" />
     <ClCompile Include="movie_manager_register_movie.cpp" />
     <ClCompile Include="movie_manager_check_n_delete_movie.cpp" />
     <ClCompile Include="schedule_manager_delete_schedule.cpp" />

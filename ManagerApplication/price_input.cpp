@@ -43,23 +43,21 @@ FNRETURN Price::inputCode()
 	{
 		return FUNCTION_CANCEL;
 	}
-	else
-	{
-		this->code = code;
-	}
 	
+	DBHelper::bindParameter(MDF_THEATER, BIND_INTEGER, &code);
 	bindParameter(MDF_THEATER, PRICE_CODE);
 	execute(MDF_THEATER, L"SELECT * FROM price WHERE code=?;");
 
 	switch (fetch(MDF_THEATER))
 	{
 	case SQL_SUCCESS:
-		cout << "이미 존재하는 가격 코드입니다.\n";
+		cout << "\n이미 존재하는 가격 코드입니다.\n";
 		break;
 	case SQL_NO_DATA:
+		this->code = code;
 		return FUNCTION_SUCCESS;
 	default:
-		cout << "오류가 발생했습니다.\n";
+		cout << "\n오류가 발생했습니다.\n";
 	}
 
 	system("pause");
@@ -69,7 +67,7 @@ FNRETURN Price::inputCode()
 FNRETURN Price::inputName()
 {
 	cout << "가격 이름을 입력하세요(0을 입력하면 종료): ";
-	wcin >> name;
+	wcin.getline(name, BUFSIZ);
 
 	if (wcscmp(name, L"0") == 0)
 	{
@@ -88,6 +86,9 @@ FNRETURN Price::inputWon()
 	{
 		return FUNCTION_CANCEL;
 	}
-
-	return FUNCTION_SUCCESS;
+	else
+	{
+		this->won = won;
+		return FUNCTION_SUCCESS;
+	}
 }

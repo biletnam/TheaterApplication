@@ -23,15 +23,20 @@ void ScheduleManager::deleteSchedule(Schedule &schedule)
 			break;
 		case FUNCTION_SUCCESS:
 			SQLWCHAR scheduleSql[BUFSIZ];	// + priceSql
-			swprintf_s(scheduleSql,	L"DELETE FROM d%d WHERE id=%d;",
+			swprintf_s(scheduleSql, L"DELETE FROM d%d WHERE id=%d;",
+				schedule.date.getValue(), schedule.getId());
+
+			SQLWCHAR priceSql[BUFSIZ];	// + priceSql
+			swprintf_s(scheduleSql, L"DELETE FROM d%d WHERE schedule_id=%d;",
 				schedule.date.getValue(), schedule.getId());
 
 			SQLWCHAR seatSql[BUFSIZ];
-			swprintf_s(seatSql, L"DROP TABLE d%ds%d;", schedule.date.getValue(), schedule.getId());
+			swprintf_s(seatSql, L"DROP TABLE d%ds%dt%d;", 
+				schedule.date.getValue(), schedule.screen.getNumber(), schedule.getStartTime());
 
 			// return 값 확인해야 함
 			if (SQL_SUCCESS == schedule.execute(MDF_SCHEDULE, scheduleSql)
-				&& SQL_SUCCESS == schedule.execute(MDF_PRICE, scheduleSql)
+				&& SQL_SUCCESS == schedule.execute(MDF_PRICE, priceSql)
 				&& SQL_SUCCESS == schedule.execute(MDF_SEAT, seatSql))
 			{
 				cout << "\n삭제되었습니다.\n";

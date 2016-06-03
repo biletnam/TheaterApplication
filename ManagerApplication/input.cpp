@@ -4,13 +4,10 @@ FNRETURN inputPositiveInteger(int32_t &positiveInteger)
 {
 	float input;
 	cin >> input;
-
-	if (cin.fail() == true)
-	{
-		cin.clear();
-		cin.ignore(100, '\n');
-	}
-	else if (0 == input)
+	cin.clear();
+	cin.ignore(100, '\n');
+	
+	if (0 == input)
 	{
 		return FUNCTION_CANCEL;
 	}
@@ -26,7 +23,7 @@ FNRETURN inputPositiveInteger(int32_t &positiveInteger)
 FNRETURN inputYN()
 {
 	char input[BUFSIZ];
-	cin >> input;
+	cin.getline(input, BUFSIZ);
 
 	if (input[1] == 0)
 	{

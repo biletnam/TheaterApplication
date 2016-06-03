@@ -152,9 +152,6 @@
     <ClCompile Include="date_input.cpp">
       <Filter>소스 파일\date</Filter>
     </ClCompile>
-    <ClCompile Include="price_get.cpp">
-      <Filter>소스 파일\price</Filter>
-    </ClCompile>
     <ClCompile Include="price_bind.cpp">
       <Filter>소스 파일\price</Filter>
     </ClCompile>
