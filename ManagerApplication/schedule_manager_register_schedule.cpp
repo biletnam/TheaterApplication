@@ -100,13 +100,15 @@ void ScheduleManager::registerSchedule()
 			"VALUES (?, ?, ?, ?, ?, ?);",
 			schedule.date.getValue());
 		SQLWCHAR seatSql[BUFSIZ];
-		swprintf_s(seatSql, L"SELECT * INTO d%ds%d FROM screen%d;",
-			schedule.date.getValue(), schedule.getId(),
+		swprintf_s(seatSql, L"SELECT * INTO d%ds%dt%d FROM screen%d;",
+			schedule.date.getValue(), schedule.screen.getNumber(), schedule.getStartTime(),
 			schedule.screen.getNumber());
+
 		if (SQL_SUCCESS == schedule.bindParameter()
 			&& SQL_SUCCESS == schedule.execute(MDF_SCHEDULE, scheduleSql)
 			&& SQL_SUCCESS == schedule.execute(MDF_SEAT, seatSql))
 		{
+			schedule.initialize();
 			cout << "상영 일정이 등록 되었습니다.\n";
 		}
 		else

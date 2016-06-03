@@ -47,7 +47,7 @@ ScheduleManager::ScheduleManager()
 				continue;
 			}
 		case FUNCTION_ERROR:
-			cout << "\n잘못된 입력입니다.";
+			cout << "\n잘못된 입력입니다.\n";
 			system("pause");
 		}
 	}

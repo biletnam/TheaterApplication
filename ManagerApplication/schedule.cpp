@@ -4,7 +4,6 @@ void Schedule::initialize()
 {
 	id = 0;
 	movie.initialize();
-	date.initialize();
 	screen.initialize();
 	startTime = 0;
 	endTime = 0;
@@ -12,24 +11,20 @@ void Schedule::initialize()
 
 void Schedule::show()
 {
-	if (date.getValue() != 0)
+	wcout << movie.getTitle() << L"(";
+	
+	if (0 == movie.getAge())
 	{
-		cout << "상영일: ";
-		date.show();
+		cout << "전체";
+	}
+	else
+	{
+		cout << movie.getAge() << "세";
 	}
 
-	if (screen.getNumber() != 0)
-	{
-		cout << "상영관: " << screen.getNumber() << "관\n";
-	}
-
-	if (movie.getCode() != 0)
-	{
-		cout << "상영작: ";
-		movie.show();
-	}
-
-	showTime();
+	cout << "), "
+		<< startTime / 100 << "시 " << startTime % 100 << "분 ~ "
+		<< endTime / 100 << "시 " << endTime % 100 << "분\n";
 }
 
 void Schedule::showTime()

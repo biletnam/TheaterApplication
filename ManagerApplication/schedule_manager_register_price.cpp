@@ -13,7 +13,6 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 
 			"선택한 상영 일정\n";
 		schedule.show();
-		cout << endl;
 		
 		if (0 < price.getCode())
 		{
@@ -31,9 +30,9 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 				SQLWCHAR sql[BUFSIZ];
 				swprintf_s(sql, L""
 					"INSERT INTO d%d "
-					"(schedule_id, price_code, price_name, price_won) "
+					"(schedule_id, code, name, won) "
 					"VALUES (%d, ?, ?, ?);", schedule.date.getValue(), schedule.getId());
-				if (SQL_SUCCESS == price.bindCol(MDF_PRICE)
+				if (SQL_SUCCESS == price.bindParameter(MDF_PRICE)
 					&& SQL_SUCCESS == price.execute(MDF_PRICE, sql))
 				{
 					cout << "\n등록되었습니다.\n";
@@ -51,7 +50,6 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 		}
 		else
 		{
-			
 			if (SQL_SUCCESS != price.bindCol(MDF_THEATER)
 				|| SQL_SUCCESS != price.prepare(MDF_THEATER, L"SELECT code, name, won FROM price;"))
 			{
@@ -65,11 +63,9 @@ void ScheduleManager::registerPrice(Schedule &schedule)
 			case FUNCTION_NULL:
 				cout << "등록된 가격 정보가 없습니다.\n";
 				system("pause");
+			case FUNCTION_ERROR:
 			case FUNCTION_CANCEL:
 				return;
-			case FUNCTION_SUCCESS:
-			case FUNCTION_ERROR:
-				break;
 			}
 		}
 	}

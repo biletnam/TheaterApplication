@@ -13,7 +13,6 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 			"\n"
 			"선택한 상영 일정\n";
 		schedule.show();
-		cout << endl;
 
 		if (0 < price.getCode())
 		{
@@ -29,7 +28,7 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 				break;
 			case FUNCTION_SUCCESS:
 				SQLWCHAR sql[BUFSIZ];
-				swprintf_s(sql, L"DELETE FROM d%d WHERE shedule_id=%d AND code=%d;", 
+				swprintf_s(sql, L"DELETE FROM d%d WHERE schedule_id=%d AND code=%d;", 
 					schedule.date.getValue(), schedule.getId(), price.getCode());
 				if (SQL_SUCCESS == price.execute(MDF_PRICE, sql))
 				{
@@ -64,10 +63,10 @@ void ScheduleManager::checkAndDeletePrice(Schedule &schedule)
 			case FUNCTION_NULL:
 				cout << "등록된 가격 정보가 없습니다.\n";
 				system("pause");
+			case FUNCTION_ERROR:
 			case FUNCTION_CANCEL:
 				return;
 			case FUNCTION_SUCCESS:
-			case FUNCTION_ERROR:
 				break;
 			}
 		}

@@ -18,7 +18,7 @@ MovieManager::MovieManager()
 		
 		if (FUNCTION_NULL == Movie::showRecent())
 		{
-			cout << "등록된 영화가 없습니다\n";
+			cout << "\n등록된 영화가 없습니다\n";
 			system("pause");
 			registerMovie();
 			return;

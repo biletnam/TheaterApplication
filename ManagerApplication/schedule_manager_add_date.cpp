@@ -2,9 +2,7 @@
 
 void ScheduleManager::addDate()
 {
-	SQLRETURN ret;
-	Date date;
-	for (;;)
+	for (Date date;;)
 	{
 		system("cls");
 		cout <<

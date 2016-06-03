@@ -27,3 +27,11 @@ FNRETURN Movie::search(MovieTable movieTable)
 
 	return FUNCTION_ERROR;
 }
+
+void Movie::setKeyword(SQLWCHAR *keyword) const
+{
+	SQLWCHAR input[BUFSIZ];
+	wcin >> input;
+
+	swprintf_s(keyword, BUFSIZ, L"%%%s%%", input);
+}

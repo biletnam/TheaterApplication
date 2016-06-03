@@ -1,13 +1,13 @@
 #include "screen.h"
 
-SQLSMALLINT Screen::getNumber() const
+SQLINTEGER Screen::getNumber() const
 {
 	return number;
 }
 
 void Screen::show()
 {
-	cout << "상영관 " << number << endl;
+	cout << "상영관" << number << "(" << row << "열 " << col << "행)\n";
 }
 
 void Screen::initialize()

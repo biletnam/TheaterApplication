@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef enum
+enum MovieInfo
 {
 	MOVIE_CODE,
 	MOVIE_TITLE,
@@ -13,13 +13,13 @@ typedef enum
 	MOVIE_AGE,
 	MOVIE_YEAR,
 	MOVIE_RUNNINGTIME
-} MovieInfo;
+};
 
-typedef enum
+enum MovieTable
 {
 	MOVIE_TABLE_INTERNAL,
 	MOVIE_TABLE_EXTERNAL,
-} MovieTable;
+};
 
 class Movie : public DBHelper
 {
@@ -28,22 +28,24 @@ public:
 	
 	static FNRETURN showRecent();
 	void show();
-	void initialize();
+	void initialize() { code = 0; };
 
 	void setKeyword(SQLWCHAR*) const;
 
-	SQLINTEGER getCode();
+	SQLINTEGER getCode() { return code; };
+	SQLWCHAR *getTitle() { return title; };
+	SQLINTEGER getAge() { return age; };
 
 	SQLRETURN bindCol();
 	SQLRETURN bindCol(MdfEnum, MovieInfo);
 	SQLRETURN bindParameter(MdfEnum, MovieInfo);
 private:
 	SQLINTEGER code = 0;
-	SQLCHAR title[BUFSIZ];
-	SQLCHAR director[BUFSIZ];
-	SQLSMALLINT age;
-	SQLSMALLINT year;
-	SQLSMALLINT runningTime;
+	SQLWCHAR title[BUFSIZ] = { 0 };
+	SQLWCHAR director[BUFSIZ] = { 0 };
+	SQLINTEGER age = -1;
+	SQLINTEGER year = 0;
+	SQLINTEGER runningTime = 0;
 
 	SQLWCHAR keyword[BUFSIZ];
 };

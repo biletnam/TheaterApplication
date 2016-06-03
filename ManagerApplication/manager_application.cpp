@@ -4,6 +4,9 @@
 
 int main()
 {
+	wcin.imbue(locale("korean"));
+	wcout.imbue(locale("korean"));
+
 	typedef enum
 	{
 		MOVIE_MANAGER = 1,

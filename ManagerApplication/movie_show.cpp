@@ -2,7 +2,7 @@
 
 FNRETURN Movie::showRecent()
 {
-	cout << "최근 등록된 영화 목록(10개)\n";
+	cout << "최근 등록된 영화 목록(10개)";
 
 	Movie movie;
 	movie.prepare(MDF_THEATER, L""
@@ -14,10 +14,8 @@ FNRETURN Movie::showRecent()
 
 void Movie::show()
 {
-	cout << title
-		<< "(" << director << "), "
-		<< runningTime << "분, ";
-	if (age == 0)
+	wcout << title << "(" << director << ") " << runningTime << L"분, ";
+	if (0 == age)
 	{
 		cout << "전체";
 	}

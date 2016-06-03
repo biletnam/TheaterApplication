@@ -9,7 +9,7 @@ SQLRETURN DBHelper::bindCol(MdfEnum mdf, BindType bindType, void *target)
 		case BIND_INTEGER:
 			return SQLBindCol(stmt[mdf], ++bindColCnt[mdf], SQL_INTEGER, target, sizeof(SQLINTEGER), NULL);
 		case BIND_STRING:
-			return SQLBindCol(stmt[mdf], ++bindColCnt[mdf], SQL_CHAR, target, BUFSIZ, NULL);
+			return SQLBindCol(stmt[mdf], ++bindColCnt[mdf], SQL_WCHAR, target, BUFSIZ, NULL);
 		}
 	}
 	

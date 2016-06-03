@@ -5,7 +5,7 @@ SQLINTEGER Price::getCode()
 	return code;
 }
 
-SQLCHAR *Price::getName()
+SQLWCHAR *Price::getName()
 {
 	return name;
 }

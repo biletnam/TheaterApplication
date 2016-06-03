@@ -69,9 +69,9 @@ FNRETURN Price::inputCode()
 FNRETURN Price::inputName()
 {
 	cout << "가격 이름을 입력하세요(0을 입력하면 종료): ";
-	cin >> name;
+	wcin >> name;
 
-	if (strcmp((char*)name, "0") == 0)
+	if (wcscmp(name, L"0") == 0)
 	{
 		return FUNCTION_CANCEL;
 	}

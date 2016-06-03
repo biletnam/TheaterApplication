@@ -3,17 +3,17 @@
 
 #include "DB_helper.h"
 
-typedef enum
+enum ScreenInfo
 {
 	SCREEN_NUMBER,
 	SCREEN_ROW,
 	SCREEN_COL,
-} ScreenInfo;
+};
 
 class Screen : public DBHelper
 {
 public:
-	SQLSMALLINT getNumber() const;
+	SQLINTEGER  getNumber() const;
 	void show();
 	void initialize();
 
@@ -21,9 +21,9 @@ public:
 	SQLRETURN bindCol(MdfEnum, ScreenInfo);
 	SQLRETURN bindParameter(MdfEnum, ScreenInfo);
 private:
-	SQLSMALLINT number = 0;
-	SQLSMALLINT row;
-	SQLSMALLINT col;
+	SQLINTEGER number = 0;
+	SQLINTEGER row = 0;
+	SQLINTEGER col = 0;
 };
 
 #endif // !SCREEN_H

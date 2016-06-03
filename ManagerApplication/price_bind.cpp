@@ -14,6 +14,20 @@ SQLRETURN Price::bindCol(MdfEnum mdf)
 	}
 }
 
+SQLRETURN Price::bindParameter(MdfEnum mdf)
+{
+	if (SQL_SUCCESS == bindParameter(mdf, PRICE_CODE)
+		&& SQL_SUCCESS == bindParameter(mdf, PRICE_NAME)
+		&& SQL_SUCCESS == bindParameter(mdf, PRICE_WON))
+	{
+		return SQL_SUCCESS;
+	}
+	else
+	{
+		return SQL_ERROR;
+	}
+}
+
 SQLRETURN Price::bindCol(MdfEnum mdf, PriceInfo priceInfo)
 {
 	switch (priceInfo)

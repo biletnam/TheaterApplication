@@ -26,8 +26,8 @@ public:
 	void showTime();
 	void initialize();
 	SQLINTEGER getId() { return id; };
-	SQLSMALLINT getStartTime() { return startTime; }
-	SQLSMALLINT getEndTime() { return endTime; }
+	SQLINTEGER  getStartTime() { return startTime; }
+	SQLINTEGER  getEndTime() { return endTime; }
 
 	Movie movie;
 	Screen screen;
@@ -38,8 +38,8 @@ private:
 	bool isPossibleTime(SQLINTEGER);
 
 	SQLINTEGER id = 0;
-	SQLSMALLINT startTime = 0;
-	SQLSMALLINT endTime = 0;
+	SQLINTEGER startTime = 0;
+	SQLINTEGER endTime = 0;
 };
 
 #endif // !SCHEDULE_H

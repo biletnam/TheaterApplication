@@ -7,5 +7,6 @@ void Price::initialize()
 
 void Price::show()
 {
-	cout << name << "(" << code << ") " << won << "¿ø\n";
+	wcout << name;
+	cout << "(" << code << ") " << won << "¿ø\n";
 }

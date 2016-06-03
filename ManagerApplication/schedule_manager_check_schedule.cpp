@@ -10,11 +10,15 @@ void ScheduleManager::checkAndModifySchedule()
 			" > 상영 일정 관리\n"
 			"  > 상영 일정 확인 / 수정\n";
 
-		if (0 != schedule.screen.getNumber()
-			|| 0 != schedule.date.getValue())
+
+		if (0 != schedule.date.getValue())
 		{
 			cout << "\n상영 일정 정보\n";
-			schedule.show();
+			schedule.date.show();
+		}
+		if (0 != schedule.screen.getNumber())
+		{
+			schedule.screen.show();
 		}
 				
 		if (0 == schedule.date.getValue())
@@ -44,8 +48,8 @@ void ScheduleManager::checkAndModifySchedule()
 		else if (0 == schedule.screen.getNumber())
 		{
 			cout << "\n상영관 선택";
-			if (SQL_SUCCESS != schedule.screen.bindCol(MDF_THEATER, SCREEN_NUMBER)
-				|| SQL_SUCCESS != schedule.prepare(MDF_THEATER, L"SELECT number FROM screen;"))
+			if (SQL_SUCCESS != schedule.screen.bindCol()
+				|| SQL_SUCCESS != schedule.prepare(MDF_THEATER, L"SELECT number, row, col FROM screen;"))
 			{
 				cout << "\n오류가 발생했습니다.(checkAndDeleteDate)\n";
 				system("pause");

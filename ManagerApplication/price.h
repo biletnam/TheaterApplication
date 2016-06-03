@@ -14,7 +14,7 @@ class Price : public DBHelper
 {
 public:
 	SQLINTEGER getCode();
-	SQLCHAR *getName();
+	SQLWCHAR *getName();
 	SQLINTEGER getWon();
 
 	void initialize();
@@ -26,12 +26,13 @@ public:
 	FNRETURN inputWon();
 
 	SQLRETURN bindCol(MdfEnum);
+	SQLRETURN bindParameter(MdfEnum);
 	SQLRETURN bindCol(MdfEnum, PriceInfo);
 	SQLRETURN bindParameter(MdfEnum, PriceInfo);
 
 private:
 	SQLINTEGER code = 0;
-	SQLCHAR name[BUFSIZ] = {0};
+	SQLWCHAR name[BUFSIZ] = {0};
 	SQLINTEGER won = -1;
 };
 

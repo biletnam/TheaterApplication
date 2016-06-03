@@ -7,7 +7,7 @@
 #include <sqltypes.h>
 #include "common_header.h"
 
-typedef enum
+enum MdfEnum
 {
 	MDF_THEATER,
 	MDF_SCHEDULE,
@@ -15,13 +15,13 @@ typedef enum
 	MDF_SEAT,
 	MDF_SALES,
 	MDF_COUNT
-} MdfEnum;
+};
 
-typedef enum
+enum BindType
 {
 	BIND_INTEGER,
 	BIND_STRING,
-} BindType;
+};
 
 class DBHelper
 {
