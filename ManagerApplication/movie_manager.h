@@ -8,8 +8,7 @@ public:
 	MovieManager();
 private:
 	void checkAndDeleteMovie();
-	void registereMovie();
-	void showRecent();
+	void registerMovie();
 };
 
 #endif // !MOVIE_MANAGER_H

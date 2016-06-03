@@ -28,13 +28,3 @@ SQLRETURN Date::bindParameter()
 {
 	return DBHelper::bindParameter(MDF_THEATER, BIND_INTEGER, &value);
 }
-
-SQLRETURN Date::prepare(SQLWCHAR *sql)
-{
-	return DBHelper::prepare(MDF_THEATER, sql);
-}
-
-SQLRETURN Date::choose()
-{
-	return DBHelper::choose(MDF_THEATER);
-}

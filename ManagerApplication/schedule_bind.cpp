@@ -4,8 +4,8 @@ SQLRETURN Schedule::bindCol()
 {
 	if (SQL_SUCCESS == DBHelper::bindCol(MDF_SCHEDULE, BIND_INTEGER, &id)
 		&& SQL_SUCCESS == movie.bindCol(MDF_SCHEDULE, MOVIE_CODE)
-		&& SQL_SUCCESS == movie.bindCol(MDF_SCHEDULE, MOVIE_TITLE) == SQL_SUCCESS
-		&& SQL_SUCCESS == movie.bindCol(MDF_SCHEDULE, MOVIE_AGE) == SQL_SUCCESS
+		&& SQL_SUCCESS == movie.bindCol(MDF_SCHEDULE, MOVIE_TITLE)
+		&& SQL_SUCCESS == movie.bindCol(MDF_SCHEDULE, MOVIE_AGE)
 		&& SQL_SUCCESS == DBHelper::bindCol(MDF_SCHEDULE, BIND_INTEGER, &startTime)
 		&& SQL_SUCCESS == DBHelper::bindCol(MDF_SCHEDULE, BIND_INTEGER, &endTime))
 	{

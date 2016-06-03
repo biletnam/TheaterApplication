@@ -18,14 +18,12 @@ enum ScheduleInfo
 class Schedule : public DBHelper {
 public:
 	FNRETURN inputTime();
-	FNRETURN inputStartTime();
-	FNRETURN inputEndTime();
-	bool isPossibleTime(SQLINTEGER);
-	
+		
 	SQLRETURN bindCol();
 	SQLRETURN bindParameter();
 
 	void show();
+	void showTime();
 	void initialize();
 	SQLINTEGER getId() { return id; };
 	SQLSMALLINT getStartTime() { return startTime; }
@@ -35,6 +33,10 @@ public:
 	Screen screen;
 	Date date;
 private:
+	FNRETURN inputStartTime();
+	FNRETURN inputEndTime();
+	bool isPossibleTime(SQLINTEGER);
+
 	SQLINTEGER id = 0;
 	SQLSMALLINT startTime = 0;
 	SQLSMALLINT endTime = 0;

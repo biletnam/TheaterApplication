@@ -12,14 +12,25 @@ void ScheduleManager::setTime(Schedule &schedule)
 			"   > 시간 설정\n"
 			"\n";
 
+		schedule.showTime();
+		if (0 < schedule.getStartTime())
+		{
+			cout << endl;
+		}
+		
 		if (0 != schedule.getStartTime()
 			&& 0 != schedule.getEndTime())
 		{
 			return;
 		}
-		else if (FUNCTION_CANCEL == schedule.inputTime())
+
+		switch (schedule.inputTime())
 		{
+		case FUNCTION_CANCEL:
 			return;
+		case FUNCTION_ERROR:
+			cout << "\n잘못된 입력입니다.\n";
+			system("pause");
 		}
 	}
 }

@@ -5,6 +5,7 @@ FNRETURN DBHelper::choose(MdfEnum mdf)
 	switch (showSelectResult(mdf))
 	{
 	case FUNCTION_NULL:
+		initialize();
 		return FUNCTION_NULL;
 	case FUNCTION_SUCCESS:
 		initialize();
@@ -17,9 +18,8 @@ FNRETURN DBHelper::choose(MdfEnum mdf)
 		{
 		case FUNCTION_CANCEL:
 			return FUNCTION_CANCEL;
-		case FUNCTION_SUCCESS:
-			return FUNCTION_SUCCESS;
 		}
+		return FUNCTION_SUCCESS;
 	}
 
 	initialize();

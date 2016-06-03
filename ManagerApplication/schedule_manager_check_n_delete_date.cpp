@@ -24,13 +24,13 @@ void ScheduleManager::checkAndDeleteDate()
 				system("pause");
 				break;
 			case FUNCTION_SUCCESS:
-				date.bindParameter();
 				SQLWCHAR sql[BUFSIZ];
 				swprintf_s(sql, L"DROP TABLE d%d;", date.getValue());
-				if (SQL_SUCCESS == date.execute(MDF_THEATER, L"DELETE FROM schedule WHERE date=?;")
+				if (SQL_SUCCESS == date.bindParameter()
+					&& SQL_SUCCESS == date.execute(MDF_THEATER, L"DELETE FROM date WHERE date_value=?;")
 					&& SQL_SUCCESS == date.execute(MDF_SCHEDULE, sql)
 					&& SQL_SUCCESS == date.execute(MDF_PRICE, sql)
-					&& SQL_SUCCESS == date.execute(MDF_SALE_RECORD, sql))
+					&& SQL_SUCCESS == date.execute(MDF_SALES, sql))
 				{
 					cout << "\n삭제되었습니다.\n";
 					system("pause");
@@ -47,17 +47,18 @@ void ScheduleManager::checkAndDeleteDate()
 		}
 		else
 		{
-			Date::getToday().bindParameter();
-			if (SQL_SUCCESS != date.prepare(L"SELECT date FROM date WHERE date_value>?;"))
+			if (SQL_SUCCESS != Date::getToday().bindParameter()
+				|| SQL_SUCCESS != date.bindCol()
+				|| SQL_SUCCESS != date.prepare(MDF_THEATER, L"SELECT date_value FROM date WHERE date_value>?;"))
 			{
 				cout << "\n오류가 발생했습니다(checkSchedule).\n";
 				system("pause");
 				return;
 			}
-
-			date.bindCol();
-			switch (date.choose())
+			
+			switch (date.choose(MDF_THEATER))
 			{
+			case FUNCTION_ERROR:
 			case FUNCTION_CANCEL:
 				return;
 			case FUNCTION_NULL:

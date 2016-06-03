@@ -13,9 +13,9 @@ FNRETURN DBHelper::connectDB()
 	SQLWCHAR mdf[MDF_COUNT][BUFSIZ];
 	wcscpy_s(mdf[MDF_THEATER], L"theater");				// 극장 정보
 	wcscpy_s(mdf[MDF_SCHEDULE], L"schedule");			// 상영 일정
-	wcscpy_s(mdf[MDF_PRICE], L"sale_info");			// 판매 정보
+	wcscpy_s(mdf[MDF_PRICE], L"price");			// 판매 정보
 	wcscpy_s(mdf[MDF_SEAT], L"seat");					// 상영관 좌석 정보
-	wcscpy_s(mdf[MDF_SALE_RECORD], L"sales_record");	// 판매 내역
+	wcscpy_s(mdf[MDF_SALES], L"sales");	// 판매 내역
 	SQLWCHAR* driver = L"DRIVER={SQL Server Native Client 11.0}";
 	SQLWCHAR* server = L"Server=(localdb)\\MSSQLLocalDB";
 	SQLWCHAR* trust = L"Trusted_Connection=yes";

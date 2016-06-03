@@ -27,7 +27,7 @@ FNRETURN DBHelper::showSelectResult(MdfEnum mdf)
 		}
 	}
 
-	cout << "오류가 발생했습니다.(showSelectResult)\n";
+	cout << "\n오류가 발생했습니다.(showSelectResult)\n";
 	system("pause");
 	return FUNCTION_ERROR;
 }

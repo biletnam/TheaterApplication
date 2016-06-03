@@ -17,6 +17,7 @@ public:
 	void show();
 	void initialize();
 
+	SQLRETURN bindCol();
 	SQLRETURN bindCol(MdfEnum, ScreenInfo);
 	SQLRETURN bindParameter(MdfEnum, ScreenInfo);
 private:

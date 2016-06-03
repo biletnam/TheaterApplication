@@ -26,8 +26,8 @@ class Movie : public DBHelper
 public:
 	FNRETURN search(MovieTable);
 	
+	static FNRETURN showRecent();
 	void show();
-	void showNullMessage();
 	void initialize();
 
 	void setKeyword(SQLWCHAR*) const;

@@ -15,6 +15,20 @@ void Screen::initialize()
 	number = 0;
 }
 
+SQLRETURN Screen::bindCol()
+{
+	if (SQL_SUCCESS == bindCol(MDF_THEATER, SCREEN_NUMBER)
+		&& SQL_SUCCESS == bindCol(MDF_THEATER, SCREEN_ROW)
+		&& SQL_SUCCESS == bindCol(MDF_THEATER, SCREEN_COL))
+	{
+		return SQL_SUCCESS;
+	}
+	else
+	{
+		return SQL_ERROR;
+	}
+}
+
 SQLRETURN Screen::bindCol(MdfEnum mdf, ScreenInfo screenInfo)
 {
 	switch (screenInfo)

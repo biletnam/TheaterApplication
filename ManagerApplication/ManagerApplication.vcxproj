@@ -179,7 +179,6 @@
     <ClCompile Include="schedule_manager_check_schedule.cpp" />
     <ClCompile Include="schedule_manager_register_price.cpp" />
     <ClCompile Include="schedule_manager_register_schedule.cpp" />
-    <ClCompile Include="movie_manager_show_recent.cpp" />
     <ClCompile Include="schedule_manager_check_n_delete_price.cpp" />
     <ClCompile Include="price_manager_check_n_delete_price.cpp" />
     <ClCompile Include="price_manager_add_price.cpp" />

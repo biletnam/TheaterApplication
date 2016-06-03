@@ -14,24 +14,21 @@ class Date : public DBHelper{
 public:
 	void show();
 	void initialize() { value = 0; }
-	SQLRETURN prepare(SQLWCHAR *);
-	SQLRETURN choose();
-
-	FNRETURN input();
-	FNRETURN input(DateType);
-
+	
+	SQLINTEGER getValue() const { return value; };
 	int16_t get(DateType);
 	int16_t getLastDay();
-	int32_t getValue() const;
 	static Date getToday();
-
-	FNRETURN set(DateType, const int16_t);
+	
+	FNRETURN input();
 
 	SQLRETURN bindCol();
 	SQLRETURN bindParameter();
 
 	bool isLeapYear(const int16_t);
-	
 private:
-	int32_t value = 0;
+	FNRETURN input(DateType);
+	FNRETURN set(DateType, const int16_t);
+
+	SQLINTEGER value = 0;
 };

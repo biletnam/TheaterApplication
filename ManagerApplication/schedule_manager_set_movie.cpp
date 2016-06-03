@@ -19,6 +19,8 @@ void ScheduleManager::setMovie(Movie &movie)
 		case FUNCTION_SUCCESS:
 			switch (movie.choose(MDF_THEATER))
 			{
+			case FUNCTION_SUCCESS:
+				return;
 			case FUNCTION_NULL:
 				cout << "등록된 영화가 없습니다.\n";
 				system("pause");

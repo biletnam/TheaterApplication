@@ -19,9 +19,17 @@ void ScheduleManager::registerSchedule()
 			"극장 관리 시스템\n"
 			" > 상영 일정 관리\n"
 			"  > 상영 일정 등록\n"
-			"\n"
-			"새 스케쥴\n";
-		schedule.show();
+			"\n";
+
+		if (0 != schedule.screen.getNumber()
+			|| 0 != schedule.date.getValue()
+			|| 0 != schedule.movie.getCode()
+			|| 0 != schedule.getStartTime())
+		{
+			cout << "새 스케쥴\n";
+			schedule.show();
+			cout << endl;
+		}
 
 		cout <<
 			"1. 상영관 설정\n"
@@ -29,7 +37,9 @@ void ScheduleManager::registerSchedule()
 			"3. 영화 설정\n"
 			"4. 시간 설정\n"
 			"5. 새 스케쥴 등록\n"
-			"0. 종료\n";
+			"0. 종료\n"
+			"\n"
+			"선택: ";
 
 		int32_t function = 0;
 		switch (inputPositiveInteger(function))
@@ -53,9 +63,7 @@ void ScheduleManager::registerSchedule()
 				setMovie(schedule.movie);
 				continue;
 			case SET_TIME:
-				setTime(schedule);
-				continue;
-			case REGISTER_SCHEDULE:
+				cout << endl;
 				if (0 == schedule.screen.getNumber())
 				{
 					cout << "상영관을 선택하지 않았습니다.\n";
@@ -68,19 +76,22 @@ void ScheduleManager::registerSchedule()
 				{
 					cout << "영화를 선택하지 않았습니다.\n";
 				}
-				else if (0 == schedule.getStartTime())
-				{
-					cout << "상영 시간을 입력하지 않았습니다.\n";
-				}
 				else
 				{
-					break;
+					setTime(schedule);
+					continue;
 				}
 				system("pause");
 				continue;
+			case REGISTER_SCHEDULE:
+				if (0 == schedule.getStartTime())
+				{
+					cout << "상영 시간을 입력하지 않았습니다.\n";
+					system("pause");
+					continue;
+				}
 			}
 		}
-
 
 		SQLWCHAR scheduleSql[BUFSIZ];
 		swprintf_s(scheduleSql, L""
@@ -88,14 +99,12 @@ void ScheduleManager::registerSchedule()
 			"(movie_code, movie_title, age, start_time, end_time, screen) "
 			"VALUES (?, ?, ?, ?, ?, ?);",
 			schedule.date.getValue());
-		schedule.bindParameter();
-		
 		SQLWCHAR seatSql[BUFSIZ];
 		swprintf_s(seatSql, L"SELECT * INTO d%ds%d FROM screen%d;",
 			schedule.date.getValue(), schedule.getId(),
 			schedule.screen.getNumber());
-		
-		if (SQL_SUCCESS == schedule.execute(MDF_SCHEDULE, scheduleSql)
+		if (SQL_SUCCESS == schedule.bindParameter()
+			&& SQL_SUCCESS == schedule.execute(MDF_SCHEDULE, scheduleSql)
 			&& SQL_SUCCESS == schedule.execute(MDF_SEAT, seatSql))
 		{
 			cout << "상영 일정이 등록 되었습니다.\n";

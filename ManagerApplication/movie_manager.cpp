@@ -13,17 +13,24 @@ MovieManager::MovieManager()
 		system("cls");
 		cout << 
 			"극장 관리 시스템\n"
-			" > 영화 정보 관리\n\n";
-
-		showRecent();
+			" > 영화 정보 관리\n"
+			"\n";
+		
+		if (FUNCTION_NULL == Movie::showRecent())
+		{
+			cout << "등록된 영화가 없습니다\n";
+			system("pause");
+			registerMovie();
+			return;
+		}
 
 		cout <<
-			"\n--------------------------\n\n"
-
+			"\n--------------------------\n"
+			"\n"
 			"1. 등록한 영화 확인 / 삭제\n"
 			"2. 새로운 영화 등록\n"
-			"0. 종료\n\n"
-
+			"0. 종료\n"
+			"\n"
 			"선택: ";
 
 		int32_t function = 0;
@@ -38,7 +45,7 @@ MovieManager::MovieManager()
 				checkAndDeleteMovie();
 				continue;
 			case REGISTER_MOVIE:
-				registereMovie();
+				registerMovie();
 				continue;
 			}
 		case FUNCTION_ERROR:

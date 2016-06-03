@@ -27,6 +27,8 @@ FNRETURN Schedule::inputStartTime()
 	int32_t time;
 	switch (inputPositiveInteger(time))
 	{
+	case FUNCTION_CANCEL:
+		return FUNCTION_CANCEL;
 	case FUNCTION_SUCCESS:
 		if ((0 == endTime || time < endTime)
 			&& true == isPossibleTime(time))
@@ -34,8 +36,6 @@ FNRETURN Schedule::inputStartTime()
 			startTime = time;
 			return FUNCTION_SUCCESS;
 		}
-	case FUNCTION_CANCEL:
-		return FUNCTION_CANCEL;
 	}
 
 	return FUNCTION_ERROR;
@@ -49,6 +49,8 @@ FNRETURN Schedule::inputEndTime()
 	int32_t time;
 	switch (inputPositiveInteger(time))
 	{
+	case FUNCTION_CANCEL:
+		return FUNCTION_CANCEL;
 	case FUNCTION_SUCCESS:
 		if ((0 == startTime || time > startTime)
 			&& true == isPossibleTime(time))
@@ -56,8 +58,6 @@ FNRETURN Schedule::inputEndTime()
 			endTime = time;
 			return FUNCTION_SUCCESS;
 		}
-	case FUNCTION_CANCEL:
-		return FUNCTION_CANCEL;
 	}
 
 	return FUNCTION_ERROR;
@@ -65,19 +65,20 @@ FNRETURN Schedule::inputEndTime()
 
 bool Schedule::isPossibleTime(SQLINTEGER time)
 {
-	SQLWCHAR sql[BUFSIZ];
-	swprintf_s(sql, L""
-		"SELECT * FROM d%d "
-		"WHERE screen=%d AND start_time <= %d AND end_time >= %d;",
-		date.getValue(), screen.getNumber(), time, time);
-	execute(MDF_SCHEDULE, sql);
-	
-	if (SQL_NO_DATA == fetch(MDF_SCHEDULE))
+	if (24 >= time / 100 && 60 >= time % 100)
 	{
-		return true;
+		SQLWCHAR sql[BUFSIZ];
+		swprintf_s(sql, L""
+			"SELECT * FROM d%d "
+			"WHERE screen=%d AND start_time <= %d AND end_time >= %d;",
+			date.getValue(), screen.getNumber(), time, time);
+		execute(MDF_SCHEDULE, sql);
+
+		if (SQL_NO_DATA == fetch(MDF_SCHEDULE))
+		{
+			return true;
+		}
 	}
-	else
-	{
-		return false;
-	}
+
+	return false;
 }

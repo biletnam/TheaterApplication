@@ -20,10 +20,17 @@ void ScheduleManager::checkAndModifySchedule()
 		if (0 == schedule.date.getValue())
 		{
 			cout << "\n상영일 선택";
-			Date::getToday().bindParameter();
-			schedule.date.bindCol();
-			schedule.date.prepare(L"SELECT date FROM date WHERE date_value>?;");
-			switch (schedule.date.choose())
+			if (SQL_SUCCESS != Date::getToday().bindParameter()
+				|| SQL_SUCCESS != schedule.date.bindCol()
+				|| SQL_SUCCESS != schedule.prepare(MDF_THEATER, 
+					L"SELECT date_value FROM date WHERE date_value>?;"))
+			{
+				cout << "\n오류가 발생했습니다.(checkAndDeleteDate)\n";
+				system("pause");
+				return;
+			}
+
+			switch (schedule.date.choose(MDF_THEATER))
 			{
 			case FUNCTION_NULL:
 				cout << "\n등록된 상영 예정일이 없습니다.\n";
@@ -36,10 +43,16 @@ void ScheduleManager::checkAndModifySchedule()
 		}
 		else if (0 == schedule.screen.getNumber())
 		{
-			cout << "\n상영관 선택\n";
-			schedule.screen.bindCol(MDF_THEATER, SCREEN_NUMBER);
-			schedule.prepare(MDF_THEATER, L"SELECT number FROM screen;");
-			switch (schedule.choose(MDF_THEATER))
+			cout << "\n상영관 선택";
+			if (SQL_SUCCESS != schedule.screen.bindCol(MDF_THEATER, SCREEN_NUMBER)
+				|| SQL_SUCCESS != schedule.prepare(MDF_THEATER, L"SELECT number FROM screen;"))
+			{
+				cout << "\n오류가 발생했습니다.(checkAndDeleteDate)\n";
+				system("pause");
+				return;
+			}
+
+			switch (schedule.screen.choose(MDF_THEATER))
 			{
 			case FUNCTION_NULL:
 				cout << "\n등록된 가격 정보가 없습니다.\n";
@@ -58,20 +71,26 @@ void ScheduleManager::checkAndModifySchedule()
 			"WHERE screen=%d "
 			"ORDER BY start_time ASC;",
 			schedule.date.getValue(), schedule.screen.getNumber());
-		schedule.bindCol();
-		schedule.prepare(MDF_SCHEDULE, sql);
+
+		if (SQL_SUCCESS != schedule.bindCol()
+			|| SQL_SUCCESS != schedule.prepare(MDF_SCHEDULE, sql))
+		{
+			cout << "\n오류가 발생했습니다.(checkAndDeleteDate)\n";
+			system("pause");
+			return;
+		}
+
 		switch (schedule.choose(MDF_SCHEDULE))
 		{
+		case FUNCTION_ERROR:
 		case FUNCTION_CANCEL:
 			return;
-		case FUNCTION_SUCCESS:
-			modifySchedule(schedule);
-			break;
 		case FUNCTION_NULL:
 			cout << "등록된 상영 일정이 없습니다\n";
 			system("pause");
-		case FUNCTION_ERROR:
 			break;
+		case FUNCTION_SUCCESS:
+			modifySchedule(schedule);
 		}
 	}
 }

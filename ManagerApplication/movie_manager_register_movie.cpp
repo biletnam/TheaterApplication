@@ -1,14 +1,13 @@
 #include "movie_manager.h"
 
-void MovieManager::registereMovie()
+void MovieManager::registerMovie()
 {
-	Movie movie;
-	for (;;)
+	for (Movie movie;;)
 	{
 		system("cls");
 		cout <<
 			"극장 관리 시스템\n"
-			" > 영화 정보 관리\n";
+			" > 영화 정보 관리\n"
 			"  > 새로운 영화 등록\n";
 		cout << endl;
 

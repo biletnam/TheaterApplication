@@ -28,11 +28,6 @@ int16_t Date::getLastDay()
 
 }
 
-int32_t Date::getValue() const
-{
-	return value;
-}
-
 Date Date::getToday()
 {
 	struct tm t;
@@ -41,7 +36,7 @@ Date Date::getToday()
 	localtime_s(&t, &timer);
 
 	Date date;
-	date.set(DATE_YEAR, t.tm_year - 100);	// year
+	date.set(DATE_YEAR, t.tm_year + 1900);	// year
 	date.set(DATE_MONTH, t.tm_mon + 1);		// month
 	date.set(DATE_DAY, t.tm_mday + 1);		// day
 

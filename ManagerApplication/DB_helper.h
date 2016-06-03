@@ -13,7 +13,7 @@ typedef enum
 	MDF_SCHEDULE,
 	MDF_PRICE,
 	MDF_SEAT,
-	MDF_SALE_RECORD,
+	MDF_SALES,
 	MDF_COUNT
 } MdfEnum;
 
