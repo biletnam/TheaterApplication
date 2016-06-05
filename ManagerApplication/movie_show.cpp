@@ -12,7 +12,7 @@ FNRETURN Movie::showRecent()
 	return movie.showSelectResult(MDF_THEATER);
 }
 
-void Movie::show()
+void Movie::show() const
 {
 	wcout << title << "(" << director << ") " << runningTime << L"Ка, ";
 	if (0 == age)

@@ -24,18 +24,14 @@ enum MovieTable
 class Movie : public DBHelper
 {
 public:
-	FNRETURN search(MovieTable);
-	
+	void show() const;
 	static FNRETURN showRecent();
-	void show();
 	void initialize() { code = 0; };
-
-	void setKeyword(SQLWCHAR*) const;
-
-	SQLINTEGER getCode() { return code; };
-	SQLWCHAR *getTitle() { return title; };
-	SQLINTEGER getAge() { return age; };
-
+	SQLINTEGER getCode() const { return code; };
+	const SQLWCHAR *getTitle() const { return title; };
+	SQLINTEGER getAge() const { return age; };
+	
+	FNRETURN search(MovieTable);
 	SQLRETURN bindCol();
 	SQLRETURN bindCol(MdfEnum, MovieInfo);
 	SQLRETURN bindParameter(MdfEnum, MovieInfo);
@@ -46,8 +42,9 @@ private:
 	SQLINTEGER age = -1;
 	SQLINTEGER year = 0;
 	SQLINTEGER runningTime = 0;
-
 	SQLWCHAR keyword[BUFSIZ];
+
+	void setKeyword(SQLWCHAR*) const;
 };
 
 #endif // !MOVIE_H

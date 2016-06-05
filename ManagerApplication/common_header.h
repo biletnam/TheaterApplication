@@ -1,4 +1,6 @@
-#pragma once
+#ifndef COMMON_HEADER_H
+#define COMMON_HEADER_H
+
 #include <iostream>
 
 using namespace std;
@@ -13,3 +15,5 @@ enum FNRETURN
 
 FNRETURN inputPositiveInteger(int32_t &);
 FNRETURN inputYN();
+
+#endif // !COMMON_HEADER_H

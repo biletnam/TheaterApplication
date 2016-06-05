@@ -1,6 +1,6 @@
 #include "Date.h"
 
-void Date::show()
+void Date::show() const
 {
 	if (0 != get(DATE_YEAR))
 	{

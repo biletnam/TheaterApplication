@@ -1,6 +1,6 @@
 #include "date.h"
 
-int16_t Date::get(DateType type)
+int16_t Date::get(DateType type) const
 {
 	switch (type)
 	{
@@ -14,7 +14,7 @@ int16_t Date::get(DateType type)
 	}
 }
 
-int16_t Date::getLastDay()
+int16_t Date::getLastDay() const
 {
 	switch (get(DATE_MONTH))
 	{
@@ -43,7 +43,7 @@ Date Date::getToday()
 	return date;
 }
 
-bool Date::isLeapYear(const int16_t year)
+bool Date::isLeapYear(const int16_t year) const
 {
 	if ((0 == year % 4 && 0 != year % 100) || 0 == year % 400)
 	{

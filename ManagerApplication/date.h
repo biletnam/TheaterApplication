@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TIME_H
+#define TIME_H
 
 #include <time.h>
 #include "DB_helper.h"
@@ -10,25 +11,25 @@ enum DateType
 	DATE_DAY,
 };
 
-class Date : public DBHelper{
+class Date : public DBHelper
+{
 public:
-	void show();
-	void initialize() { value = 0; }
-	
+	void show() const;
 	SQLINTEGER getValue() const { return value; };
-	int16_t get(DateType);
-	int16_t getLastDay();
+	int16_t get(DateType) const;
+	int16_t getLastDay() const;
 	static Date getToday();
-	
-	FNRETURN input();
+	bool isLeapYear(const int16_t) const;
 
+	void initialize() { value = 0; }
 	SQLRETURN bindCol();
 	SQLRETURN bindParameter();
-
-	bool isLeapYear(const int16_t);
+	FNRETURN input();
 private:
-	FNRETURN input(DateType);
-	FNRETURN set(DateType, const int16_t);
-
 	SQLINTEGER value = 0;
+
+	FNRETURN set(DateType, const int16_t);
+	FNRETURN input(DateType);
 };
+
+#endif // !TIME_H

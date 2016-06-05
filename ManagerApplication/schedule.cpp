@@ -9,7 +9,7 @@ void Schedule::initialize()
 	endTime = 0;
 }
 
-void Schedule::show()
+void Schedule::show() const
 {
 	wcout << movie.getTitle() << L"(";
 	
@@ -27,7 +27,7 @@ void Schedule::show()
 		<< endTime / 100 << "½Ã " << endTime % 100 << "ºÐ\n";
 }
 
-void Schedule::showTime()
+void Schedule::showTime() const
 {
 	if (0 < startTime)
 	{

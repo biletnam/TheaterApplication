@@ -5,7 +5,7 @@ SQLINTEGER Screen::getNumber() const
 	return number;
 }
 
-void Screen::show()
+void Screen::show() const
 {
 	cout << "상영관" << number << "(" << row << "열 " << col << "행)\n";
 }

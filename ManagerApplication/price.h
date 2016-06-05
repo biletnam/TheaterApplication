@@ -13,27 +13,25 @@ enum PriceInfo
 class Price : public DBHelper
 {
 public:
-	SQLINTEGER getCode();
-	SQLWCHAR *getName();
-	SQLINTEGER getWon();
-
+	void show() const;
+	SQLINTEGER getCode() const;
+	const SQLWCHAR *getName() const;
+	SQLINTEGER getWon() const;
+	
 	void initialize();
-	void show();
-
 	FNRETURN input();
-	FNRETURN inputCode();
-	FNRETURN inputName();
-	FNRETURN inputWon();
-
 	SQLRETURN bindCol(MdfEnum);
 	SQLRETURN bindParameter(MdfEnum);
 	SQLRETURN bindCol(MdfEnum, PriceInfo);
 	SQLRETURN bindParameter(MdfEnum, PriceInfo);
-
 private:
 	SQLINTEGER code = 0;
-	SQLWCHAR name[BUFSIZ] = {0};
+	SQLWCHAR name[BUFSIZ] = { 0 };
 	SQLINTEGER won = -1;
+
+	FNRETURN inputCode();
+	FNRETURN inputName();
+	FNRETURN inputWon();
 };
 
 #endif // !PRICE_H

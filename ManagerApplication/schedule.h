@@ -17,29 +17,29 @@ enum ScheduleInfo
 
 class Schedule : public DBHelper {
 public:
-	FNRETURN inputTime();
-		
-	SQLRETURN bindCol();
-	SQLRETURN bindParameter();
-
-	void show();
-	void showTime();
-	void initialize();
-	SQLINTEGER getId() { return id; };
-	SQLINTEGER  getStartTime() { return startTime; }
-	SQLINTEGER  getEndTime() { return endTime; }
-
 	Movie movie;
 	Screen screen;
 	Date date;
-private:
-	FNRETURN inputStartTime();
-	FNRETURN inputEndTime();
-	bool isPossibleTime(SQLINTEGER);
 
+	void show() const;
+	void showTime() const;
+	SQLINTEGER getId() const { return id; };
+	SQLINTEGER getStartTime() const { return startTime; }
+	SQLINTEGER getEndTime() const { return endTime; }
+
+	void initialize();
+	FNRETURN inputTime();
+	SQLRETURN bindCol();
+	SQLRETURN bindParameter();
+private:
 	SQLINTEGER id = 0;
 	SQLINTEGER startTime = 0;
 	SQLINTEGER endTime = 0;
+
+	bool isPossibleTime(SQLINTEGER);
+
+	FNRETURN inputStartTime();
+	FNRETURN inputEndTime();
 };
 
 #endif // !SCHEDULE_H

@@ -13,10 +13,10 @@ enum ScreenInfo
 class Screen : public DBHelper
 {
 public:
-	SQLINTEGER  getNumber() const;
-	void show();
+	void show() const;
+	SQLINTEGER getNumber() const;
+	
 	void initialize();
-
 	SQLRETURN bindCol();
 	SQLRETURN bindCol(MdfEnum, ScreenInfo);
 	SQLRETURN bindParameter(MdfEnum, ScreenInfo);
