@@ -4,7 +4,7 @@ void Schedule::initialize()
 {
 	id = 0;
 	movie.initialize();
-	screen.initialize();
+	//screen.initialize();
 	startTime = 0;
 	endTime = 0;
 }
@@ -12,7 +12,6 @@ void Schedule::initialize()
 void Schedule::show() const
 {
 	wcout << movie.getTitle() << L"(";
-	
 	if (0 == movie.getAge())
 	{
 		cout << "ÀüÃ¼";

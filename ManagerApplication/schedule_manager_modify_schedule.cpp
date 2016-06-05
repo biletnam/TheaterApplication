@@ -18,6 +18,8 @@ void ScheduleManager::modifySchedule(Schedule &schedule)
 			"  > 상영 일정 확인/수정\n"
 			"\n"
 			"선택한 상영 일정\n";
+		schedule.date.show();
+		schedule.screen.show();
 		schedule.show();
 
 		cout << "\n"

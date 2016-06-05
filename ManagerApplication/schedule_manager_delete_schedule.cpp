@@ -12,6 +12,8 @@ void ScheduleManager::deleteSchedule(Schedule &schedule)
 			"   > 상영 일정 삭제\n"
 			"\n"
 			"선택한 상영 일정\n";
+		schedule.date.show();
+		schedule.screen.show();
 		schedule.show();
 
 		cout << "\n삭제하시겠습니까?(y/n): ";

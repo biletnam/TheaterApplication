@@ -27,10 +27,25 @@ void ScheduleManager::registerSchedule()
 			|| 0 != schedule.getStartTime())
 		{
 			cout << "새 스케쥴\n";
-			schedule.show();
+			if (0 != schedule.screen.getNumber())
+			{
+				schedule.screen.show();
+			}
+			if (0 != schedule.date.getValue())
+			{
+				schedule.date.show();
+			}
+			if (0 != schedule.movie.getCode())
+			{
+				schedule.movie.show();
+			}
+			if (0 != schedule.getStartTime())
+			{
+				schedule.showTime();
+			}
 			cout << endl;
 		}
-
+				
 		cout <<
 			"1. 상영관 설정\n"
 			"2. 날짜 설정\n"
@@ -86,7 +101,7 @@ void ScheduleManager::registerSchedule()
 			case REGISTER_SCHEDULE:
 				if (0 == schedule.getStartTime())
 				{
-					cout << "상영 시간을 입력하지 않았습니다.\n";
+					cout << "\n상영 시간을 입력하지 않았습니다.\n";
 					system("pause");
 					continue;
 				}
@@ -109,11 +124,11 @@ void ScheduleManager::registerSchedule()
 			&& SQL_SUCCESS == schedule.execute(MDF_SEAT, seatSql))
 		{
 			schedule.initialize();
-			cout << "상영 일정이 등록 되었습니다.\n";
+			cout << "\n상영 일정이 등록 되었습니다.\n";
 		}
 		else
 		{
-			cout << "상영 일정 등록을 실패했습니다.\n";
+			cout << "\n상영 일정 등록을 실패했습니다.\n";
 		}
 		system("pause");
 	}
